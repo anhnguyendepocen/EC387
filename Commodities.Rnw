@@ -1,0 +1,62 @@
+\documentclass[12pt, a4paper, oneside]{article} % Paper size, default font size and one-sided paper
+%\graphicspath{{./Figures/}} % Specifies the directory where pictures are stored
+%\usepackage[dcucite]{harvard}
+\usepackage{rotating}
+\usepackage{amsmath}
+\usepackage{setspace}
+\usepackage{pdflscape}
+\usepackage[flushleft]{threeparttable}
+\usepackage{multirow}
+\usepackage[comma, sort&compress]{natbib}% Use the natbib reference package - read up on this to edit the reference style; if you want text (e.g. Smith et al., 2012) for the in-text references (instead of numbers), remove 'numbers' 
+\usepackage{graphicx}
+%\bibliographystyle{plainnat}
+\bibliographystyle{agsm}
+\usepackage[colorlinks = true, citecolor = blue, linkcolor = blue]{hyperref}
+%\hypersetup{urlcolor=blue, colorlinks=true} % Colors hyperlinks in blue - change to black if annoying
+%\renewcommand[\harvardurl]{URL: \url}
+\begin{document}
+\title{Commodity Futures}
+%\author{Rob Hayward\footnote{University of Brighton Business School, Lewes Road, Brighton, BN2 4AT; Telephone 01273 642586.  rh49@brighton.ac.uk}}
+\date{\today}
+\maketitle
+\section*{Introduction}
+Commodities are primarily traded in futures markets.  These are an agreement now to pay a particular price for a particular commodity at some set date in the future. These markets are mostly exchange traded and are therefore the quantities to be supplied and the dates at which this will be done are standardised.  Standardisation makes the contract more widely applicable and increases liquidity.  The difference between the underlying risk that is to be hedge by these contracts and the futures is called the \emph{basis risk}.  
+
+The futures market is divided into two types of activity:  hedging and speculation.  The hedgers aim to reduce risk by locking in the price that they will buy or sell the commodity in the future.  For example, the oil hedgers will be oil companies, airline companies and other producers and users of oil and related products. The speculators taking a position in the market because they believe that they can make a profit from price movement.  Keynes and Hicks argued that futures prices would tend to trade at a discount to the spot price because speculators would require some payment for taking risk from the hedgers. 
+
+The US Commodity and Futures Trading Commission (CFTC), a regulatory body, requires that all participants in the futures market categorise themseleves as \emph{commerical} with some underlying business interest in the 
+
+\section*{Pricing futures contracts}
+The price of a futures contract should be equal to the cost of buying the commodity now and storing it until the delivery date.  For a financial serucity where the only cost is the cost of finance, the $F(t, T)$ futures price for time $T$, valued at $t$, where $t<T$ is equal to, 
+\begin{equation*}
+F(t, T) = S(t) \times (1 +r)^{(T-t)}
+\end{equation*}
+or, in continuous time, 
+\begin{equation*}
+F(t, T) = S(t)e^{r(T-t)}
+\end{equation*}
+For other futures, storage costs, income in the form of dividends and coupons and any other benefits that accrue from the holding of the commodity. This may be particularly important if there are large storage costs involved for commoditie. 
+
+
+<<Oil>>=
+require(xts)
+da <- read.csv('http://www.quandl.com/api/v1/datasets/CFTC/CL_F_L_ALL.csv?&trim_start=2000-02-08&trim_end=2014-02-18&sort_order=desc', colClasses=c('Dates'='Date'))
+db <- read.csv('http://www.quandl.com/api/v1/datasets/OFDP/FUTURE_CL1.csv?&auth_token=mUCjthkJFQDsYVrFh4Gh&trim_start=2000-02-08&trim_end=2014-02-26&collapse=monthly&sort_order=desc', colClasses=c('Date'='Date'))
+da$spec <- (da[,3] - da[,4])/(da[,3] + da[,4])
+da$hedge <- da[,6] - da[,7]
+par(mfrow=c(2,1))
+plot(da$spec ~ da$Date, type = 'l', main = "Oil price and Spculative Positions")
+plot(db$Settle ~ db$Date, type = 'l', main = "Oil and ")
+head(db)
+@
+
+Delivery...
+
+Supply and Demand
+
+Trade the spread
+
+
+
+
+\end{document}
