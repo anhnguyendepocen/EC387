@@ -63,11 +63,22 @@ plot(db$Settle ~ db$Date, type = 'l', main = "Oil Prices", xlab = "Date", ylab =
 @
 
 \section*{Delivery}
-The futures contracts will expire in set months of March, June, September and December.  The actual time is determined by the exchange. 
+The futures contracts will expire in set months of March, June, September and December.  The actual time is determined by the exchange. The delivery is spefified by the contract.  For example, WTI is at the oil pipeline in Cushing Oaklahoma; Porkbellier are a particular quantity and quality of meat; bond futurs specify a particular range of bonds with particular coupons. 
 
-Supply and Demand
+\section*{Trading spreads}
+Spreading can be a way of isolating particular risks or reducing the overall risk.  We have already looked at the spread between short-term interest rate (STIR) contracts that can be used to speculate on particular interest rate changes.  For example, the spread between December 2014 and December 2015 contract will be a play on interest rate expectation through the year 2015.  This can also be used to take a position on the performance of the economy.  Spreads are usually less risky.  For example, holding an outright short position for the December 2014 contract leaves you exposed to a sharp increase in the  value of the contract if there is any very positive economic news.  However, a short December 2014 position combined with  a long December 2015 position will reduce this risk as the increase in the price of December 2014 is likely to be mirrored to a great extent by an increase in the price of the December 2015 in many cases.  These are called \emph{calendar spreads}
 
-Trade the spread
+Amongst the other spread trades are 
+\begin{enumerate}
+\item The \emph{Crack spread} is the spread between crude oil and oil products (gasoline and distillate fuel oil).  This is useful for oil refinary companies to manage the risk to their operations. The spread is linked to profitability. 
+\item STIRS and bond futures will be a play on the yield curve.
+\item STIRS in different currencies will play interest rate spreads. 
+\item Bond futures will be spreads between bond markets. 
+\item Gold vs Silver 
+\item Oil vs gas
+\end{enumerate}
+
+Exchange rates are an exception.  For exchange rates, the spot market is more liquid than the futures. 
 
 
 

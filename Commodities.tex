@@ -1,4 +1,4 @@
-\documentclass[12pt, a4paper, oneside]{article}\usepackage[]{graphicx}\usepackage[]{color}
+\documentclass[12pt, a4paper, oneside]{article}\usepackage{graphicx, color}
 %% maxwidth is the original width if it is less than linewidth
 %% otherwise use linewidth (to make sure the graphics do not exceed the margin)
 \makeatletter
@@ -11,16 +11,21 @@
 }
 \makeatother
 
-\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
-\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
-\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
-\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
-\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
-\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
-\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
-\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
-\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
-\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\definecolor{fgcolor}{rgb}{0.2, 0.2, 0.2}
+\newcommand{\hlnumber}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlfunctioncall}[1]{\textcolor[rgb]{0.501960784313725,0,0.329411764705882}{\textbf{#1}}}%
+\newcommand{\hlstring}[1]{\textcolor[rgb]{0.6,0.6,1}{#1}}%
+\newcommand{\hlkeyword}[1]{\textcolor[rgb]{0,0,0}{\textbf{#1}}}%
+\newcommand{\hlargument}[1]{\textcolor[rgb]{0.690196078431373,0.250980392156863,0.0196078431372549}{#1}}%
+\newcommand{\hlcomment}[1]{\textcolor[rgb]{0.180392156862745,0.6,0.341176470588235}{#1}}%
+\newcommand{\hlroxygencomment}[1]{\textcolor[rgb]{0.43921568627451,0.47843137254902,0.701960784313725}{#1}}%
+\newcommand{\hlformalargs}[1]{\textcolor[rgb]{0.690196078431373,0.250980392156863,0.0196078431372549}{#1}}%
+\newcommand{\hleqformalargs}[1]{\textcolor[rgb]{0.690196078431373,0.250980392156863,0.0196078431372549}{#1}}%
+\newcommand{\hlassignement}[1]{\textcolor[rgb]{0,0,0}{\textbf{#1}}}%
+\newcommand{\hlpackage}[1]{\textcolor[rgb]{0.588235294117647,0.709803921568627,0.145098039215686}{#1}}%
+\newcommand{\hlslot}[1]{\textit{#1}}%
+\newcommand{\hlsymbol}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlprompt}[1]{\textcolor[rgb]{0.2,0.2,0.2}{#1}}%
 
 \usepackage{framed}
 \makeatletter
@@ -118,11 +123,22 @@ However, the oil price remains below the highest levels.
 
 
 \section*{Delivery}
-The futures contracts will expire in set months of March, June, September and December.  The actual time is determined by the exchange. 
+The futures contracts will expire in set months of March, June, September and December.  The actual time is determined by the exchange. The delivery is spefified by the contract.  For example, WTI is at the oil pipeline in Cushing Oaklahoma; Porkbellier are a particular quantity and quality of meat; bond futurs specify a particular range of bonds with particular coupons. 
 
-Supply and Demand
+\section*{Trading spreads}
+Spreading can be a way of isolating particular risks or reducing the overall risk.  We have already looked at the spread between short-term interest rate (STIR) contracts that can be used to speculate on particular interest rate changes.  For example, the spread between December 2014 and December 2015 contract will be a play on interest rate expectation through the year 2015.  This can also be used to take a position on the performance of the economy.  Spreads are usually less risky.  For example, holding an outright short position for the December 2014 contract leaves you exposed to a sharp increase in the  value of the contract if there is any very positive economic news.  However, a short December 2014 position combined with  a long December 2015 position will reduce this risk as the increase in the price of December 2014 is likely to be mirrored to a great extent by an increase in the price of the December 2015 in many cases.  These are called \emph{calendar spreads}
 
-Trade the spread
+Amongst the other spread trades are 
+\begin{enumerate}
+\item The \emph{Crack spread} is the spread between crude oil and oil products (gasoline and distillate fuel oil).  This is useful for oil refinary companies to manage the risk to their operations. The spread is linked to profitability. 
+\item STIRS and bond futures will be a play on the yield curve.
+\item STIRS in different currencies will play interest rate spreads. 
+\item Bond futures will be spreads between bond markets. 
+\item Gold vs Silver 
+\item Oil vs gas
+\end{enumerate}
+
+Exchange rates are an exception.  For exchange rates, the spot market is more liquid than the futures. 
 
 
 
