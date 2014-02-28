@@ -22,7 +22,9 @@
 \section*{Introduction}
 Commodities are primarily traded in futures markets.  These are an agreement now to pay a particular price for a particular commodity at some set date in the future. These markets are mostly exchange traded and are therefore the quantities to be supplied and the dates at which this will be done are standardised.  Standardisation makes the contract more widely applicable and increases liquidity.  The difference between the underlying risk that is to be hedge by these contracts and the futures is called the \emph{basis risk}.  
 
-The futures market is divided into two types of activity:  hedging and speculation.  The hedgers aim to reduce risk by locking in the price that they will buy or sell the commodity in the future.  For example, the oil hedgers will be oil companies, airline companies and other producers and users of oil and related products. The speculators taking a position in the market because they believe that they can make a profit from price movement.  Keynes and Hicks argued that futures prices would tend to trade at a discount to the spot price because speculators would require some payment for taking risk from the hedgers. When the futures price is above the spot price or the price of the near future is above the far contract, this is called \emph{contango}; when the spot price is above the future or the near future is above the far future, this is called \emph{backwardation}
+The futures market is divided into two types of activity:  hedging and speculation.  The hedgers aim to reduce risk by locking in the price that they will buy or sell the commodity in the future.  For example, the oil hedgers will be oil companies, airline companies and other producers and users of oil and related products. The speculators taking a position in the market because they believe that they can make a profit from price movement. 
+
+Keynes and Hicks argued that futures prices would tend to trade at a discount to the spot price because speculators would require some payment for taking risk from the hedgers. When the futures price is above the spot price or the price of the near future is above the far contract, this is called \emph{contango}; when the spot price is above the future or the near future is above the far future, this is called \emph{backwardation}
 
 The US Commodity and Futures Trading Commission (CFTC), a regulatory body, requires that all participants in the futures market categorise themseleves as \emph{commerical} with some underlying business interest in the 
 
@@ -42,12 +44,8 @@ When there are disruptions in the supply of the commodity, this arbitrage mechan
 F(t, T) = E_t[S(T)]
 \end{equation*}
 
-
-
-
-
 The evolution of specultive positions shows that these positions have risen to near record levels.   
-<<Oilspec, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, fig.align='center'>>=
+<<Oilspec, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, fig.align='center', fig.height=4>>=
 da <- read.csv('http://www.quandl.com/api/v1/datasets/CFTC/CL_F_L_ALL.csv?&trim_start=2000-02-08&trim_end=2014-02-18&sort_order=desc', colClasses=c('Dates'='Date'))
 db <- read.csv('http://www.quandl.com/api/v1/datasets/OFDP/FUTURE_CL1.csv?&auth_token=mUCjthkJFQDsYVrFh4Gh&trim_start=2000-02-08&trim_end=2014-02-26&collapse=monthly&sort_order=desc', colClasses=c('Date'='Date'))
 da$spec <- (da[,3] - da[,4])/(da[,3] + da[,4])
@@ -57,7 +55,7 @@ plot(da$spec ~ da$Date, type = 'l', main = "Spculative oil positions",
 @
 However, the oil price remains below the highest levels. 
 
-<<oilprice, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE>>=
+<<oilprice, echo=FALSE, message=FALSE, warning=FALSE, cache=FALSE, fig.height=4>>=
 db <- read.csv('http://www.quandl.com/api/v1/datasets/OFDP/FUTURE_CL1.csv?&auth_token=mUCjthkJFQDsYVrFh4Gh&trim_start=2000-02-08&trim_end=2014-02-26&collapse=monthly&sort_order=desc', colClasses=c('Date'='Date'))
 plot(db$Settle ~ db$Date, type = 'l', main = "Oil Prices", xlab = "Date", ylab = "Oil Price")
 @
@@ -66,6 +64,13 @@ plot(db$Settle ~ db$Date, type = 'l', main = "Oil Prices", xlab = "Date", ylab =
 The futures contracts will expire in set months of March, June, September and December.  The actual time is determined by the exchange. The delivery is spefified by the contract.  For example, WTI is at the oil pipeline in Cushing Oaklahoma; Porkbellier are a particular quantity and quality of meat; bond futurs specify a particular range of bonds with particular coupons. 
 
 \section*{Trading spreads}
+There are two main benefits of using spreads:  
+
+\begin{enumerate}
+\item They can isolate a particular risk
+\item They can reduce the total amount of risk
+\end{enumerate}
+
 Spreading can be a way of isolating particular risks or reducing the overall risk.  We have already looked at the spread between short-term interest rate (STIR) contracts that can be used to speculate on particular interest rate changes.  For example, the spread between December 2014 and December 2015 contract will be a play on interest rate expectation through the year 2015.  This can also be used to take a position on the performance of the economy.  Spreads are usually less risky.  For example, holding an outright short position for the December 2014 contract leaves you exposed to a sharp increase in the  value of the contract if there is any very positive economic news.  However, a short December 2014 position combined with  a long December 2015 position will reduce this risk as the increase in the price of December 2014 is likely to be mirrored to a great extent by an increase in the price of the December 2015 in many cases.  These are called \emph{calendar spreads}
 
 Amongst the other spread trades are 
@@ -77,6 +82,17 @@ Amongst the other spread trades are
 \item Gold vs Silver 
 \item Oil vs gas
 \end{enumerate}
+
+The spead between the December 2014 and the December 2015 contracts will provide an indication of rate expectations for 2015.
+
+The hedgers 
+\begin{enumerate}
+\item Oil companies hedging exposure to oil market
+\item Airline companies hedging exposure to petroleum products.
+\item Financial institutions hedging interst rate risk with STIRS, hedging bond issuance with the boind futures and funds covering exposure to stock market with equity futures. 
+\end{enumerate}
+
+
 
 Exchange rates are an exception.  For exchange rates, the spot market is more liquid than the futures. 
 
