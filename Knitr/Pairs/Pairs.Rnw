@@ -1,0 +1,100 @@
+\documentclass[14pt,xcolor=pdftex,dvipsnames,table]{beamer}
+
+% Specify theme
+\usetheme{Madrid}
+% See deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html for other themes
+\usepackage{caption}
+\usepackage[comma, sort&compress]{natbib}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\bibliographystyle{agsm}
+% Specify base color
+\usecolortheme[named=OliveGreen]{structure}
+% See http://goo.gl/p0Phn for other colors
+
+% Specify other colors and options as required
+\setbeamercolor{alerted text}{fg=Maroon}
+\setbeamertemplate{items}[square]
+
+% Title and author information
+\title{Pairs Trading - Relative Value}
+\author{Rob Hayward}
+
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+\tableofcontents
+\end{frame}
+
+\section{Introduction}
+\begin{frame}{Introduction}
+This is a return full circle to the original hedge funds
+\begin{itemize}[<+-| alert@+>]
+\item Pairs trading will hope to provide an \emph{absolute return}
+\item Paris trading can remove market risk and leave exposure to specific risk
+\item Depends upon being able to short securities
+\begin{itemize}
+\item Professionl ability to borrow securities
+\item Use futures or contract-for-difference
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\section{Pairs Trading}
+\begin{frame}{Pairs Trading}
+The trade depends on a temporary brekdown in the correlation between two similar securities
+\begin{itemize}[<+-| alert@+>]
+\item LTCM strategy
+\item When the usual relationship breaks down, speculate on a return to normality
+\item Exmples
+\begin{itemize}
+\item Tesco and Sainsbury
+\item Coke and Pepsie
+\item 5-year bond and 10-year bond
+\item Gold and silver
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+%\begin{frame}{Pairs}
+%<<Coke, echo=FALSE>>=
+%da <- read.csv('http://www.quandl.com/api/v1/datasets/GOOG/NYSE_KO.csv?&auth_token=mUCjthkJFQDsYVrFh4Gh&trim_start=2000-01-01&trim_end=2013-12-31&sort_order=desc', colClasses=c('Date'='Date'))
+%da1 <- ead.csv('http://www.quandl.com/api/v1/datasets/GOOG/NYSE_PEP.csv?&auth_token=mUCjthkJFQDsYVrFh4Gh&trim_start=2000-01-01&trim_end=2013-12-31&sort_order=desc', colClasses=c('Date'='Date'))
+%head(da)
+%@
+%\end{frame}
+
+\begin{frame}{Cointegration}
+One method to look at the relationship would be the assess whether the two are cointegrated.
+\begin{itemize}[<+-| alert@+>]
+\item Can use the Engle-Granger method and check that the residuals from the regression are \emph{stationary}
+\item If the residuals are stationary, we expect the previous relationship to be restored
+\item An \emph{Error-Correction Model} can be used to assess the speed of the return to the set relationship
+\end{itemize}
+\end{frame}
+
+
+
+
+\section{Relative Value}
+\begin{frame}{Relative value}
+Now the focus is on one part of the pair out-performing
+This can be based on, for example
+\begin{itemize}[<+-| alert@+>]
+\item Reltive PE ratios
+\item An assessment of competitive advantage
+\item Products and brands
+\item Country risk
+\item Yield curve, durtion and changes in short-term interest rates
+\end{itemize}
+
+\end{frame}
+
+
+
+\end{document}
