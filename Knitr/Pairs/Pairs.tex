@@ -89,7 +89,7 @@ This is a return full circle to the original hedge funds
 \item Paris trading can remove market risk and leave exposure to specific risk
 \item Depends upon being able to short securities
 \begin{itemize}
-\item Professionl ability to borrow securities
+\item Professional ability to borrow securities
 \item Use futures or contract-for-difference
 \end{itemize}
 \end{itemize}
@@ -97,27 +97,37 @@ This is a return full circle to the original hedge funds
 
 \section{Pairs Trading}
 \begin{frame}{Pairs Trading}
-The trade depends on a temporary brekdown in the correlation between two similar securities
+The trade depends on a temporary breakdown in the correlation between two similar securities
 \begin{itemize}[<+-| alert@+>]
 \item LTCM strategy
 \item When the usual relationship breaks down, speculate on a return to normality
-\item Exmples
+\item Examples
 \begin{itemize}
 \item Tesco and Sainsbury
-\item Coke and Pepsie
+\item Coke and Pepsi
 \item 5-year bond and 10-year bond
 \item Gold and silver
 \end{itemize}
 \end{itemize}
 \end{frame}
 
-%\begin{frame}{Pairs}
-%<<Coke, echo=FALSE>>=
-%da <- read.csv('http://www.quandl.com/api/v1/datasets/GOOG/NYSE_KO.csv?&auth_token=mUCjthkJFQDsYVrFh4Gh&trim_start=2000-01-01&trim_end=2013-12-31&sort_order=desc', colClasses=c('Date'='Date'))
-%da1 <- ead.csv('http://www.quandl.com/api/v1/datasets/GOOG/NYSE_PEP.csv?&auth_token=mUCjthkJFQDsYVrFh4Gh&trim_start=2000-01-01&trim_end=2013-12-31&sort_order=desc', colClasses=c('Date'='Date'))
-%head(da)
-%@
-%\end{frame}
+\begin{frame}{Pairs}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{figure/Coke} 
+
+\end{knitrout}
+
+\end{frame}
+
+\begin{frame}{Coke vs Pepsi}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{figure/CvP} 
+
+\end{knitrout}
+
+\end{frame}
 
 \begin{frame}{Cointegration}
 One method to look at the relationship would be the assess whether the two are cointegrated.
@@ -127,20 +137,73 @@ One method to look at the relationship would be the assess whether the two are c
 \item An \emph{Error-Correction Model} can be used to assess the speed of the return to the set relationship
 \end{itemize}
 \end{frame}
+%\begin{frame}{OLS Coke and Pepsi}
+%<<table>>=
+%xtable(summary(eq))
+%@
+%\end{frame}
+% This does not work.  
+\begin{frame}{Regression: Coke and Pepsi}
+% latex table generated in R 3.0.2 by xtable 1.7-1 package
+% Fri Mar 21 05:51:48 2014
+\begin{table}[ht]
+\rowcolors{1}{OliveGreen!20}{OliveGreen!5}
+\centering
+\begin{tabular}{rrrrr}
+  \hline
+ & Estimate & Std. Error & t value & Pr($>$$|$t$|$) \\ 
+  \hline
+(Intercept) & 20.58 & 0.68 & 30.16 & 0.00 \\ 
+  Coke & 1.37 & 0.02 & 56.18 & 0.00 \\ 
+   \hline
+\end{tabular}
+\end{table}
 
+The regression of Pepsi on Cole is only valid if the two are cointegrated.  Residuals must be checked. 
 
+\end{frame}
 
+\begin{frame}{Residuals}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{figure/Resid} 
+
+\end{knitrout}
+
+\end{frame}
+
+%<<DF, echo=FALSE, message=FALSE>>=
+%require(urca)
+%da4 <- ur.df(eq$residuals, type = 'trend', lags = 3) 
+%# Does not print anything.  the table is manual
+%@
+\begin{frame}{Dickey-Fuller}
+\begin{table}[ht]
+\rowcolors{1}{OliveGreen!20}{OliveGreen!5}
+\centering
+\begin{tabular}{rrrr}
+  \hline
+   & Test & 1pct& 5pct  \\ 
+  \hline
+$\tau$ & -2.52 & -3.96 & -3.41\\
+ $\phi_2$ & 2.80 & 6.09 & 4.68\\ 
+$\phi_3$ & 4.18 & 8.27 & 5.34\\ 
+   \hline
+\end{tabular}
+\end{table}
+Dickey-Fuller tests  show that the null of a unit root cannot be rejected ($\tau$).  Coke and Pepsi are not cointegrated. 
+\end{frame}
 
 \section{Relative Value}
 \begin{frame}{Relative value}
 Now the focus is on one part of the pair out-performing
 This can be based on, for example
 \begin{itemize}[<+-| alert@+>]
-\item Reltive PE ratios
+\item Relative PE ratios
 \item An assessment of competitive advantage
 \item Products and brands
 \item Country risk
-\item Yield curve, durtion and changes in short-term interest rates
+\item Yield curve, duration and changes in short-term interest rates
 \end{itemize}
 
 \end{frame}

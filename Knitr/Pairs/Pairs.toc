@@ -1,4 +1,4 @@
-\beamer@endinputifotherversion {3.10pt}
+\beamer@endinputifotherversion {3.19pt}
 \beamer@sectionintoc {1}{Introduction}{3}{0}{1}
 \beamer@sectionintoc {2}{Pairs Trading}{8}{0}{2}
-\beamer@sectionintoc {3}{Relative Value}{18}{0}{3}
+\beamer@sectionintoc {3}{Relative Value}{23}{0}{3}
