@@ -1,0 +1,67 @@
+\documentclass[12pt, a4paper, oneside]{article} % Paper size, default font size and one-sided paper
+%\graphicspath{{./Figures/}} % Specifies the directory where pictures are stored
+%\usepackage[dcucite]{harvard}
+\usepackage{rotating}
+\usepackage{amsmath}
+\usepackage{setspace}
+\usepackage{pdflscape}
+\usepackage[flushleft]{threeparttable}
+\usepackage{multirow}
+\usepackage[comma, sort&compress]{natbib}% Use the natbib reference package - read up on this to edit the reference style; if you want text (e.g. Smith et al., 2012) for the in-text references (instead of numbers), remove 'numbers' 
+\usepackage{graphicx}
+%\bibliographystyle{plainnat}
+\bibliographystyle{agsm}
+\usepackage[colorlinks = true, citecolor = blue, linkcolor = blue]{hyperref}
+%\hypersetup{urlcolor=blue, colorlinks=true} % Colors hyperlinks in blue - change to black if annoying
+%\renewcommand[\harvardurl]{URL: \url}
+\begin{document}
+\title{Trends}
+\author{Rob Hayward\footnote{University of Brighton Business School, Lewes Road, Brighton, BN2 4AT; Telephone 01273 642586.  rh49@brighton.ac.uk}}
+\date{\today}
+\maketitle
+\section*{Introduction}
+One aspects of paris tht may be investigted would be the relatonship between the two series. In the \emph{Pairs} slides in the \emph{Pair} folder, two ways of looking at the relationship were considered: the difference between share price and the ratio of share prices.  The evolution of these may be considered. 
+
+The following is taken from \href{Arthur Charpentier}{http://freakonometrics.hypotheses.org/13287}.  
+
+<<Plot, fig.height=4, cache=TRUE, tidy=TRUE>>=
+autoroute=read.table("http://freakonometrics.blog.free.fr/public/data/autoroute.csv",
+  header=TRUE,sep=";")
+X=autoroute$a100
+T=1:length(X)
+plot(T,X,type="l",xlim=c(0,120), main = "French Road Trffic")
+reg=lm(X~T)
+abline(reg,col="red")
+@
+It is possible to work on the residuals from the regression. $Y = X_t - (a + bt)$.
+<<Resid, fig.height=4>>=
+Y=residuals(reg)
+acf(Y,lag=36,lwd=3)
+@
+There appers to be a seasonal pattern. Therefore, create $Z_t = (1 - L^{12})Y_t$.  The ACF.
+<<cf, fig.height=4>>=
+Z = diff(Y, 12)
+acf(Z, lag = 36, lwd = 3)
+@
+Arthur suggests that this suggests a MA(1) pattern. 
+
+The PCF
+<<pacf, fig.height=4>>=
+pacf(Z, lag = 36, lwd = 3)
+@
+Arthur suggests an AR(1)
+
+Create a MA(1) model
+<<ma1, fig.width=4>>=
+model1 <- arima(Z, order = c(0, 0, 1))
+model1
+@
+
+Create an AR(1) model
+<<r1, fig.width=4>>=
+model2 <- arima(Z, order = c(1, 0, 0))
+model2
+@
+Arthur goes on to discuss the relative merits of AR(1) and seasonal root models.  The none-stationary model will revel an expanding variance.
+
+\end{document}
