@@ -1,0 +1,133 @@
+\documentclass[14pt,xcolor=pdftex,dvipsnames,table]{beamer}
+
+% Specify theme
+\usetheme{Madrid}
+% See deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html for other themes
+\usepackage{caption}
+\usepackage{tikz}
+\usepackage{multirow}
+% Specify base color
+\usecolortheme[named=OliveGreen]{structure}
+% See http://goo.gl/p0Phn for other colors
+
+% Specify other colors and options as required
+\setbeamercolor{alerted text}{fg=Maroon}
+\setbeamertemplate{items}[square]
+
+% Title and author information
+\title{The Bond Market}
+\author{Rob Hayward}
+
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+\begin{frame}{Outline}
+\tableofcontents
+\end{frame}
+
+
+\section{Introduction}
+\begin{frame}{Introduction}
+\begin{itemize}
+\item The bond market is the core of the capital markets
+\item Government dominates the bond market due to high liquidity and low risk
+\item Corporate bonds and LDC bonds offer higher return for a risk
+\item Recent developments suggest reduced government liquidity
+\item Quantitative easing 
+\end{itemize}
+\end{frame}
+
+
+
+\section{Bond Calculation}
+\begin{frame}{Bond price}
+The value of the bond is just the discounted value of the payments that will be made
+\begin{equation*}
+P = \sum_{i = 1}^{i = n} \frac{C_i}{(1+r)^i} + \frac{M}{(1+r)^n}
+\end{equation*}
+Where $C$ is the coupon payment, $r$ is the rate at which future payments are discounted (the redemption yield), $M$ is the par value and $n$ is the number of years to maturity. 
+\end{frame}
+
+\section{Relative Value}
+\begin{frame}{Relative Value}
+A strategy that will assess the relative value of two bonds
+\begin{itemize}
+\item There is a standard relationship between yields
+\item \textbf{Quantitative strategy} (return to normal)
+\item \textbf{Fundamental strategy} (new relationship)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{German yield}
+<<yield, echo=FALSE, fig.align='center', warning=FALSE, message=FALSE, fig.height = 4.5>>=
+library(zoo)
+cols <- c("Belgium", "Germany", "Ireland", "Greece", "Spain", "France", "Italy", 
+"Cyprus", "Latvia", "Luxembourg", "Malta", "Netherlands", "Austria", "Portugal",
+"Slovenia", "Slovakia", "Finland", "Bulgaria", "Czech Republic", "Denmark", 
+"Croatia", "Lithuania", "Hungary", "Poland", "Romania", "Sweden", "Sweden2", "UK") 
+da <- read.csv("Data/irs.csv", skip = 7, col.names = cols, strip.white = TRUE)
+da$Date <- as.Date(row.names(da), format = "%b-%Y")
+da$Date <- as.Date(as.yearmon(rownames(da), format = "%b-%Y"))
+plot(da$Date, da$Germany, type = 'l', main = "German 10-year", xlab = "Date", 
+     ylab = "Yield")
+@
+\end{frame}
+
+\begin{frame}{Greek Risk Premium}
+<<yield2, echo=FALSE, fig.align='center', warning=FALSE, message=FALSE, fig.height = 4.5>>=
+plot(da$Date, da$Greece-da$Germany, type = 'l', main = "Greek Risk Premium", 
+     xlab = "Date",  ylab = "Yield")
+@
+\end{frame}
+
+\begin{frame}{Italian Risk Premium}
+<<yield3, echo=FALSE, fig.align='center', warning=FALSE, message=FALSE, fig.height = 4.5>>=
+plot(da$Date, da$Italy-da$Germany, type = 'l', main = "Italian Risk Premium", 
+     xlab = "Date",  ylab = "Yield")
+@
+\end{frame}
+
+
+\section{Yield Curves}
+\begin{frame}{Yield Curve Theory}
+There are three main theories about the shape of the yield curve
+\begin{itemize}
+\item Expectations theory
+\item Preferred habit or segmented market theory
+\item Liquidity premium theory
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Expectations and Liquidity premium}
+Expectations theory
+
+\begin{itemize}
+\item Return is $i^* = (1+i_i)(1+\hat{i}_2) -1$
+\end{itemize}
+
+if there  is a \emph{liquidity premium} $\theta_L = p(L)$
+
+\begin{itemize}
+\item Return is $i^* = (1+i_i)(1+\hat{i}_2) + \theta_L -1$ 
+\end{itemize}
+
+The liquidity premium is the balance between \emph{interest rate risk} and \emph{reinvestment risk}.
+
+\end{frame}
+
+\section{Credit}
+\begin{frame}{Credit}
+\begin{itemize}
+\item The government curve provides the benchmark
+\item Lower quality credit requires a \emph{risk premium} (denominated in bp)
+\item Global and idiosyncratic factors will affect the risk premium
+\end{itemize}
+\end{frame}
+
+
+\end{document}
