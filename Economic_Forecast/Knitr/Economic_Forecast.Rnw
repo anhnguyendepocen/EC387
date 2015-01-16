@@ -90,7 +90,7 @@ This aims to find a underlying trend by minimising
 Min_g \left [\sum_{t=1}^T (y_t - g_t) + \lambda \sum_{t=1}^T [(g_t - g_{t-1}) - (g_{t-1}-g_{t-2})]^2 \right ]
 \end{equation*}
 \end{block}
-where, 
+where, $g_t$ is the trend growth, $y_t$ is GDP and $\lambda$ is a penalty function that penalises a growth rate that is too variable. 
 \end{frame}
 
 \begin{frame}{Linear Trend}
@@ -127,8 +127,44 @@ GDP is made up of
 \pause
 How will these evolve?  What factors drive these components?  How will the drivers of GDP change in the forecast period?  
 \end{frame}
+\section{GDP components}
+%\begin{frame}{GDP components}
+%<<gdp, echo=FALSE, warning=FALSE, message=FALSE, fig.height=4>>=
+%library(dplyr)
+%library(tidyr)
+%names  <- c("Country", "Currency", "Year", "Final_Consumption", "Consumption",
+%            "Government", "GCF", "GFCF", "Inventories", "Exports", "Imports", %"GDP")
+%da <- read.csv("../../ECM04/Financial_System/Data/UNGNP.csv")
+%names(da) <- names
+%head(da)
+%da <- da[,-13]
+%# Change the country for savings ratio
+%unique(da$Country)
+%da %>%
+%  filter(Country == "Germany") %>%
+%  select(Year, Consumption, Government, GFCF, Exports, Imports)%>%
+%  head()%>%
+%  barplot(main = "GDP")
+%@
+%\end{frame}
 \section{Taylor rule}
+\begin{frame}{Taylor rule}
+Taylor rule 
+\begin{block}{}
+\begin{equation*}
+i_t = \pi_t + r_t^* + \alpha_{\pi}(\pi_t - \pi_t^*) + \alpha_y(y_t - \bar{y}_t)
+\end{equation*}
+\end{block}
+where $i_t$ is the nominl interest rate; $\pi_t$ is the inflation rate; $r_t^*$ is the real interest rate; $y_t$ is GDP; $\pi_t^*$ is the inflation target; $\bar{y}_t$ is the potential rate of GDP growth; $\alpha_{\pi}$ is the elasticity of interest rates to inflation; $\alpha_y$ is the elasticity of interest rates to the potential growth rate.  
+\end{frame}
 
+\begin{frame}{Estimation of rule}
+\begin{itemize}[<+-| alert@+>]
+\item Add other variables if appropriate (exchange rate)
+\item OLS regression estimation of $\alpha_{\pi}$ and $\alpha_y$
+\item What does the model say about interest rates?
+\item What happens to inflation, GDP or the exchange rate from this point? 
+\end{itemize}
+\end{frame}
 
-%[<+-| alert@+>]
 \end{document}
