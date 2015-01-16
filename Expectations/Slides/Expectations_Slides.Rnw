@@ -1,0 +1,93 @@
+\documentclass[14pt,xcolor=pdftex,dvipsnames,table]{beamer}
+
+% Specify theme
+\usetheme{Madrid}
+% See deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html for other themes
+\usepackage{caption}
+\usepackage{tikz}
+ \usetikzlibrary{arrows,positioning}
+\usepackage{multirow}
+% Specify base color
+\usecolortheme[named=OliveGreen]{structure}
+% See http://goo.gl/p0Phn for other colors
+
+% Specify other colors and options as required
+\setbeamercolor{alerted text}{fg=Maroon}
+\setbeamertemplate{items}[square]
+
+% Title and author information
+\title{Expectations and trading}
+\author{Rob Hayward}
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\section{Introduction}
+\begin{frame}
+If the market is informationally efficient, the next market move will be determined by the next information that is received. 
+\begin{block}{}
+\begin{equation*}
+p_{t+1} = p_t + \varepsilon,  \quad \quad \varepsilon \sim N(0, \sigma^2)
+\end{equation*}
+\end{block}
+However, in assessing the market reaction to new information, it is essential to know what is currently discounted. 
+\end{frame}
+
+\begin{frame}{Centering the distribution}
+<<dist, fig.height=4, echo=FALSE>>=
+x <- seq(-4, 4, 0.1)
+y <- rnorm(10000, 0, 1)
+hist(y, main = "Distribution of news", xlab = "Positive or negative", ylab = "Frequency", , prob = TRUE)
+@
+\end{frame}
+%\begin{itemize}[<+-| alert@+>]
+
+
+\begin{frame}{What is discounted?}
+This is a bigger problem than would be anticipated
+\begin{block}{}
+\textbf{Problem}\\
+Radio:``BP shares rose $10\%$ despite the company losing $\$10mn$ in the first half of the year"
+\end{block}
+\pause
+\begin{block}{}
+\textbf{Answer}\\
+They were expected to lose $\$15mn$
+\end{block}
+\end{frame}
+
+
+\begin{frame}{Assessing expectations}
+\begin{itemize}[<+-| alert@+>]
+\item The market price is a distillation of a range of expectations
+\item The price is some sort of \emph{weighted average} of these expectations
+\begin{itemize}
+\item Weighted by intensity of belief
+\item Weighted by money
+\end{itemize}
+\item It is not necessarily normally distributed
+\end{itemize}
+\end{frame}
+
+\begin{frame}{The distribution of expectations}
+For example
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item \textbf{Positive skew} most people have a consensus belief but there are some extremely positive views
+\item \textbf{Negative skew} most people have a consensus belief that there are some extremely negative views
+\item \textbf{Bimodal distribution} there are two nodes to expectation that are some way from each other. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Effect of disapointed expectations}
+How are changes in expectations likely to affect market performance? 
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item What sort of position are held by short-term speculative accounts? 
+\item What sort of positions are held by long-term stable accounts? 
+\item Where are the \emph{take-profits} and \emph{stop-losses}
+\end{itemize}
+\end{frame}
+\end{document}

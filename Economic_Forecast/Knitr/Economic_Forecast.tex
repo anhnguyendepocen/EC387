@@ -64,7 +64,7 @@
 \setbeamertemplate{items}[square]
 
 % Title and author information
-\title{The Bond Market}
+\title{Economic Forecast}
 \author{Rob Hayward}
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
@@ -78,114 +78,99 @@
 \tableofcontents
 \end{frame}
 
-
 \section{Introduction}
-\begin{frame}{Introduction}
-\begin{itemize}
-\item The bond market is the core of the capital markets
-\item Government dominates the bond market due to high liquidity and low risk
-\item Corporate bonds and LDC bonds offer higher return for a risk
-\item Recent developments suggest reduced government liquidity
-\item Quantitative easing 
+\begin{frame}{Aims}
+The aim is to forecast interest rate changes. This will require
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item An understanding of the central bank
+\item Some knowledge of the current state of the economy
+\item A forecast of how the economy will evolve in the future
+\item An assessment of what this means for monetary policy
+\end{itemize}
+\pause
+Draw on what you learnt in EC271 and EC284
+\end{frame}
+
+
+\section{Central bank}
+\begin{frame}{Central bank}
+It is important to know central bank policy if you want to understand what they will do
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item How do they see the economy?
+\item What is their main focus/concern?
+\item Do they have a specific mandate? 
+\item When do they meet?  How do they decide policy?  What is the nature of the usual policy change? 
 \end{itemize}
 \end{frame}
 
 
+\section{Output gap}
+\begin{frame}{Output gap}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{figure}
+\includegraphics[width=\maxwidth]{figure/GDP-1} \caption[Norwegian real GDP]{Norwegian real GDP\label{fig:GDP}}
+\end{figure}
 
-\section{Bond Calculation}
-\begin{frame}{Bond price}
-The value of the bond is just the discounted value of the payments that will be made
+
+\end{knitrout}
+\end{frame}
+
+\begin{frame}{Finding the trend}
+There are five methods to find the trend
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item Estimation of a growth rate 
+\item Linear trend
+\item Quadratic tend
+\item Hodrick-Prescott filter
+\item Centered moving average
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Hodrick-Prescott Filter}
+This aims to find a underlying trend by minimising 
+\begin{block}{}
 \begin{equation*}
-P = \sum_{i = 1}^{i = n} \frac{C_i}{(1+r)^i} + \frac{M}{(1+r)^n}
+Min_g \left [\sum_{t=1}^T (y_t - g_t) + \lambda \sum_{t=1}^T [(g_t - g_{t-1}) - (g_{t-1}-g_{t-2})]^2 \right ]
 \end{equation*}
-Where $C$ is the coupon payment, $r$ is the rate at which future payments are discounted (the redemption yield), $M$ is the par value and $n$ is the number of years to maturity. 
+\end{block}
+where, 
 \end{frame}
 
-\section{Relative Value}
-\begin{frame}{Relative Value}
-A strategy that will assess the relative value of two bonds
-\begin{itemize}
-\item There is a standard relationship between yields
-\item \textbf{Quantitative strategy} (return to normal)
-\item \textbf{Fundamental strategy} (new relationship)
-\end{itemize}
-\end{frame}
-
-\begin{frame}{German yield}
+\begin{frame}{Linear Trend}
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-
-{\centering \includegraphics[width=\maxwidth]{figure/yield-1} 
-
-}
-
-
+\includegraphics[width=\maxwidth]{figure/LT-1} 
 
 \end{knitrout}
 \end{frame}
 
-\begin{frame}{Greek Risk Premium}
+\begin{frame}{Output gap}
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-
-{\centering \includegraphics[width=\maxwidth]{figure/yield2-1} 
-
-}
-
-
-
-\end{knitrout}
-\end{frame}
-
-\begin{frame}{Italian Risk Premium}
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-
-{\centering \includegraphics[width=\maxwidth]{figure/yield3-1} 
-
-}
-
-
+\includegraphics[width=\maxwidth]{figure/OG-1} 
 
 \end{knitrout}
 \end{frame}
 
 
-\section{Yield Curves}
-\begin{frame}{Yield Curve Theory}
-There are three main theories about the shape of the yield curve
-\begin{itemize}
-\item Expectations theory
-\item Preferred habit or segmented market theory
-\item Liquidity premium theory
+\section{GDP forecasts}
+\begin{frame}{GDP components}
+GDP is made up of 
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item Consumer spending (C)
+\item Business investment (I)
+\item Government spending (G)
+\item Net exports (NX)
 \end{itemize}
+\pause
+How will these evolve?  What the forces/ 
 \end{frame}
-
-\begin{frame}{Expectations and Liquidity premium}
-Expectations theory
-
-\begin{itemize}
-\item Return is $i^* = (1+i_i)(1+\hat{i}_2) -1$
-\end{itemize}
-
-if there  is a \emph{liquidity premium} $\theta_L = p(L)$
-
-\begin{itemize}
-\item Return is $i^* = (1+i_i)(1+\hat{i}_2) + \theta_L -1$ 
-\end{itemize}
-
-The liquidity premium is the balance between \emph{interest rate risk} and \emph{reinvestment risk}.
-
-\end{frame}
-
-\section{Credit}
-\begin{frame}{Credit}
-\begin{itemize}
-\item The government curve provides the benchmark
-\item Lower quality credit requires a \emph{risk premium} (denominated in bp)
-\item Global and idiosyncratic factors will affect the risk premium
-\end{itemize}
-\end{frame}
+\section{Taylor rule}
 
 
+%[<+-| alert@+>]
 \end{document}

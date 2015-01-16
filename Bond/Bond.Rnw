@@ -33,7 +33,7 @@
 
 \section{Introduction}
 \begin{frame}{Introduction}
-\begin{itemize}
+\begin{itemize}[<+-| alert@+>]
 \item The bond market is the core of the capital markets
 \item Government dominates the bond market due to high liquidity and low risk
 \item Corporate bonds and LDC bonds offer higher return for a risk
@@ -56,7 +56,7 @@ Where $C$ is the coupon payment, $r$ is the rate at which future payments are di
 \section{Relative Value}
 \begin{frame}{Relative Value}
 A strategy that will assess the relative value of two bonds
-\begin{itemize}
+\begin{itemize}[<+-| alert@+>]
 \item There is a standard relationship between yields
 \item \textbf{Quantitative strategy} (return to normal)
 \item \textbf{Fundamental strategy} (new relationship)
@@ -66,13 +66,15 @@ A strategy that will assess the relative value of two bonds
 \begin{frame}{German yield}
 <<yield, echo=FALSE, fig.align='center', warning=FALSE, message=FALSE, fig.height = 4.5>>=
 library(zoo)
-cols <- c("Belgium", "Germany", "Ireland", "Greece", "Spain", "France", "Italy", 
+cols <- c("Date1", "Belgium", "Germany", "Ireland", "Greece", "Spain", "France", "Italy", 
 "Cyprus", "Latvia", "Luxembourg", "Malta", "Netherlands", "Austria", "Portugal",
 "Slovenia", "Slovakia", "Finland", "Bulgaria", "Czech Republic", "Denmark", 
 "Croatia", "Lithuania", "Hungary", "Poland", "Romania", "Sweden", "Sweden2", "UK") 
-da <- read.csv("Data/irs.csv", skip = 7, col.names = cols, strip.white = TRUE)
-da$Date <- as.Date(row.names(da), format = "%b-%Y")
-da$Date <- as.Date(as.yearmon(rownames(da), format = "%b-%Y"))
+da <- read.csv("Data/irs.csv", skip = 7, col.names = cols, strip.white = TRUE, stringsAsFactors = FALSE)
+da$Date <- as.Date(da$Date1, format = "%b-%Y")
+# http://stackoverflow.com/questions/10446833/
+# how-to-convert-a-character-string-date-to-date-class-if-day-value-is-missing
+da$Date <- as.Date(as.yearmon(da$Date1, format = "%b-%Y"))
 plot(da$Date, da$Germany, type = 'l', main = "German 10-year", xlab = "Date", 
      ylab = "Yield")
 @
@@ -94,9 +96,19 @@ plot(da$Date, da$Italy-da$Germany, type = 'l', main = "Italian Risk Premium",
 
 
 \section{Yield Curves}
+\begin{frame}{Yield Curve}
+<<yc, fig.height=4, echo=FALSE>>=
+curve <- c(0.49, 1.26, 1.92, 2.67)
+mat = c("2-year", "5-year", "10-year", "30-year")
+da <- data.frame(curve, row.names = mat)
+plot(da$curve, main = "UK yield curve", type = 'l', xlab = "Maturity", ylab = "Yield to maturity", ylim = c(0, 3))
+@
+\href{http://www.bloomberg.com/markets/rates-bonds/government-bonds/uk/}{UK Yield curve}
+\end{frame}
+
 \begin{frame}{Yield Curve Theory}
 There are three main theories about the shape of the yield curve
-\begin{itemize}
+\begin{itemize}[<+-| alert@+>]
 \item Expectations theory
 \item Preferred habit or segmented market theory
 \item Liquidity premium theory
@@ -106,13 +118,13 @@ There are three main theories about the shape of the yield curve
 \begin{frame}{Expectations and Liquidity premium}
 Expectations theory
 
-\begin{itemize}
+\begin{itemize}[<+-| alert@+>]
 \item Return is $i^* = (1+i_i)(1+\hat{i}_2) -1$
 \end{itemize}
 
 if there  is a \emph{liquidity premium} $\theta_L = p(L)$
 
-\begin{itemize}
+\begin{itemize}[<+-| alert@+>]
 \item Return is $i^* = (1+i_i)(1+\hat{i}_2) + \theta_L -1$ 
 \end{itemize}
 
@@ -120,14 +132,31 @@ The liquidity premium is the balance between \emph{interest rate risk} and \emph
 
 \end{frame}
 
+\begin{frame}{Inverted Yield Curve}
+<<yc2, fig.height=4, echo=FALSE>>=
+curve <- c(3.2, 2.8, 2.5, 2.0)
+mat = c("2-year", "5-year", "10-year", "30-year")
+da <- data.frame(curve, row.names = mat)
+plot(da$curve, main = "UK yield curve", type = 'l', xlab = "Maturity", ylab = "Yield to maturity", ylim = c(0, 4))
+@
+\end{frame}
+
+
 \section{Credit}
 \begin{frame}{Credit}
-\begin{itemize}
+\begin{itemize}[<+-| alert@+>]
 \item The government curve provides the benchmark
 \item Lower quality credit requires a \emph{risk premium} (denominated in bp)
 \item Global and idiosyncratic factors will affect the risk premium
 \end{itemize}
 \end{frame}
 
-
+\begin{frame}{BBB credit spread}
+<<yield4, echo=FALSE, fig.align='center', warning=FALSE, message=FALSE, fig.height = 4.5>>=
+da <- read.csv("Data/BAMLC0A4CBBB.csv", stringsAsFactors = FALSE)
+da$Date <- as.Date(da$DATE, format = "%d/%m/%Y")
+plot(da$Date, da$VALUE, type = 'l', xlab = "Date", ylab = "Bp over treasuries", main = "BofA Merrill Lynch BBB 
+     bond spread")
+@
+\end{frame}
 \end{document}
