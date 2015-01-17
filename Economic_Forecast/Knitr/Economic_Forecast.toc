@@ -1,5 +1,0 @@
-\beamer@endinputifotherversion {3.26pt}
-\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
-\beamer@sectionintoc {2}{Central bank}{10}{0}{2}
-\beamer@sectionintoc {3}{Output gap}{15}{0}{3}
-\beamer@sectionintoc {4}{GDP forecasts}{25}{0}{4}
