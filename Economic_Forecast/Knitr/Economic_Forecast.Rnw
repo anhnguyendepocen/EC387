@@ -127,26 +127,39 @@ GDP is made up of
 \pause
 How will these evolve?  What factors drive these components?  How will the drivers of GDP change in the forecast period?  
 \end{frame}
+
 \section{GDP components}
-%\begin{frame}{GDP components}
-%<<gdp, echo=FALSE, warning=FALSE, message=FALSE, fig.height=4>>=
-%library(dplyr)
-%library(tidyr)
-%names  <- c("Country", "Currency", "Year", "Final_Consumption", "Consumption",
-%            "Government", "GCF", "GFCF", "Inventories", "Exports", "Imports", %"GDP")
-%da <- read.csv("../../ECM04/Financial_System/Data/UNGNP.csv")
-%names(da) <- names
-%head(da)
-%da <- da[,-13]
-%# Change the country for savings ratio
-%unique(da$Country)
-%da %>%
-%  filter(Country == "Germany") %>%
-%  select(Year, Consumption, Government, GFCF, Exports, Imports)%>%
-%  head()%>%
-%  barplot(main = "GDP")
-%@
-%\end{frame}
+\begin{frame}{GDP components}
+<<gdp2, echo=FALSE, warning=FALSE, message=FALSE, fig.height=4.5>>=
+library(dplyr)
+library(tidyr)
+library(RColorBrewer)
+colors <- brewer.pal(n = 4, "Greens")
+names  <- c("Country", "Currency", "Year", "Final_Consumption", "Consumption",
+            "Government", "GCF", "GFCF", "Inventories", "Exports", "Imports", "GDP")
+da <- read.csv("../../../ECM04/Financial_System/Data/UNGNP.csv")
+da <- da[,-13]
+colnames(da) <- names
+# Change the country for savings ratio
+da <- filter(da, Country == "Germany") 
+da <- mutate(da, CC = (Consumption - lag(Consumption))/lag(GDP))
+da <- mutate(da, CG = (Government - lag(Government))/lag(GDP))
+da <- mutate(da, CI = (GFCF - lag(GFCF))/lag(GDP))
+da <- mutate(da, CNX = ((Exports-Imports) - (lag(Exports) - lag(Imports)))/
+               lag(GDP))
+da <- select(da, Year, CC, CG, CI, CNX) 
+#select the last three years
+da <- da[(dim(da)[1]-3):dim(da)[1], ]
+dam <- as.matrix(da)
+damt <- t(da)
+damt1 <- damt[-1,]
+colnames(damt1) <- damt[1,]
+barplot(damt1, beside  = TRUE, main = "Contribution to German GDP growth", 
+        col = colors)
+legend("bottomright", legend = c("C", "G", "I", "NX"), fill = colors)
+@
+\end{frame}
+
 \section{Taylor rule}
 \begin{frame}{Taylor rule}
 Taylor rule 

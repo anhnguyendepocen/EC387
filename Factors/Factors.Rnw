@@ -21,7 +21,7 @@
 \definecolor{mygrey}{gray}{0.95}
 \lstset{backgroundcolor=\color{mygrey}}
 \begin{document}
-\title{Factors}
+\title{Equity markets and factor models}
 \author{Rob Hayward}
 %\date{\today}
 \maketitle
@@ -40,10 +40,14 @@ Brad De Long also has a lot about the larger macro outlool.  This could be align
 
 This may also lead on to time series and the discussion of consumer spending and GDP.  The conitegration realtionship.  We have already looked at that with PPP. 
 
-\secton{French-Fama Factors}
+\section{French-Fama Factors}
 \href{http://quant.stackexchange.com/questions/15441/how-to-get-real-time-data-for-fama-french-model?newsletter=1&nlcode=365849%7c1e0c}{Stack Exchange}
 
+\section{Factor models}
+\href{http://quant.stackexchange.com/questions/15957/distinction-between-risk-factor-and-market-anomaly?newsletter=1&nlcode=365849%7c1e0c}{Here} is a StackExchange overview of Factor models.  Consider this in conjunction with the Campbel research and discuss issues in data mining.  
 
+\section{Data}
+\href{http://quant.stackexchange.com/questions/15957/distinction-between-risk-factor-and-market-anomaly?newsletter=1&nlcode=365849%7c1e0c}{Here} is the link to stackexchange note on the use of Quandl to get historic information from company statements. 
 \bibliography{../../../myrefs}
 
 

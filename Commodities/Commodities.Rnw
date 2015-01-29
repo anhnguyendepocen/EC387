@@ -95,6 +95,8 @@ The hedgers
 
 Exchange rates are an exception.  For exchange rates, the spot market is more liquid than the futures. 
 
+\href{http://www.ft.com/cms/s/0/243e1c86-7982-11e4-9567-00144feabdc0.html?ftcamp#axzz3KfzMZsyP}{FT commodities}  There is a link between commodities and currencies, stock marksts and bond yields.  This is an example. 
+
 
 \href{http://www.kellogg.northwestern.edu/faculty/neuhierl/jmp.pdf}{Trend following strategies in commodities markets:  the effect of financialisation} looks at some ways that money can be made.  There is a copy in Temp.  It discusses the difference between holding equities and commodities, the need to rollover futures contracts and the regulatory response to the outrage that has developed. 
 
