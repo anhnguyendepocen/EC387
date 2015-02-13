@@ -1,0 +1,250 @@
+\documentclass[14pt,xcolor=pdftex,dvipsnames,table]{beamer}
+
+% Specify theme
+\usetheme{Madrid}
+% See deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html for other themes
+\usepackage{caption}
+\usepackage{tikz}
+ \usetikzlibrary{arrows,positioning}
+\usepackage{multirow}
+% Specify base color
+\usecolortheme[named=OliveGreen]{structure}
+% See http://goo.gl/p0Phn for other colors
+
+% Specify other colors and options as required
+\setbeamercolor{alerted text}{fg=Maroon}
+\setbeamertemplate{items}[square]
+
+% Title and author information
+\title{Futures, forwards and carry}
+\author{Rob Hayward}
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\section{Future markets}
+\begin{frame}{Futures}
+A market to agree a price now for future delivery
+\begin{itemize}[<+-| alert@+>]
+\item Keynes and Hicks argue that spot should trade at a discount to future so that there is a profit for speculators.
+\item This is a return for taking risk and providing liquidity
+\item Future $>$ spot is \emph{contango}
+\item Future $<$ spot is \emph{backwardation} 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Price of futures 1}
+When the only cost is the cost of finance
+\begin{block}{}
+\begin{equation}
+F(t, T) = S(t) \times (1+r)^{(T-t)}
+\end{equation}
+\end{block}
+or, in continuous time
+\begin{block}{}
+\begin{equation}
+F(t, T) = S(t)e^{r(T-t)}
+\end{equation}
+\end{block}
+Where $t$ is today, $T$ is the exercise date, $r$ is the interest rate, $F$ is the future price and $S$ is the spot price. 
+\end{frame}
+
+\begin{frame}{Pricing of futures 2}
+However, in many cases there are other costs and benefits that have to be included
+\begin{itemize}[<+-| alert@+>]
+\item Benefits
+\begin{itemize}
+\item Dividends
+\item Coupons
+\item Use of commodity as collateral
+\end{itemize}
+\item Costs
+\begin{itemize}
+\item Storage costs
+\item Insurance
+\item Shipping 
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\section{Uncovered interest parity}
+\begin{frame}{Covered interest parity}
+\begin{block}{}
+\begin{equation*}\label{eqref:uip}
+\frac{F_{t, j}}{S_t} \times (1 + i_{t,j}) = (1 + i_{t,j}^*)  
+\end{equation*}
+\end{block}
+Where, $F_{t, j}$ is the forward rate in terms of foreign currency for domestic at time $t$ for $j$ periods ahead, $S_t$ is the spot rate, $i_{t,j}$ is the nominal interest rate at time $t$ for $j$ periods ahead and $i^*$ is the foreign rate.
+\end{frame}
+
+\begin{frame}{Forward rate 1}
+\begin{block}{}
+\begin{equation}\label{eqref:cip}
+{F_{t, j}} = {S_t} \times \frac{(1 + i_{t,j}^*)}{(1 + i_{t,j})}  
+\end{equation}
+\end{block}
+Calculate the 1-year forward for USD-JPY with spot at JPY 150; the US 1-year rate at $1.0\%$ and the Japanese 1-year rate at zero. 
+\end{frame}
+
+\begin{frame}{Forward rate 2}
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{l r r}
+\textbf{Action} & \textbf{USD} & \textbf{JPY}\\
+\hline
+Borrow USD & 1,000,000 & \\
+Owe & 1,010,000&  \\
+Buy JPY & & 150,000,000\\
+Receive & & 150,000,000\\
+Sell & $\frac{150,000,000}{148.5149} = 1,010,000$ &
+\end{tabular}
+\end{center}
+\caption{Covered interest parity}
+\label{tabref:cip1}
+\end{table}
+\end{frame}
+
+\begin{frame}{Covered interest parity 3}
+From Equation \ref{eqref:cip}
+\begin{block}{}
+\begin{equation*}
+\frac{F_{t,j}}{S_t} = \frac{(1 + i_{t, j}^*)}{(1 + i_{t, j})} 
+\end{equation*}
+\end{block}
+Taking 1 from each side and re-arranging.
+\begin{block}{}
+\begin{equation}\label{eqref:cip3}
+\frac{F_{t,j} - S_t}{S_t} = \frac{(i_{t,j}^* - i_{t,j})}{(1 + i_{t,j})} 
+\end{equation}
+\end{block}
+\end{frame}
+
+%\begin{frame}{Covered interest parity 4}
+%If the domestic rate of interest is low and the log difference is substituted for the percentage change, Equation \ref{eqref:cip3} can be approximated as 
+%\begin{block}{}
+%\begin{equation}
+%\Delta s_t = i_{t,j}^* - i_{t,j} 
+%\end{equation} 
+%\end{block}
+%Where $\Delta s_t$ is $log (s_t) - log (s_{t-1})$ 
+%\end{frame}
+
+\begin{frame}{Uncovered interest parity 1}
+If the forward exposure is not \emph{covered} there is a risk of a loss or a gain.
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item This means that the value of the activity will be based on expectations about the future
+\item There is a whole literature on \emph{expectations}
+\item \emph{Rational expectations} assumes that economic agents form their expectations on the basis of the underlying economic model that is being used
+\item In this case, it would assume that investors assume that forward rate will give an \emph{unbiased prediction} of  the future rate
+\item If not, there is an arbitrage opportunity
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Expectations and forward rate 1}
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{l r r}
+\textbf{Action} & \textbf{USD} & \textbf{JPY}\\
+\hline
+Borrow USD & 1,000,000 & \\
+Owe & 1,010,000&  \\
+Buy JPY & & 150,000,000\\
+Receive & & 150,000,000\\
+Sell & $\frac{150,000,000}{150.00} = 1,000,000$ &
+\end{tabular}
+\end{center}
+\caption{Expected rate is above forward: Loss}
+\label{tabref:cip2}
+\end{table}
+\end{frame}
+
+\begin{frame}{Expectations and forward rate 2}
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{l r r}
+\textbf{Action} & \textbf{USD} & \textbf{JPY}\\
+\hline
+Borrow USD & 1,000,000 & \\
+Owe & 1,010,000&  \\
+Buy JPY & & 150,000,000\\
+Receive & & 150,000,000\\
+Sell & $\frac{150,000,000}{145.00} = 1,034,483$ &
+\end{tabular}
+\end{center}
+\caption{Expected rate is below forward: gain}
+\label{tabref:cip3}
+\end{table}
+\end{frame}
+
+\begin{frame}{Uncovered interest parity 2}
+The expected future rate is equal to the forward rate so,
+\begin{block}{}
+\begin{equation}
+E[s_{t+j}] - s_t = \frac{(i_{t, j}^* - i_{t, j})}{(1 + i_{t, j})}
+\end{equation}
+\end{block}
+or approximately,
+\begin{block}{}
+\begin{equation}
+E[\Delta s_{t+j}] = i_{t, j}^* - i_{t, j}
+\end{equation}
+\end{block}
+\begin{block}{}
+\begin{equation}
+\Delta s_t = i_{t,j}^* - i_{t,j} 
+\end{equation} 
+\end{block}
+Where $\Delta s_t$ is $log (s_t) - log (s_{t-1})$ 
+\end{frame}
+
+\begin{frame}{Testing UIP 1}
+A usual test of UIP is 
+\begin{block}{}
+\begin{equation}
+\label{eq:uip}
+\Delta s_{t + j} = \beta_0 +\beta_1 f_{t+j} + \varepsilon
+\end{equation} 
+\end{block}
+Where $f_{t+j}$ is the \emph{forward premium} and UIP would mean that $\beta_0 = 0$ and $\beta_1 = 1$
+\begin{block}{}
+Many tests find that $\beta_1 < 0$
+\end{block}
+\end{frame}
+
+\begin{frame}{Testing UIP 2}
+UIP does not usually seem to hold
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item Low interest currency does not appreciate vs the high interest rate currency
+\item It appears to be beneficial to borrow low interest rate currency and deposit in higher yielding currency
+\item \emph{Carry trade}
+\item See CHF
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Testing UIP 3}
+\begin{block}{}
+\emph{The joint hypothesis problem}: If the test fails, it is not clear whether if is UIP that has failed or our assumption about expectations
+\end{block}
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item UIP failure: are there market frictions that prevent arbitrage?   
+\item Expectations failure: is there a risk premium that explains the divergence? 
+\end{itemize}
+\end{frame} 
+
+
+
+\begin{frame}{Carry returns in calm and crisis}
+\includegraphics[scale = 0.42]{"../../UIPdoc/hist1a"}
+\end{frame}
+
+%\begin{frame}{Carry returns in calm and crisis 2}
+%\includegraphics[scale = 0.42]{"../../../UIPdoc/hist2a"}
+%\end{frame}
+
+
+\end{document}
