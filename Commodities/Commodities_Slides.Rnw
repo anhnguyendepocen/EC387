@@ -1,0 +1,139 @@
+\documentclass[14pt,xcolor=pdftex,dvipsnames,table]{beamer}
+
+% Specify theme
+\usetheme{Madrid}
+% See deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html for other themes
+\usepackage{caption}
+\usepackage[comma, sort&compress]{natbib}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\bibliographystyle{agsm}
+% Specify base color
+\usecolortheme[named=OliveGreen]{structure}
+% See http://goo.gl/p0Phn for other colors
+
+% Specify other colors and options as required
+\setbeamercolor{alerted text}{fg=Maroon}
+\setbeamertemplate{items}[square]
+
+% Title and author information
+\title{Commodities}
+\author{Rob Hayward}
+
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+\tableofcontents
+\end{frame}
+
+\begin{frame}{Introducton}
+Commodities are traded on exchanges.  
+\begin{itemize}[<+-| alert@+>]
+\item The futures markets have the most liquidity
+\item Liquidity requires standardisation
+\item Set delivery dates and time
+\item Set quantities
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Importance of liquidity}
+Liquidity is necessary to reduce the cost of transactions and to facilitate trade. There are two types of investor:
+\begin{itemize}[<+-| alert@+>]
+\item \emph{Hedger}: these are investors with an underlying interest in the commodity that is being traded
+\item \emph{Speculator}: those with no underlying interest.  
+\item Keynes and Hicks argue that hedgers pay speculators to take risk
+\item Knight argues that speculators use specialisation to reduce risk with purchase of information and diversification
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Pricing futures contracts}
+\begin{block}{}
+\begin{equation*}
+F(t, T) = S(t) \times (1 +r)^{(T-t)}
+\end{equation*}
+\end{block}{}
+or, in continuous time, 
+\begin{block}{}
+\begin{equation*}
+F(t, T) = S(t)e^{r(T-t)}
+\end{equation*}
+\end{block}
+%For other futures, storage costs, income in the form of dividends and coupons and any other benefits that accrue from the holding of the commodity. This may be particularly important if there are large storage costs involved for commodities.
+\end{frame}
+
+
+\begin{frame}{Expectations}
+When there are disruptions in the supply of the commodity, this arbitrage mechanism will not work. In that case, the pricing will be determined by expections. 
+\begin{block}{}
+\begin{equation*}
+F(t, T) = E_t[S(T)]
+\end{equation*}
+\end{block}
+\end{frame}
+
+\begin{frame}{CFTC}
+US regulator of derivative markets
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item Requires all positions in markets to be registered
+\item Positions are identified as 
+\begin{itemize}
+\item Commerical
+\item Non-commerical
+\end{itemize}
+\item Non-commerical are speculators
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Speculative positions}
+<<Oilspec, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE, fig.align='center', fig.height=4.6>>=
+da <- read.csv('http://www.quandl.com/api/v1/datasets/CFTC/CL_F_L_ALL.csv?&trim_start=2000-02-08&trim_end=2015-02-28&sort_order=desc', colClasses=c('Date'='Date'))
+db <- read.csv('http://www.quandl.com/api/v1/datasets/OFDP/FUTURE_CL1.csv?&auth_token=mUCjthkJFQDsYVrFh4Gh&trim_start=2000-02-08&trim_end=2015-02-28&collapse=monthly&sort_order=desc', colClasses=c('Date'='Date'))
+da$spec <- (da[,3] - da[,4])/(da[,3] + da[,4])
+da$hedge <- da[,6] - da[,7]
+plot(da$spec ~ da$Date, type = 'l', main = "Speculative oil positions", 
+     xlab = "Date", ylab = "Spec Positions", lty = 2)
+# Prevent the spec data being erased
+par(new = T)
+plot(db$Settle ~ db$Date, axes = F, type = 'l', col = 'Dark Green', xlab = "", ylab = "")
+axis(side = 4)
+mtext("Spot oil", side = 4, line = 2, col = 4)
+legend(legend = c("Speculators", "Spot"), "bottomright", col = c('black', 'Dark Green'), lty = c(2, 1))
+@
+\end{frame}
+
+\begin{frame}{Calendar spreads}
+A technique that can reduce risk is to trade a calendar spread
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item Futures contracts are set in March, June, Sep, Dec
+\item Spreads between two or more contracts remove risk of a large move in the commodity
+\item \emph{Contango}: Future above spot or far contract above near
+\item \emph{Normal backwardation}: Spot above future or near above far
+\item Trade can be technical or based on the supply-demand
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Calendar spreads 2}
+<<Calspread, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE, fig.align='center', fig.height=4.6>>=
+db2 <- read.csv('http://www.quandl.com/api/v1/datasets/OFDP/FUTURE_CL2.csv?&auth_token=mUCjthkJFQDsYVrFh4Gh&trim_start=2000-02-08&trim_end=2015-02-28&collapse=monthly&sort_order=desc', colClasses=c('Date'='Date'))
+plot((db2$Settle - db$Settle) ~ db$Date, type = 'l', main = "Oil far-near spread", 
+     xlab = "Date", ylab = "Far-near spread", lty = 2)
+par(new = T)
+plot(db$Settle ~ db$Date, axes = F, type = 'l', col = 'Dark Green', xlab = "", ylab = "")
+axis(side = 4)
+mtext("Spot oil", side = 4, line = 2, col = 4)
+legend(legend = c("Spread", "Spot"), "topleft", col = c('black', 'Dark Green'), lty = c(2, 1))
+@
+\end{frame}
+
+
+\end{document}
+\begin{itemize}[<+-| alert@+>]
+\item 
+\item 
