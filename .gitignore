@@ -3,12 +3,21 @@
 
 # Example code in package build process
 *-Ex.R
-
+Pairs/Pairs-concordance.tex
 # Rroj
-.Rproj
-.Rproj.user
-**/.pdf
+*.RData
+*.log
+*.rbd
+*.Rproj
+*.Rproj.user
+*.pdf
+*.rdx
+*rdb
 Commodities/Commodities_Slides-concordance.tex
+*.snm
+*.gz
+*.toc
+
 Commodities/Commodities_Slides.log
 Commodities/Commodities_Slides.nav
 Commodities/Commodities_Slides.pdf
@@ -25,3 +34,5 @@ Commodities/cache/Oilspec_6d1be72e11050297103a85ea521befbf.rdx
 Commodities/figure/Calspread-1.pdf
 Commodities/figure/Oilspec-2.pdf
 Commodities/figure/unnamed-chunk-1-1.pdf
+*.nav
+.Rproj.user

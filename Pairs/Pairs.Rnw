@@ -34,6 +34,7 @@
 \section{Introduction}
 \begin{frame}{Introduction}
 This is a return full circle to the original hedge funds
+\pause
 \begin{itemize}[<+-| alert@+>]
 \item Pairs trading will hope to provide an \emph{absolute return}
 \item Paris trading can remove market risk and leave exposure to specific risk
@@ -48,6 +49,7 @@ This is a return full circle to the original hedge funds
 \section{Pairs Trading}
 \begin{frame}{Pairs Trading}
 The trade depends on a temporary breakdown in the correlation between two similar securities
+\pause
 \begin{itemize}[<+-| alert@+>]
 \item LTCM strategy
 \item When the usual relationship breaks down, speculate on a return to normality
@@ -57,14 +59,15 @@ The trade depends on a temporary breakdown in the correlation between two simila
 \item Coke and Pepsi
 \item 5-year bond and 10-year bond
 \item Gold and silver
+\item Oil and products
 \end{itemize}
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Pairs}
 <<Coke, echo=FALSE, cache=TRUE, fig.height=5>>=
-da <- read.csv('http://www.quandl.com/api/v1/datasets/GOOG/NYSE_KO.csv?&auth_token=mUCjthkJFQDsYVrFh4Gh&trim_start=2000-01-01&trim_end=2013-12-31&sort_order=desc', colClasses=c('Date'='Date'))
-da1 <- read.csv('http://www.quandl.com/api/v1/datasets/GOOG/NYSE_PEP.csv?&auth_token=mUCjthkJFQDsYVrFh4Gh&trim_start=2000-01-01&trim_end=2013-12-31&sort_order=desc', colClasses=c('Date'='Date'))
+da <- read.csv('http://www.quandl.com/api/v1/datasets/GOOG/NYSE_KO.csv?&auth_token=mUCjthkJFQDsYVrFh4Gh&trim_start=2000-01-01&trim_end=2014-12-31&sort_order=desc', colClasses=c('Date'='Date'))
+da1 <- read.csv('http://www.quandl.com/api/v1/datasets/GOOG/NYSE_PEP.csv?&auth_token=mUCjthkJFQDsYVrFh4Gh&trim_start=2000-01-01&trim_end=2014-12-31&sort_order=desc', colClasses=c('Date'='Date'))
 da2 <- merge(da, da1, by = 'Date')
 par(mfrow = c(1, 2))
 plot(da2$Close.y ~ da2$Date, main = "Pepsi", xlab = "Date", ylab = "Share price", type = 'l')
@@ -91,6 +94,7 @@ plot(da2$Close.x/da2$Close.y ~ da2$Date, xlab = 'Date', ylab = 'Coke/Pepsi', typ
 
 \begin{frame}{Cointegration}
 One method to look at the relationship would be the assess whether the two are cointegrated.
+\pause
 \begin{itemize}[<+-| alert@+>]
 \item Can use the Engle-Granger method and check that the residuals from the regression are \emph{stationary}
 \item If the residuals are stationary, we expect the previous relationship to be restored
@@ -152,10 +156,12 @@ $\phi_3$ & 4.18 & 8.27 & 5.34\\
 Dickey-Fuller tests  show that the null of a unit root cannot be rejected ($\tau$).  Coke and Pepsi are not cointegrated. 
 \end{frame}
 
+\begin{frame}{Cointegration of }
 \section{Relative Value}
 \begin{frame}{Relative value}
 Now the focus is on one part of the pair out-performing
 This can be based on, for example
+\pause
 \begin{itemize}[<+-| alert@+>]
 \item Relative PE ratios
 \item An assessment of competitive advantage

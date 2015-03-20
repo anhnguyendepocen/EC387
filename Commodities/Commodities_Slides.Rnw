@@ -31,8 +31,9 @@
 \tableofcontents
 \end{frame}
 
-\begin{frame}{Introducton}
+\begin{frame}{Introduction}
 Commodities are traded on exchanges.  
+\pause
 \begin{itemize}[<+-| alert@+>]
 \item The futures markets have the most liquidity
 \item Liquidity requires standardisation
@@ -43,6 +44,7 @@ Commodities are traded on exchanges.
 
 \begin{frame}{Importance of liquidity}
 Liquidity is necessary to reduce the cost of transactions and to facilitate trade. There are two types of investor:
+\pause
 \begin{itemize}[<+-| alert@+>]
 \item \emph{Hedger}: these are investors with an underlying interest in the commodity that is being traded
 \item \emph{Speculator}: those with no underlying interest.  
@@ -68,7 +70,7 @@ F(t, T) = S(t)e^{r(T-t)}
 
 
 \begin{frame}{Expectations}
-When there are disruptions in the supply of the commodity, this arbitrage mechanism will not work. In that case, the pricing will be determined by expections. 
+When there are disruptions in the supply of the commodity, this arbitrage mechanism will not work. In that case, the pricing will be determined by exceptions. 
 \begin{block}{}
 \begin{equation*}
 F(t, T) = E_t[S(T)]
@@ -83,10 +85,10 @@ US regulator of derivative markets
 \item Requires all positions in markets to be registered
 \item Positions are identified as 
 \begin{itemize}
-\item Commerical
-\item Non-commerical
+\item Commercial
+\item Non-commercial
 \end{itemize}
-\item Non-commerical are speculators
+\item Non-commercial are speculators
 \end{itemize}
 \end{frame}
 
@@ -132,6 +134,22 @@ legend(legend = c("Spread", "Spot"), "topleft", col = c('black', 'Dark Green'), 
 @
 \end{frame}
 
+\begin{frame}{Commodity investment}
+\begin{itemize}[<+-| alert@+>]
+\item Assess the supply and demand for commodity
+\begin{itemize}
+\item Economic growth/development
+\item Weather
+\item Political factors
+\end{itemize}
+\item Looking for speculative extremes
+\begin{itemize}
+\item COT positions
+\item Option prices
+\end{itemize}
+\item Calendar spreads or product spreads
+\end{itemize}
+\end{frame}
 
 \end{document}
 \begin{itemize}[<+-| alert@+>]
