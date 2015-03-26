@@ -11,3 +11,9 @@ db <- read.csv('http://www.quandl.com/api/v1/datasets/OFDP/FUTURE_CL1.csv?&auth_
 plot(db$Settle ~ db$Date, axes = F, type = 'l', col = 'red', lty = 2, xlab = "", ylab = "")
 axis(side = 4)
 mtext("Spot oil", side = 4, line = 2, col = 4)
+db2 <- read.csv('http://www.quandl.com/api/v1/datasets/OFDP/FUTURE_CL2.csv?&auth_token=mUCjthkJFQDsYVrFh4Gh&trim_start=2000-02-08&trim_end=2015-02-28&collapse=monthly&sort_order=desc', colClasses=c('Date'='Date'))
+plot((db2$Settle - db$Settle) ~ db$Date, type = 'l', main = "Oil far-near spread", 
+     xlab = "Date", ylab = "Far-near spread")
+tail(db2)
+tail(db)
+head(db)
