@@ -101,6 +101,16 @@ One method to look at the relationship would be the assess whether the two are c
 \item An \emph{Error-Correction Model} can be used to assess the speed of the return to the set relationship
 \end{itemize}
 \end{frame}
+
+\begin{frame}{Engle-Granger ECM}
+\begin{block}{}
+\begin{equation*}
+\Delta y_t = \Phi_0 + \sum_{j=1} \Phi_j \Delta y_{t-j} + \sum_{h=0} \Delta x_{t-h} + \alpha \hat{u}_{t-1} + \varepsilon_t
+\end{equation*}
+\end{block}
+Where, $y_t$ is value of the paris at time $t$; $x_t$ is the other pair at time $t$; $\Phi_j, j = 0, 1, 2 \dots$ and $\alpha$ are parameters of to be estimated; $\hat{u_t}$ are the rediduals from the regression $y_t = \beta_0 + \beta_1 x_t + \varepsilon_t$
+\end{frame}
+  
 %\begin{frame}{OLS Coke and Pepsi}
 %<<table>>=
 %xtable(summary(eq))
@@ -156,8 +166,94 @@ $\phi_3$ & 4.18 & 8.27 & 5.34\\
 Dickey-Fuller tests  show that the null of a unit root cannot be rejected ($\tau$).  Coke and Pepsi are not cointegrated. 
 \end{frame}
 
-\begin{frame}{Cointegration of }
-\section{Relative Value}
+\begin{frame}{The yield curve}
+<<Yield, echo = FALSE, warning=FALSE, message=FALSE, fig.height=4.6>>=
+ names <- c("10-year", "2-year", "Date")
+ da <- read.csv("Data/Yield.csv", stringsAsFactors = FALSE, skip = 12, 
+                na.strings = "#N/A")
+ da$Date <- as.Date(da[,1], format = "%Y-%m-%d")
+ da <- da[,c(2, 3, 4)]
+ names(da) <- names
+ plot(da$Date, da[,1], main = "US 2 and 10 year yields", ylab = "GRY", 
+      xlab = "Date", type = 'l', lty = 1, ylim = c(0, 5))
+ lines(da$Date, da[,2], lty = 2, type = 'l', col = "Dark Green")
+ legend("topright", legend = c("10-year", "2-year"), col = c("black", "Dark Green"), 
+        lty = c(1, 2))
+ @
+ \end{frame}
+ 
+% \begin{frame}{Regresssion 2 on 10}
+% Dependent variable is 10 year
+%<<reg, echo = FALSE, warning=FALSE, message=FALSE, results='asis'>>=
+% library(xtable)
+%eq1 <- lm(da[,2] ~ da[,1])
+%xtable(summary(eq1), digits = 2)
+%@
+%The explanatory variable is 2-year.
+%\end{frame}
+
+%\begin{frame}{Residuals}
+%<<resid, echo = FALSE, warning=FALSE, message=FALSE, fig.height=4.6>>=
+%plot(da$Date, eq1$residuals, na.rm = TRUE, type = 'l', xlab = "Date", 
+%     ylab = "Residuals")
+%@
+%\end{frame}
+
+\begin{frame}{Yield Spread}
+<<Duiff, echo = FALSE, warning=FALSE, message=FALSE, fig.height=4.6>>=
+plot(da$Date, da[,1] - da[,2], type = 'l', main = "Yield spread", 
+     ylab = "Yield spread", xlab = "Date")
+@
+\end{frame}
+
+\begin{frame}{Yield curve predicts economy}
+There is some resarch that suggests that the yield curve predicts the immediate economic outlook (one year ahead). 
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item Upward sloping yield curve indicates strong economic performance expected
+\item Downward sloping yield curve indicates weak economic performance
+\end{itemize}
+\pause
+Chinn, M. \& K. Kuko (2015), \emph{The predictive power of the yield curve across countries and time}
+\end{frame}
+
+\begin{frame}{Oil and gas}
+<<OilGas, echo = FALSE, warning=FALSE, message=FALSE, fig.height=4.6>>=
+library(dplyr)
+library(tidyr)
+names <- c("Date", "Brent")
+da <- read.csv("Data/CHRIS-ICE_B1.csv")
+da$Date <- as.Date(da$Date, format = "%d/%m/%Y")
+da <- da[,c(1, 5)]
+names2 <- c("Date", "Gas")
+names(da) <- names
+da2 <- read.csv("Data/CHRIS-ICE_G1.csv")
+da2$Date <- as.Date(da2$Date, format = "%d/%m/%Y")
+da2 <- da2[,c(1, 5)]
+names(da2) <- names2
+da3 <- left_join(da, da2, na.rm = TRUE)
+da3 <- da3[-c(2135,2052),]
+da3$Spread <- da3$Gas - da3$Brent  
+da3$Ratio <- da3$Gas/da3$Brent
+plot(da3$Date, da3$Brent, type = 'l', main = "Oil and Gas", xlab = "Date", 
+     ylab = "Price")
+par(new = T)
+plot(da3$Gas ~ da3$Date, axes = F, type = 'l', col = 'Dark Green', xlab = "", 
+     ylab = "", lty = 2)
+axis(side = 4)
+legend("topleft", legend = c("Brent", "Gas"), col = c("black", "Dark Green"), 
+       lty = c(1, 2))
+@
+\end{frame}
+
+\begin{frame}{Brent-Gas ratio}
+<<OilGasR, echo = FALSE, warning=FALSE, message=FALSE, fig.height=4.6>>=
+plot(da3$Date, da3$Ratio, type = 'l', main = "Ratio of Gas to Brent", 
+     xlab = "Date", ylab = "Ratio")
+@
+\end{frame}
+
+
 \begin{frame}{Relative value}
 Now the focus is on one part of the pair out-performing
 This can be based on, for example
