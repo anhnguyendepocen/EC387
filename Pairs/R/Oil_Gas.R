@@ -34,6 +34,7 @@ plot(da3$Date, da3$Ratio, type = 'l', main = "Ratio of Gas to Brent")
 eq1 <- lm(log(da3$Gas) ~ log(da3$Brent))
 summary(eq1)
 plot(eq1$residuals, type = 'l')
-hist(eq1$residuals)
+hist(eq1$residuals, xlab = "Residuals", main = "Histogram of residuals")
 
 eq1 <- lm(log(da3$Gas) ~ log(da3$Brent))
+
