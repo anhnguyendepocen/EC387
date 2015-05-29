@@ -1,6 +1,6 @@
-\documentclass{article}
+\documentclass{hitec}
 \usepackage{graphicx}
-\graphicspath{ {robohay@gmail/Pictures}}
+\graphicspath{ {./Figures/}}
 \title{Islamic Finance}
 \begin{document}
 
@@ -18,7 +18,9 @@ Sukuk issuance in the first half of 2014 rose 6\% to \textdollar 66bn according 
 
 London has been very active in the \emph{murabaha} market.  A common structure for murabaha is that instead of arranging a \textsterling 1000 load with interest, an Islamic bank will buy metal on the London Metal Exchange for \textsterling 1000.  The bank will then sell the metal to the customer for a mark-up of something like \textsterling 1100 to be paid over the course of the year and the customer sells the metal in the market for \textsterling 1000. 
 
-%\includegraphics{wasting-timeline-680x544}
+\begin{figure}
+\includegraphics[scale = 0.5]{bank.jpg}
+\end{figure}
 Most of this is taken from editions of \emph{The Financial Times}
 \section*{Questions}
 \begin{enumerate}

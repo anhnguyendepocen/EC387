@@ -1,0 +1,81 @@
+\documentclass{hitec}
+
+\usepackage{caption}
+\usepackage{tikz}
+\usepackage{multirow}
+\usepackage[colorlinks = true, citecolor = blue, linkcolor = blue]{hyperref}
+
+% title and author information
+\title{potential gdp}
+\author{Rob hayward}
+
+
+\begin{document}
+Estimating potental output is difficult.  
+\section{Introduction}
+This is a summary of an \href{http://www.imf.org/external/pubs/ft/wp/2015/wp1579.pdf}{IMF Paper}.  The main points are
+\begin{itemize}
+\item The results are an improvement over the HP-filter
+\item There are minimum requirements (GDP, inflation, unemployment)
+\end{itemize}
+
+\section{Potential Output}
+The concept of potential output is often attributed to Okun 1962.  The level of output that can be achieved without causing inflation. This is the definition that is often used by central banks to communicate.  It is also consistent with the discussion of the \emph{output gap}
+%possible exampels can be placed here.
+Some recent modifiations of the concept would try to include consideration of macroeconomic imbalances, particularly financial imbalances. This can be thought of as making a consideration of a \emph{sustainable path}.  
+
+The use of the Hodrick-Prescott (HP) filter is one popular method. However, this is more of a measure of the trend in GDP that of its potential. There is no connection to the economic concept of \emph{potential}.  This is a purely statistical approach. The statistical artifacs of the approach are 
+
+\begin{itemize}
+\item There is a mean of zero.
+\item The relative volatiliy of the trend to the underlhing is determined by the parameter $\lambda$. 
+\item The \emph{End of sample problem} whereby the last estimates are very sensitive to the new data that arrives. 
+\end{itemize}
+
+The alternative to this approach is the \emph{production function approach}. This would use something like a Cobb-Douglas, take data on capital and labour and then combine them to deduce \emph{total factor productivity}. This is then used to assess the potential.  See D'Auria (2010) for an example. However, it is hard to determine the capital stock. 
+
+An improvement on these approaches would use a multivariate approach to add economic theory to the estimates of the potential by adding something like the Phillips curve to condition the estimate. This would be consistent with Okun. 
+
+The output gap is defined as the deviation of the output of the economy from its potential $(\bar{Y})$ 
+\begin{equation}
+y = Y = \bar{Y}
+\end{equation}
+
+There are three equations to make the process
+\begin{equation}
+\bar{Y}_t = \bar{Y}_{t-1} + G_t + \varepsilon_t^{\bar{Y}}
+\end{equation}
+
+\begin{equation}
+G_t = \theta G^{SS} + (1 - \theta) G_{t-1} + \varepsilon_t^G
+\end{equation}
+
+\begin{equation}
+y_t = \phi y_{t-1} + \varepsilon_t^y
+\end{equation}
+
+There are three shocks
+\begin{itemize}
+\item $\varepsilon^{\bar{Y}}$ which is the shock to the level of potential GDP
+\item $\varepsilon^G$ which is a shock to growth rate of potential
+\item $\varepsilon^y$ is a shock to the output gap
+\end{itemize}
+
+In order to try to estimate the three shocks, a Phillips curve for infaltion is added. 
+\begin{equation}
+\pi_t = \gamma \pi_{t-1} + (1 - \gamma) \pi_{t-1} + \beta y_t + \varepsilon_t^{\pi}
+\end{equation}
+
+Finally, the unemployment rate is identified. 
+\begin{eqation}
+
+end{equation}
+
+
+
+\end{document}
+
+
+
+
+\end{document}
