@@ -36,4 +36,5 @@ Commodities/figure/Oilspec-2.pdf
 Commodities/figure/unnamed-chunk-1-1.pdf
 *.nav
 .Rproj.user
-.pdf
+*pdf
+*docx
