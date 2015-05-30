@@ -40,8 +40,6 @@ The aim is to forecast interest rate changes. This will require
 \item A forecast of how the economy will evolve in the future
 \item An assessment of what this means for monetary policy
 \end{itemize}
-\pause
-Draw on what you learnt in EC271 and EC284
 \end{frame}
 
 

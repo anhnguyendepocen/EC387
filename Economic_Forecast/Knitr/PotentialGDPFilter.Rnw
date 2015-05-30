@@ -67,9 +67,6 @@ In order to try to estimate the three shocks, a Phillips curve for infaltion is 
 \end{equation}
 
 Finally, the unemployment rate is identified. 
-\begin{eqation}
-
-end{equation}
 
 
 
@@ -78,4 +75,4 @@ end{equation}
 
 
 
-\end{document}
+
