@@ -1,0 +1,69 @@
+\documentclass{hitec}
+\usepackage{tikz}
+\title{Leverage}
+\author{Rob Hayward}
+\begin{document}
+\maketitle
+\section*{Introduction}
+Leverage means multiplying an initial level of investmetn through borrowing.  The higher the leverage, the higher the return on equity and the higher the risk of default.  In theory, the return on assets will not change with leverage; in practice, leverage will also increase the risk to assets because there are \emph{frictions} in the market for funds. 
+
+\section{Balance sheet} 
+\begin{figure}
+\begin{tikzpicture}[scale = 0.70]
+%\draw [very thin, color = gray](0, 0) grid (14, 7);
+\draw [thick] (2, 6) to (12, 6);
+\draw [thick] (7, 7) to (7, 0);
+\node [above] at (10, 6) {\textbf{Liabilities}};
+\node [above] at (4, 6) {\textbf{Assets}};
+\node [right] at (7, 5) {Borrowing 0};
+\node [left] at (7, 5) {Securities 100};
+\draw (3, 2) to (11, 2);
+\node [right] at (7, 3) {Capital 100};
+%\node [left] at (7, 3) {Buildings etc. 100};
+\node [right] at (7, 1) {Total 100};
+\node [left] at (7, 1) {Total 100};
+\end{tikzpicture}
+\caption{Fund balance sheet}
+\label{figref:fb}
+\end{figure}
+
+With no borrowing, the capital is invested in securitie that yield a return of $5\%$, the return on assets is $5\%$ and the return on capital is $5\%$. However, with borrowing of $100$ and the purchase of additional assets, the return on assets remains the same at $5\%$ but the return on capital is now $10\%$.  The risk is also increased because a $5\%$ fall in the value of the assets now a $10\%$ loss of capital.  
+
+Though the standard \emph{Sharp Ratio} evaluation of risk and return would indicate that there is no effect on the ratio for an increase in leverage, 
+\begin{equation}
+SR_i = \frac{E[R_i] - R_{rf}}{\sigma_{R_i}}
+\end{equation}
+If this is leveraged n times, the numerator and the denominator are multiplied by n and there is no change in the ratio (there is n times the return, n times the risk and the investmed is funded at n times the risk-free rate). 
+
+\section{Practice}
+In practice, the leverage also introduces additional risk.  These incluce the following
+\begin{itemize}
+\item The ability to borrow at the risk-free rate
+\item Arbitrary withdrawal of funding
+\item The prospect of additional margin requirements 
+\item The risk of forced liquidation in unvfavourable conditions
+\end{itemize}
+
+The big risk is that a combination of high leverage and increased volatilty will cause increased margin requirement, incresae cost of funding or a withdrawal of funding. In that case, forced liquidation takes places.  Network effects mean that this forced liquidation does not happen in isolation. 
+
+\section{The repo market}
+The \emph{repo market} is the sale-and-repurchase of securities.  It is a liquid and collateralised market for funds. It allows financial institutions to use the securities that they are holding to borrow funds for short periods of time.  The price of the sale and repurchase are agreed at the time of the transaction and the difference between the two is the cost of fudning for the initial seller of securities.  
+
+For example, 
+%insert example here
+
+There are a number of issues
+\begin{itemize}
+\item The repo market was one of the reasons for contaigion in the Global Financial Crisis (GFC) as the failure of Lehman Brothers tied up repo collateral and caused other financial firms to suffer funding difficulties. 
+\item A \emph{haircut} is a gap between the value of the securities and the amount of money that will be lent.  As uncertainty rises, the haircut will increase and the amount of funding for a given block of securities will fall. 
+\item The repo market is also part of the mechanism for \emph{selling-short} as the securities that can be secured will allow the receiver to sell to somone else and hope to buy back at a lower price before they have to be returned. 
+
+For example, 
+
+% second short-sale example here. 
+
+\item This gives rise to the \emph{on special} market. These are securities that will be lent at a much lower rate than \emph{general collateral}.  This means that there is high demand for the securities.  THis is because they are in short supply and people want to borrow them. 
+\item Quantitative easing reduced the amount of high quality collateral that is in circulation, making it harder for banks to fund themselves. 
+\item There has been a desire to move to a clear system so that counterparty risk can be reduce and so that net claims can be netted. 
+\end{itemize}
+\end{document}
