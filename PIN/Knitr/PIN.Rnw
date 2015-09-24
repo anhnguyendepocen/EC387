@@ -1,0 +1,60 @@
+\documentclass{hitec}
+  \title{PIN}
+\author{Rob Hayward}
+\usepackage[colorlinks = true, citecolor = blue, linkcolor = blue]{hyperref}
+\usepackage[comma, sort&compress]{natbib}
+\bibliographystyle{agsm}
+\hypersetup{urlcolor=blue, colorlinks=true} % Colors hyperlinks in blue - change to black if annoying
+\usepackage{amsmath}
+
+\begin{document}
+\maketitle
+This is an overview of \citet{EasleyPIN}. The efficient market hypothesis says that large trades should not affect the fundamental value of a security.  However, empirical evidence suggests that this is the case.  There are two explanation for the effect of large order size on price: inventory effects and information effects. The larger the trade size, the more likely it is that the trader is \emph{informed}.  
+
+Where does the information come from? 
+\begin{itemize}
+\item Inside information 
+\item Research and expertise
+\item Knowledge about the actions of other (i.e. real money). 
+\end{itemize}
+
+This helps to explain why large trades take place at less favourable prices. There are two sources of uncertainty in this model: the uncertainty over whether an individual trade has information and the uncertainty over whether any information exists. The first effect causes the price to worsen for a block trade, the second effect causes a partial recovery. THe model predicts that the entire sequence of trades (rather than just the volume) will determine the relationship between quantity traded and price. 
+
+\section{The model}
+There are three players
+\begin{itemize}
+\item \textbf{Market-makers}: risk-neutral players working in a competitive market so that prices given equal the expected value of the security. They expect to make money from the uninformed traders to compensate for what they lose to the informed traders. There are no costs to holding inventory.   
+\item Informed traders (risk-neutral and large number so they all act competitively)
+\item Uninformed traders
+\end{itemize}
+
+The are a number of parameters and variables
+
+\begin{itemize}
+\item V is the value of the security
+\item s is information even about V
+\item $\alpha$ is the probability of an information event occuring (only between trading days for convenience)
+\item Signals: (H) hight and (L) low
+\item $\delta$ is the probability that it is low (L)
+\item $(1 - \delta)$ is the probability that is is high (H)
+\item $\underline{V} = E[V| s = L]$
+\item $\overline{V} = E[V| s = H[$
+\item the market-makers expectation of the fraction of trades that comes from \emph{informed traders} is $\mu$.
+\item There are two quantities to be traded: large and small ($B^1$ and $B^2$ for buys and $S^1$ and $S^2$ for sells).  With $B^1 < B^2$ and $S^1 < S^2$.  
+\item $X_S^i :> 0$ and $X_B^i >0$ are the fraction of uninformed traders who want to trade. 
+\item There are two types of equilibria: \emph{separating equilibrium} where informed traders trade only karge volumes; \emph{pooling equilibria}. 
+\item $Q_t \in [B^1, B^2, S^1, S^2]$. Where $t$ determines the time of the order.  
+\end{itemize}
+At the start of the trading day, the market-maker must set a price.  This will be determined by the estimate of $\delta$.  To begin, $Pr[V = \underline{V} = \delta$. If an information event has occured, $\delta = 1$ for a sell-signal and $\delta = 0$ for a buy-signal. If there has been a signal, it will cause the informed traders to buy $B^2$ if it is good and sell $S^2$ if  it is bad. Therefore, 
+\begin{align}
+\delta_1(Q_1) = & Pr(V = \underline{V}|Q_1)\\
+= & 1 \cdot Pr(s = L|Q_1) + 0 \cdot Pr(s = H|Q_1) \\
++& \delta \cdot Pr(s = 0|Q_1)
+\end{align}
+The market-makers are \emph{Bayesian}.  For a small trade, $\delta_1(B^1) = \delta_1(S^1) = \delta$.  An informed trader will only trade large quantities. 
+\section{Questions}
+\begin{enumerate}
+\item What doees the assumption that market-makers face \emph{no cost to holding inventory} mean?  How could this affect the behaviour of market-makers? 
+\end{enumerate}
+\bibliography{../../../myrefs}
+\end{document}
