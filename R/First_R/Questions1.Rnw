@@ -1,0 +1,61 @@
+\documentclass{hitec}
+\usepackage{amsmath}
+\usepackage{listings}
+\begin{document}
+\title{Questions for \emph{First R} session}
+\author{Rob Hayward}
+\maketitle
+\begin{enumerate}
+\item Calculate the following 
+\begin{itemize}
+\item
+\begin{equation*}
+\frac{25 + 31 +3 +5-30}{345}
+\end{equation*}
+\item 
+\begin{equation*}
+\sqrt{25*400}
+\end{equation*}
+\end{itemize}
+\item Assign the product of 14 and 26 to the letter B
+\begin{itemize}
+\item Divide B by 10
+\item Assign B + 4 to C
+\end{itemize}
+\item Calculate 7.4 divided by 4.2 and call the result "Answer"
+\begin{itemize}
+\item Add Answer to B
+\item Which is largest B or Answer?
+\end{itemize}
+\item Create a vector called Tom with the numbers 5, 6, 7 and 8
+\begin{itemize}
+\item Add 2 to Tom
+\item What do you get? 
+\item What does this tell you about the way that vectors work? 
+\item Multiply Tom by 2
+\end{itemize}
+\item Create a vector with the numbers 1 to 10. 
+\begin{itemize}
+\item Can you do this with \lstinline{seq}?
+\item Create a sequence from 10 to 100 increasing by 10 each time
+\item Create a sequence from 10 to 100 with a length of 10
+\end{itemize} 
+\item Construct the identity matrix
+\item Create a matrix called Tom with 3 rows and 3 columns with numbers from 1 to 9
+\begin{itemize}
+\item What happened to the other Tom that we created earlier? 
+\item Stack the numbers by column and by row
+\end{itemize}
+\item Create two vectors called x and y, x is a sequence from 1 to 10, y is two times x
+\begin{itemize}
+\item plot x and y
+\item Add the \emph{argument} type = 'l' to the plotting function to get a line
+\item plot $y = x^2$
+\item plot $y = 15 -5\times x + x^2$
+\item Search for information about how to add a title to the graph
+\end{itemize}
+
+\end{enumerate}
+
+
+\end{document}
