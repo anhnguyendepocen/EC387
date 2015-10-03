@@ -1,0 +1,324 @@
+\documentclass[14pt,xcolor=pdftex,dvipsnames,table]{beamer}
+
+% Specify theme
+\usetheme{Madrid}
+% See deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html for other themes
+\usepackage{caption}
+
+% Specify base color
+\usecolortheme[named=OliveGreen]{structure}
+% See http://goo.gl/p0Phn for other colors
+
+% Specify other colors and options as required
+\setbeamercolor{alerted text}{fg=Maroon}
+\setbeamertemplate{items}[square]
+
+% Title and author information
+\title{Returns and the Random Walk}
+\author{Rob Hayward}
+
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+\tableofcontents
+\end{frame}
+
+\section{The Random Walk}
+\begin{frame}{Return Characteristics: Stationarity}
+For the returns to be \emph{stationary}, the following must hold
+\vspace{6pt}
+\begin{itemize}
+\item $E[r_t] = \mu \hspace{10pt} \text{independent of t}$
+\item  $var(r_t) = \sigma^2 \hspace{10pt} \text{independent of t}$
+\item $\sigma(r_t) = \sigma \hspace{10pt} \text{independent of t}$
+\item $cov(r_t,r_{t-j}) = \gamma \hspace{10pt} \text{depends on j not t}$
+\item $cor(r_t, r_{t-j}) = \rho \hspace{10pt} \text{depends on j not t}$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Return Characteristics: Random Walk}
+For the returns to be consistent with a \emph{random walk}, $r_t \sim iid \footnote{independent and identically distributed} N(0,\sigma^2)$, this means
+\vspace{6pt}
+\begin{itemize}
+\item $E[r_i] = 0 \hspace{10pt} \text{but may be a random walk with drift}$
+\item $var(r_t) = \sigma^2 \hspace{10pt} \text{otherwise there are GARCH effects}$
+\item $\sigma(r_t) = \sigma \hspace{10pt} \text{otherwise there are GARCH effects}$
+\item $cov(r_t, r_{t-j}) = 0 \hspace{9pt} \text{otherwise there is serial correlation}$
+\item $cor(r_t, r_{t-j}) = 0 \hspace{10pt} \text{otherwise there is serial correlation}$
+\item $r_t \sim N(0, \sigma^2) \hspace{10pt} \text{otherwise cannot use quantiles}$
+\end{itemize}
+\end{frame}
+
+\section{Histograms and distributions}
+\begin{frame}{Histogram: Step by Step}
+The first step is to look at the data to get an idea of how it is distributed.  
+\begin{itemize}
+\item Arrange data in order
+\item Group into evenly spaced \emph{bins}
+\item Count the observations in each bin
+\item Create a bar chart where area can be normalised to unity
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Histogram in excel}
+\begin{verbatim}
+> "Data"
+> "Data Analysis"
+> "Histogram"
+> "input Range" - the returns to be viewed
+> "Bin Range" - option to select bins
+> Select "Chart Output" and adjust
+\end{verbatim}
+\end{frame}
+
+\begin{frame}{Sample Statistics}
+Sample Average (Mean)
+\begin{equation}
+\frac{1}{T}\sum_{t=1}^T x_t = \bar{x} = \hat{\mu_x}
+\end{equation}
+Sample Variance
+\begin{equation}
+\frac{1}{(1-T)} \sum_{t=1}^T (x_t - \bar{x})^2 = s_x^2 = \hat{\sigma_x^2}
+\end{equation}
+Sample Standard Deviation
+\begin{equation}
+\sqrt{s_x^2} = s_x = \hat{\sigma_x}
+\end{equation}
+\end{frame}
+
+\begin{frame}{Sample Statistics cont.}
+Sample Skewness
+\begin{equation}
+\frac{1}{T-1} \sum_{t = 1}^T (x_t - \bar{x})^3 /s_x^3 = \hat{skew}
+\end{equation}
+Sample Kurtosis
+\begin{equation}
+\frac{1}{T-1} \sum_{t = 1}^T (x_t - \bar{x})^4 /s_x^4 = \hat{kurt}
+\end{equation}
+The \emph{kurtosis} equals three for a normal distribution, therefore,\\ 
+$\text{Excess Kurtosis} = \hat{kurtosis} - 3$
+\end{frame}
+
+
+\begin{frame}{Distribution Characteristics in Excel}
+\begin{itemize}
+\item "Average" calculates the mean
+\item "Var.S" will calculate the variance
+\item "Stdev.S" will calculate the standard deviation (and assume a sample)
+\item "Skew" will calculate the skewness 
+\item "Kurt" will calculate the excess kurtosis
+\item "Max" will identify the largest 
+\item "Min" will identify the smallest
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Histogram in Eviews 7}
+\begin{itemize}
+\item Import data and select returns ("r")
+\item "View", "Descriptive Statistics and Tests"
+\item "Histogram and Stats" gives key statistics plus \emph{Jarque Bera Test}
+\end{itemize}
+Note, this calculation is pure Kurtosis (so 3 = normal), \emph{Jarque Bera} is calculated as
+\begin{equation}
+JB = \frac{N}{6}\left ( S^2 + \frac{K - 3)^2}{4} \right )
+\end{equation} 
+Where, S is the sample skew K is the sample Kurtosis.  Critical values for null is normal are given. 
+\end{frame}
+
+%\begin{frame}[fragile]{Histogram in R}
+%The commands are in the file "Importfile.r" on student central.  They key commands are - 
+%\begin{verbatim}
+%bac <- read.table("C:/Users/rh49/Desktop/
+%   Return data.csv", sep = ",", header = TRUE, 
+%    stringsAsFactors = FALSE)
+%bac.R <- bac$Adj.Close[2:n]/
+%       bac$Adj.Close[1:n-1]  - 1
+%hist(bac.R, probability = TRUE, main = 
+ %      "Distribution of R returns and normal
+ %      plot", ylim = c(0, 3.0))
+%\end{verbatim}
+%\end{frame}
+
+%\begin{frame}{Histogram of BAC Returns}
+%\frametitle{Histogram of BAC Returns}
+%\begin{center}
+%\includegraphics[height = 3.0in]{hist}
+%\end{center}
+%\end{frame} 
+
+%\begin{frame}[fragile]{Characteristics of Returns in R}
+%Assuming that we have the returns file bac.R (which was the case with the example), the following code will calculate descriptive statistics.
+%\begin{verbatim}
+%mean = mean(bac.R)
+%var = var(bac.R)
+%sd = sd(bac.R)
+%max = max(bac.R)
+%min = min(bac.R)
+%skew = skewness(bac.R)
+%kurt = kurtosis(bac.R)
+%#jarque bera test is in the "tseries" package
+%require(tseries)
+%jarque.bera.test(bac.R)
+%\end{verbatim}
+%\end{frame}
+
+\begin{frame}{Standard Error of Estimates}
+How precise are the estimates of the mean, variance, standard deviation, covariance and correlation? 
+\begin{align*}
+SE(\hat{\mu_i}) = & \frac{\sigma_i}{\sqrt{T}}\\
+SE(\hat{\sigma}_i^2) \approx & \frac{\sigma_i^2}{\sqrt{T/2}} = \frac{\sqrt{2\sigma^2_i}}{\sqrt{T}}\\
+ SE(\hat{\sigma}_i) \approx & \frac{\sigma_i}{\sqrt{2T}}\\
+SE(\hat{\sigma}_{i, j}) : & \text{No easy solution}\\
+ SE(\hat{\rho_{i, j}}) \approx & \frac{(1 - \rho^2_{i,j})}{\sqrt{T}}
+\end{align*}
+\end{frame}
+
+
+
+ 
+\begin{frame}{Standard Error of Skew and Kurtosis}
+How significant is the skew and kurtosis? \\
+\vspace{5pt}
+Test Statistic $Z_i = G_i/SES$,  where $G_i$ is the sample skew and $SES$ is\\
+\emph{Standard Error of Skewness} $SES = \sqrt{\frac{6n(n-1)}{(n-2)(n+1)(n+3)}}$\\
+\vspace{5pt}
+%some take root(6/n)
+Critical values are +2 and -2 which is about 95\% level\\
+\vspace{5pt}
+Test Statistic $Z_i = G_i/SEK$, where $G_i$ is the sample kurtosis and $SEK$ is\\
+\emph{Standard Error of Kurtosis} $SEK = \sqrt{\frac{n^2 -1}{(n-3)(n+5)}}$\\
+%some take root(24/n)
+\vspace{5pt}
+Critical values are again +2 and -2 and SEK = 2 * SES
+\end{frame} 
+\section{Normal Distribution}
+\begin{frame}{Normal Distribution}
+An assessment of whether the distribution is normal can be made with some of the tools used last week
+\begin{itemize}
+\item Create a histogram and look at the distribution
+\item Calculate the skewness and kurtosis and test for significance
+\item Use the Jarque Bera Test
+\item Can also use a Q-Q plot and Box Plot
+\end{itemize}
+Knowing whether the distribution of returns is normal or not is important for understanding risk as it will determine whether standard deviation is useful and whether to evaluate VaR with parametric or non-parametric methods. 
+\end{frame}
+
+\begin{frame}{Four Pictures of Returns}
+\frametitle{Four Pictures of Returns}
+\begin{center}
+\includegraphics[height = 3.2in]{FourPics}
+\end{center}
+\end{frame} 
+
+
+\section{Structural Breaks}
+\begin{frame}{Structural Breaks}
+If the mean is not constant, there may be a \emph{structural break}.  There are numerous econometric methods to identify structural breaks.  %See R package \emph{strucchange}. 
+However, we will limit our analysis to two simple methods:
+\vspace{6pt}
+\begin{itemize}
+\item Identifying possible breaks from prior knowledge and comparing the relevant summary statistics for the distribution in the two periods
+\item Calculating and plotting rolling estimates of the summary statistics
+\end{itemize}
+\end{frame}
+
+\begin{frame}{The Financial Crisis}
+An obvious break would be the financial crisis
+\vspace{6pt}
+\begin{itemize}
+\item Identify the break - Sep 15th 2009 Lehman Bros bankruptcy
+\item Calculate $\hat{\mu}$ or $\hat{\sigma}$ or other before and after the break
+\item Calculate confidence intervals for the estimated means of the two periods
+\end{itemize}
+\vspace{6pt} where $SE(\hat{\mu_i}) = \frac{\hat{\sigma_i}}{\sqrt{T}}$ and $SE(\hat{\sigma}) = \frac{\hat{\sigma_i}}{\sqrt{2T}}$ and 95\% confidence intervals are 
+$\hat{\mu_i} \pm 2 \cdot SE$
+\end{frame}
+
+
+%\begin{frame}[fragile]{Rolling Summary Statistics}
+%This can be calculated in excel with mean of a rolling window or the zoo package in R has a function \emph{'rollapply()'}
+%\begin{verbatim}
+%# 24 month rolling means incremented by 1 month
+%> roll.BAC.mean <- rollapply(BAC.r, width = 24, 
+%+ FUN = mean, align = "right")
+%> plot(roll.BAC.mean)
+%\end{verbatim}
+%The same can be done to the estimate of the standard deviation or the covariance or different assets. 
+%\end{frame}
+
+\begin{frame}{Rolling Summary Statistics}
+To test for structural breaks and GARCH effects
+Compute the statistics in the usual way but use a rolling window 
+\begin{itemize}
+\item Rolling mean 
+\item Rolling standard deviation
+\item Rolling correlation between assets. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Rolling Mean Returns}
+%\graphicspath{{Pictures/}}
+\frametitle{Rolling Mean Returns}
+\begin{center}
+\includegraphics[height = 3.2in]{rollingmean}
+\end{center}
+\end{frame} 
+
+\section{Serial Correlation}
+\begin{frame}{Serial Correlation}
+The $j^{th}$ lag autocorrelation is 
+\begin{align*}
+\rho_j &= cor(r_t, r_{t-j})\\
+ &= \frac{cov(r_t, r_{t-j}}{var({r_t})}
+\end{align*}
+Estimate of $\hat{\rho_t} = \frac{\frac{1}{T} \sum_{t=j+1}^T (r_t - \hat{\mu})(r_{t-j} - \hat{\mu})}{\frac{1}{T} \sum_{t=1}^T (r_t - \hat{\mu})^2}$
+\end{frame}
+
+%\begin{frame}{Serial Correlation 2}
+%$SE(\hat{\rho_j}) = \frac{1}{\sqrt{T}}$\\
+%\vspace{8pt}
+%The test statistic for the serial correlation 
+%\begin{align*}
+%\text{test} &= \frac{\hat{\rho_j}}{SE(\hat{\rho_j})}\\
+%&= \sqrt{T} \cdot \hat{\rho_j}
+%\end{align*}
+%Therefore, if $|\sqrt{T} \cdot \hat{\rho_j}| > 2$, there appears to be correlation
+%\end{frame}
+
+\begin{frame}{Serial Correlation 3}
+\graphicspath{{Pictures/}}
+\frametitle{Auto or Serial Correlation}
+\begin{center}
+\includegraphics[height = 3.2in]{autocorrelation}
+\end{center}
+\end{frame}
+
+
+
+
+
+%Now run through the breaks - rolling regression? 
+% Garch we will come back to 
+%Skew - alternative measures of risk
+%VAR can be a solution
+% Kurtosis - Need for non-parametric methods
+%VBootstrapping can be a solution. 
+%Make the links with other classes (integrative). 
+
+
+%this will allow us to post a picture with ease
+
+
+
+
+
+\end{document}
+
+% this may be useful http://physicsoffinance.blogspot.com/2012/11/why-time-matters.html
+% it looks at returns over time and the increased risk when there is a possibility of a default 
+% it associates that with  the St. Petersberg paradox. 

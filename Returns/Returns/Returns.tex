@@ -1,0 +1,389 @@
+\documentclass[14pt,xcolor=pdftex,dvipsnames,table]{beamer}
+
+% Specify theme
+\usetheme{Madrid}
+% See deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html for other themes
+\usepackage{caption}
+
+% Specify base color
+\usecolortheme[named=OliveGreen]{structure}
+% See http://goo.gl/p0Phn for other colors
+
+% Specify other colors and options as required
+\setbeamercolor{alerted text}{fg=Maroon}
+\setbeamertemplate{items}[square]
+
+% Title and author information
+\title{Investment Returns}
+\author{Rob Hayward}
+
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+\tableofcontents
+\end{frame}
+
+\begin{frame}
+Adapted from Modeling Financial Time Series by Eric Zivot
+\end{frame}
+
+\section{Time Value of Money}
+\begin{frame}{Time Value of Money}
+$\$FV_n = \$V(1+R)^n$, \\
+\vskip1cm
+where $\$FV_n$ is the future value after $n$ years 
+\end{frame}
+
+\begin{frame}{Example}
+£100 invested at 5\% for a number of years
+\begin{itemize}[<+-| alert@+>]
+\item $FV_1 = 100(1.05)^1 = 105.00$
+\item $FV_5 = 100(1.05)^5 = 127.63$
+\item $FV_9 = 100(1.05)^9 = 155.13$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Re-arrange}
+FV is a function of $FV_n$, $V$, $R$, $n$.   Re-arrange to find
+Present Value 
+\begin{equation}
+V=\frac{FV_n}{(1+R)^n}
+\end{equation}
+Compound return 
+\begin{equation}
+R=\left( \frac{FV_n}{V} \right)^{1/n} - 1
+\end{equation}
+Investment horizon  
+\begin{equation}
+n=\frac{ln(FV_n/V)}{ln(1+R)}
+\end{equation}
+\end{frame} 
+
+\begin{frame}{Multiple Compounding}
+When interest is paid frequency, 
+\begin{equation}
+FV^m_n = \$V \left( 1+\frac{R}{m}\right)^{mn}
+\end{equation}
+where $\frac{R}{m}$ is periodic interest
+\begin{equation}
+FV^{\infty}_n=\underset{m \rightarrow \infty}{lim}\$V \left(1+\frac{R}{m} \right)^{mn} = \$Ve^{Rn}
+\end{equation}
+where $e^1=2.71828$
+\end{frame}
+
+\begin{frame}{Example}
+With a simple interest rate of 10\%, what is the value at the end of one year (n = 1) for different rates of compounding (values of m)  
+\begin{center}
+\rowcolors{1}{OliveGreen!20}{OliveGreen!5}
+ \begin{tabular}{l | r}
+Compounding Frequency & Value at year end (R = 10\%)\\
+\hline
+Annual (m = 1) & 110.00\\
+Semi-annual (m=2) & 110.25\\
+Quarterly (m=4) & 110.38\\
+Monthly (m=12) & 110.47\\
+Daily (m=365) & 110.52\\
+Continuous (m= $\infty$) & 110.52\\
+\hline
+\end{tabular}
+\end{center}
+\end{frame} 
+
+% Must put [fragile] to use verbatim
+\begin{frame}[fragile]{R code}
+\begin{verbatim}
+Return <- function(R, m, n){
+  FV = (1 + R/m)^(m*n)
+}
+a <- Return(R = 0.1, m = 100000, n =1)
+100 * a
+
+a <- exp(0.1)
+\end{verbatim}
+\end{frame}
+
+\begin{frame}{Effective Annual Rate}
+Annual Rate $R_A$ that equates $FV_n^m$ with $FV_n$
+\begin{equation}
+\$V \left(1 + \frac{R}{m} \right)^{mn} = \$V(1+R_A)^n
+\end{equation}
+Solve for $R_A$
+\begin{equation}
+\left(1+\frac{R}{m}\right)^m = 1 + R_A \Rightarrow R_A = \left(1+\frac{R}{m}\right)^m -1
+\end{equation}
+\end{frame}
+
+\begin{frame}{Continuous Compounding}
+Continuous compounding
+\begin{align*}
+\$Ve^{Rn}&=\$V(1+R_A)^n\\
+&\Rightarrow e^R=(1+R_A)\\
+&\Rightarrow R_A = e^R - 1
+\end{align*}
+\end{frame}
+
+\begin{frame}{Example}
+Annual rates ($R_A$) when there are different levels of compounding (m).  Rate (R) = 10\%.  
+\begin{center}
+\rowcolors{1}{OliveGreen!20}{OliveGreen!5}
+ \begin{tabular}{l | r |r}
+Compounding Frequency & Value  & $R_A$\\
+\hline
+Annual (m = 1) & 110.00 & 10.00\%\\	
+Semi-annual (m=2) & 110.25 & 10.25\%\\
+Quarterly (m=4) & 110.38 & 10.38\%\\
+Monthly (m=12) & 110.47 & 10.47\%\\
+Daily (m=365) & 110.52 & 10.52\%\\
+Continuous (m= $\infty$) & 110.52 & 10.52\%\\
+\hline
+\end{tabular}
+\end{center}
+\end{frame} 
+
+
+
+\section{Asset Returns}
+\begin{frame}{Simple returns}
+\begin{itemize}
+\item $P_t$ price at the end of month t
+\item $P_{t-1}$ price at the end of month t-1
+\end{itemize}
+\begin{equation}
+R_t=\frac{P_t - P_{t-1}}{P_{t-1}}=\% \Delta P_t
+\end{equation}
+net monthly return in month t
+
+\begin{equation}
+1+R_t=\frac{P_t}{P_{t-1}}
+\end{equation}
+Gross monthly return in month t
+\end{frame}
+
+\begin{frame}{Multiperiod Returns}
+A simple two month return is calculated as 
+\begin{align*}
+R_t(2) & =\frac{P_{t+2}-P_t}{P_t}\\
+&= \frac{P_{t+2}}{P_t} -1\\
+& = \frac{P_{t+2}}{P_{t+1}}\frac{P_{t+1}}{P_t} -1\\
+&= (1+R_t)(1+R_{t+1})-1
+\end{align*}
+\end{frame}
+
+\begin{frame}{Multi-period Simple Returns}
+If $1+R_t$ is the gross return over month $t$ and $1+R_{t+1}$ is the gross return over month $t+1$, 
+\begin{equation}
+1+R_t(2) = (1+R_{t+1})(1+R_t)
+\end{equation}
+Note that the two month gross return is equal to the product of the two one-month gross returns.  It is not equal to the sum of the two one-month returns. 
+\begin{align*}
+R_t(2) &= R_{t+2}+R_{t+1}+R_{t+2}R_{t+1}\\
+& \approx R_{t+2}+R_{t+1}
+\end{align*}
+if $R_{t+2}$ and $R_{t+1}$ are small 
+\end{frame}
+
+\begin{frame}{Example}
+Vodafone share price is £22.5 in January, £25.6 in February and £26.76 in March. The two-month return is 
+\begin{equation}
+R_t(2) = \frac{26.76-22.5}{22.5} = 18.93\%
+\end{equation}
+\begin{equation}
+R_t=\frac{25.6-22.5}{22.5} = 13.78\%
+\end{equation}
+\begin{equation}
+R_{t+1}=\frac{26.76-25.6}{25.6} = 4.53\%
+\end{equation}
+$1.1893 =1.1378 \times 1.0453$\\
+$18.93  \approx 13.87 + 4.53$
+\end{frame}
+
+\begin{frame}{Annualising Returns}
+Returns are usually converted to an annual rate to ease comparison. \\
+Example, if the simple monthly return is 5\%, it is assumed that this is repeated for the next 12 months. 
+Compound annual gross return \\
+\begin{itemize}
+\item $(1+R_A) = 1+R_t(12) = (1+R_m)^{12}$\\
+\item Compound net annual return \\
+\item $R_A = (1+R_m)^{12} - 1$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Example}
+Simple monthly return on Microsoft is 2.5\%
+\begin{align*}
+(1+R_A) &= (1 + R_t(12)) = (1+ R_m)^{12}\\
+&= 1.025^{12}\\
+&= 1.3449\\
+R_A &= 34.49\%
+\end{align*}
+\end{frame}
+
+\begin{frame}{Total Returns}
+Dividend payments between months $t$ and $t+1$
+\begin{align*}
+R_t^{total} &= \frac{P_{t+1} + D_t - P_t}{P_t} \\ 
+& = \frac{P_{t+1}-P_t}{P_t} + \frac{D_t}{P_t}\\
+& \text{Capital gain + Dividend yield}
+\end{align*}
+\end{frame}
+
+\begin{frame}{Example}
+Santander share price rises from £35.30 to 35.76 in the month of February and there is a 76 pence per share dividend paid.  
+\begin{align*}
+R_t^{total} &= \frac{35.76+ 0.76 -35.3}{35.3} \\
+& = \frac{35.76-35.3}{35.3} + \frac{0.76}{35.3}\\
+& = 3.5\%
+\end{align*}
+This is made up of 1.3\% capital gain and 2.1\% dividend yield. 
+\end{frame}
+
+\begin{frame}{Annualising Two Year Return}
+Vodafone stock rises to £34.5 at the close of 2012 from £34.00 at the beginning of the year and £32.78 at the beginning of 2011.  There are no dividends. 
+\begin{align*}
+1+R_t(24) &= \frac{34.5}{32.78} = 1.0524\\
+R_t(24) &= 5.24\%
+\end{align*}
+If the two year return is 5.24\%, the compound annual  return is 
+\begin{align*}
+(1 + R_A)^2 &= 1 +R_t(24) = 1.0524\\
+R_A &= (1.0524)^{0.5} - 1\\
+&= 2.59\%
+\end{align*}
+\end{frame}
+
+
+\section{Portfolio Performance}
+\begin{frame}{Portfolio Returns}
+\begin{itemize}
+\item If there is an investment of $£V$ and two securities A and B
+\item $x_A$ is the proportion invested in security A
+\item $x_B$ is the proportion invested in security B
+\item $x_A + x_B = 1$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Return on Investment}
+\begin{align*}
+£V(1+R_{p,t}) &= £V[x_A (1+R_{A,t}) + x_B (1+R_{B, t})]\\
+& = £V[x_A + x_B + x_A R_{A,t} + x_B R_{B,t}]\\
+& = £V[1 + x_A R_{A,t} + x_B R_{B,t}]\\
+\Rightarrow R_{p,t} & = x_A R_{A,t} + x_B R_{B,t}
+\end{align*}
+\end{frame}
+
+\begin{frame}{Example}
+If the fund buys 10 shares in Google at \$345 and 5 shares in Apple at \$678
+\begin{itemize}
+\item $P_{G,t} = 10 \times 345 = 3450$
+\item $P_{A,t} = 5 \times 678 = 3390$
+\item Total value of the portfolio $\$3450 + \$3390 = \$6840$
+\item $x_{G,t} = \frac{3450}{6840} = 50.44\%$
+\item $x_{A,t} = \frac{3390}{6840} = 49.56\%$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Example cont.}
+If the price of Google rises to \$356 and the price of Apple falls to \$670, the simple return is 
+\begin{itemize}
+\item $R_{G,t} = \frac{356 - 345}{345} = 3.19\%$
+\item $R_{A,t} = \frac{670-678}{678} = -1.12\%$
+\end{itemize}
+\begin{align*}
+R_{p,t} & = (0.5044 \times 0.0319) + (0.4945 \times -0.0120)\\
+& = 1.01\%
+\end{align*}
+You check!
+%two ways to do that:  return of end portfolio value vs beginning value or the end value of return against beginning value. 
+\end{frame}
+
+%\begin{frame}{Variance of Portfolio}
+%add this in later.  This will be the linear algebra example. 
+%\end{frame}
+
+\begin{frame}{Natural Logs and Exponentials}
+Some notes on natural logs and exponentials
+\begin{itemize}
+\item $ln(0) = -\infty, ln(1) = 0$
+\item $e^{-\infty} = 0, e^0 = 1, e^1 = 2.7183$
+\item $\frac{dln(x)}{dx} = \frac{1}{x}, \frac{de^x}{dx}=e^x$
+\item $ ln(e^x) = x, e^{ln(x)} = x$
+\item $ln(x . y) = ln(x) + ln(y); ln \left ( \frac{x}{y} \right )= ln(x) - ln(y)$
+\item $ln(x^y) = yln(x)$
+\item $e^xe^y = e^{x+y}, e^xe^{-y} = e^{x-y}$
+\item $(e^x)^y = e^{xy}$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Continuously Compounded Return}
+From slide 13. 
+\begin{align*}
+1 + R_t &= e^{r_t}\\
+R_t &= e^{r_t}-1\\
+ln(1+R_t) &= r_t
+\end{align*}
+and, 
+\begin{align*}
+r_t = ln(1 + R_t) &= ln \left(\frac{P_t}{P_{p-t}}\right)\\
+&= ln(P_t) - ln(P_{t-1})\\
+& = p_t - p_{t-1}, \hspace{8pt} \text{where} \hspace{8pt} p_t = ln(P_t)  
+\end{align*}
+
+$r_t$ is always lower than $R_t$, why?
+\end{frame}
+
+
+
+\begin{frame}{Simple Returns and Compound Returns}
+Intuition behind comparison
+\begin{align*}
+e^{r_t}&=e^{ln(1+R_t)}\\ 
+&=e^{ln(P_t/P_{t-1})} \\
+&= \frac{P_t}{P_{t-1}}\\
+&\Rightarrow P_t = P_{t-1}.e^{r_t}\\
+\end{align*}
+\end{frame}
+
+\begin{frame}{Simple and Compound Returns}
+\frametitle{Simple and Compound Returns}
+\begin{center}
+\includegraphics[height = 3.2in]{simpleandlog}
+\end{center}
+\end{frame} 
+
+\begin{frame}{Multi Period Continuously Compounded Returns}
+\begin{align*}
+r_t(2) &= ln(1 + R_t(2))\\
+&= ln \left ( \frac{P_t}{P_{t-2}} \right ) \\
+&=p_t - p_{t-2}\\
+\text{So that}, e^rt(2)_t = e^{ln(P_t/P_{t-2})}\\
+& \rightarrow P_{t-2}e^{r(2)_t} = P_t
+\end{align*}
+\end{frame}
+
+\begin{frame}{Continuously Compounded Returns are Additive} 
+\begin{align*}
+r_t &= ln (1 + R_t) = ln \left ( \frac{P_t}{P_{t-1}} \right)\\
+r_t(2) & = ln \left (\frac{P_t}{P_{t-1}}.\frac{P_{t-1}}{P_{t-2}} \right ) \\
+& = ln \left ( \frac{P_t}{P_{t-1}} \right ) +  ln \left ( \frac{P_{t-1}}{P_{t-2}} \right ) \\
+& = r_t + r_{t-1}
+\end{align*}  
+where $r_t = cc$, continuously compounded returns between months t-1 and t. 
+\end{frame}
+
+\begin{frame}{Portfolios and continuously Compounded Returns}
+\begin{align*}
+R_{p,t} & = \sum_{i = 1}^n x_iR_{i,t}\\
+r_{p,t} & = ln(1 + R_{p,t})\\
+& =ln(1 + \sum_{i = 1}^n x_iR_{i,t}) \\
+& \neq \sum_{i = 1}^n x_ir_{i,t}
+\end{align*}
+It is approximately correct when $R_{p,t}$ is not large. 
+\end{frame}
+
+
+\end{document}
