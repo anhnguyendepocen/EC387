@@ -4,7 +4,7 @@
 \usetheme{Madrid}
 % See deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html for other themes
 \usepackage{caption}
-
+\usepackage{listing}
 % Specify base color
 \usecolortheme[named=OliveGreen]{structure}
 % See http://goo.gl/p0Phn for other colors
@@ -14,7 +14,7 @@
 \setbeamertemplate{items}[square]
 
 % Title and author information
-\title{Investment Returns}
+\title{Simple and continuously compounded returns}
 \author{Rob Hayward}
 
 
@@ -28,9 +28,6 @@
 \tableofcontents
 \end{frame}
 
-\begin{frame}
-Adapted from Modeling Financial Time Series by Eric Zivot
-\end{frame}
 
 \section{Time Value of Money}
 \begin{frame}{Time Value of Money}
@@ -41,6 +38,7 @@ where $\$FV_n$ is the future value after $n$ years
 
 \begin{frame}{Example}
 £100 invested at 5\% for a number of years
+\pause
 \begin{itemize}[<+-| alert@+>]
 \item $FV_1 = 100(1.05)^1 = 105.00$
 \item $FV_5 = 100(1.05)^5 = 127.63$
@@ -50,18 +48,24 @@ where $\$FV_n$ is the future value after $n$ years
 
 \begin{frame}{Re-arrange}
 FV is a function of $FV_n$, $V$, $R$, $n$.   Re-arrange to find
-Present Value 
-\begin{equation}
+\pause
+\begin{block}{Present Value}
+\begin{equation}\label{eqref:pv}
 V=\frac{FV_n}{(1+R)^n}
 \end{equation}
-Compound return 
-\begin{equation}
+\end{block}
+\pause
+\begin{block}{Compound return}
+\begin{equation}\label{eqref:cr}
 R=\left( \frac{FV_n}{V} \right)^{1/n} - 1
 \end{equation}
-Investment horizon  
-\begin{equation}
+\end{block}
+\pause
+\begin{block}{Investment horizon}
+\begin{equation}\label{eqref:ih}
 n=\frac{ln(FV_n/V)}{ln(1+R)}
 \end{equation}
+\end{block}
 \end{frame} 
 
 \begin{frame}{Multiple Compounding}
@@ -70,7 +74,7 @@ When interest is paid frequency,
 FV^m_n = \$V \left( 1+\frac{R}{m}\right)^{mn}
 \end{equation}
 where $\frac{R}{m}$ is periodic interest
-\begin{equation}
+\begin{equation}\label{eqref:cc}
 FV^{\infty}_n=\underset{m \rightarrow \infty}{lim}\$V \left(1+\frac{R}{m} \right)^{mn} = \$Ve^{Rn}
 \end{equation}
 where $e^1=2.71828$
@@ -101,9 +105,10 @@ Return <- function(R, m, n){
   FV = (1 + R/m)^(m*n)
 }
 a <- Return(R = 0.1, m = 100000, n =1)
-100 * a
 
-a <- exp(0.1)
+b <- exp(0.1)
+
+Does a = b?
 \end{verbatim}
 \end{frame}
 
@@ -113,18 +118,31 @@ Annual Rate $R_A$ that equates $FV_n^m$ with $FV_n$
 \$V \left(1 + \frac{R}{m} \right)^{mn} = \$V(1+R_A)^n
 \end{equation}
 Solve for $R_A$
-\begin{equation}
-\left(1+\frac{R}{m}\right)^m = 1 + R_A \Rightarrow R_A = \left(1+\frac{R}{m}\right)^m -1
-\end{equation}
+\begin{align}
+\left(1+\frac{R}{m}\right)^m &= 1 + R_A \\
+R_A &= \left(1+\frac{R}{m}\right)^m -1
+\end{align}
+\end{frame}
+
+\begin{frame}{Effective annual rate example}
+For \$100 with a 10\% return paid quarterly, 
+\begin{align}
+FV & = V \left (1 + \frac{0.1}{4} \right )^{4\times 1}\\
+FV & = V (1 + R_A)\\ 
+110.3813 & = 100(1 + R_A)\\
+R_A & = \left (\frac{110.3813}{100} \right) -1\\ 
+R_A & = 10.3813
+\end{align}
 \end{frame}
 
 \begin{frame}{Continuous Compounding}
-Continuous compounding
-\begin{align*}
-\$Ve^{Rn}&=\$V(1+R_A)^n\\
-&\Rightarrow e^R=(1+R_A)\\
-&\Rightarrow R_A = e^R - 1
-\end{align*}
+The effective annual rate is greater than the simple rate because of the compounding.  This is seen clearly with continuous compounding
+\begin{align}
+\$Ve^{Rn} &=\$V(1+R_A)^n\\
+ e^R & =(1+R_A)\\
+ e^R - 1 & = R_A\\
+ R & = ln(1 + R_A)\label{eqref:ccln}
+\end{align}
 \end{frame}
 
 \begin{frame}{Example}
@@ -164,7 +182,7 @@ net monthly return in month t
 Gross monthly return in month t
 \end{frame}
 
-\begin{frame}{Multiperiod Returns}
+\begin{frame}{Multi period Returns}
 A simple two month return is calculated as 
 \begin{align*}
 R_t(2) & =\frac{P_{t+2}-P_t}{P_t}\\
@@ -320,7 +338,7 @@ Some notes on natural logs and exponentials
 \end{frame}
 
 \begin{frame}{Continuously Compounded Return}
-From slide 13. 
+From Equation \ref{eqref:cc} and Equation \ref{eqref:ccln} 
 \begin{align*}
 1 + R_t &= e^{r_t}\\
 R_t &= e^{r_t}-1\\
@@ -336,7 +354,27 @@ r_t = ln(1 + R_t) &= ln \left(\frac{P_t}{P_{p-t}}\right)\\
 $r_t$ is always lower than $R_t$, why?
 \end{frame}
 
-
+\begin{frame}{Continuously compounded equations}
+The equivalent of Equations \ref{eqref:pv}, \ref{eqref:cr} and \ref{eqref:ih}
+\pause
+\begin{block}{Present value}
+\begin{equation}
+V = e^{-Rn}FV
+\end{equation}
+\end{block}
+\pause
+\begin{block}{Compound return}
+\begin{equation}
+R = \frac{1}{n}ln \left (\frac{FV_n}{V} \right )
+\end{equation}
+\end{block}
+\pause
+\begin{block}{Investment horizon}
+\begin{equation}
+n = \frac{1}{R} ln \left ( \frac{FV_n}{V} \right )
+\end{equation}
+\end{block}
+\end{frame}
 
 \begin{frame}{Simple Returns and Compound Returns}
 Intuition behind comparison
@@ -344,8 +382,9 @@ Intuition behind comparison
 e^{r_t}&=e^{ln(1+R_t)}\\ 
 &=e^{ln(P_t/P_{t-1})} \\
 &= \frac{P_t}{P_{t-1}}\\
-&\Rightarrow P_t = P_{t-1}.e^{r_t}\\
+P_t &= P_{t-1}.e^{r_t}\\
 \end{align*}
+$P_{t-1}$ growing at $e^{r_t}$ gets to $P_t$
 \end{frame}
 
 \begin{frame}{Simple and Compound Returns}
@@ -360,8 +399,8 @@ e^{r_t}&=e^{ln(1+R_t)}\\
 r_t(2) &= ln(1 + R_t(2))\\
 &= ln \left ( \frac{P_t}{P_{t-2}} \right ) \\
 &=p_t - p_{t-2}\\
-\text{So that}, e^rt(2)_t = e^{ln(P_t/P_{t-2})}\\
-& \rightarrow P_{t-2}e^{r(2)_t} = P_t
+\text{So that}, e^{rt(2)} = e^{ln(P_t/P_{t-2})}\\
+& \rightarrow P_t = P_{t-2}e^{r(2)} 
 \end{align*}
 \end{frame}
 
@@ -375,14 +414,19 @@ r_t(2) & = ln \left (\frac{P_t}{P_{t-1}}.\frac{P_{t-1}}{P_{t-2}} \right ) \\
 where $r_t = cc$, continuously compounded returns between months t-1 and t. 
 \end{frame}
 
-\begin{frame}{Portfolios and continuously Compounded Returns}
-\begin{align*}
-R_{p,t} & = \sum_{i = 1}^n x_iR_{i,t}\\
-r_{p,t} & = ln(1 + R_{p,t})\\
-& =ln(1 + \sum_{i = 1}^n x_iR_{i,t}) \\
-& \neq \sum_{i = 1}^n x_ir_{i,t}
-\end{align*}
-It is approximately correct when $R_{p,t}$ is not large. 
+
+%\begin{frame}{Portfolios and continuously Compounded Returns}
+%\begin{align*}
+%R_{p,t} & = \sum_{i = 1}^n x_iR_{i,t}\\
+%r_{p,t} & = ln(1 + R_{p,t})\\
+%& =ln(1 + \sum_{i = 1}^n x_iR_{i,t}) \\
+%& \neq \sum_{i = 1}^n x_ir_{i,t}
+%\end{align*}
+%It is approximately correct when $R_{p,t}$ is not large. 
+%\end{frame}
+
+\begin{frame}
+Adapted from Modelling Financial Time Series by Eric Zivot
 \end{frame}
 
 
