@@ -1,0 +1,73 @@
+---
+title: "Returns and R"
+author: "Rob Hayward"
+output: 
+  html_document: 
+    theme: journal
+---
+## Downloading data
+It is possible to carry out all the analysis of returns in R. The first issue is downloading data.  The easiest way is to download a comma-separated-variable (csv) file.  This is a common file format and (fortunately) the way that Yahoo finance will provide the files. There is a fuller discussion in the [Quick R Guide](http://www.statmethods.net/input/importingdata.html).
+
+You need to save the csv file to the *working directory*.  In raw R the working directory can be changed by using "change dir.." from the "file" menu.  In R-Studio, you will see the working directory at the top of the page.  Where I have written "../Data/BAC.csv", you will just need to write "BAC.csv".  
+
+```{r}
+BAC <- read.csv("../Data/BAC.csv")
+head(BAC)
+```
+The function "head" will show the first 6 lines.  Take a look at ?head to see other arguments.  
+
+## Manipulate the data
+Now we need to 
+
+1. Remove the data that is not wanted
+2. Make sure that R knows that the first column contains dates 
+3. Calculate returns
+
+```{r}
+BAC$Date <- as.Date(BAC$Date, format = "%d/%m/%Y")
+BAC <- BAC[,c(1,7)]
+colnames(BAC) <- c("Date", "Close")
+BAC <- BAC[rev(rownames(BAC)),]
+head(BAC)
+```
+### Notes
+1. You can find out more about the date object [here](http://www.statmethods.net/input/importingdata.html)
+2. Positions on a data.frame are identified as [a,b] where a is the row number and b is the column number.  I have taken all the rows and just columns 1 and 7 (concatenating a vector of 1 and 7 to do that)
+3. I have changed the column names to "Date" and "Close" so that I do not have to keep typing "Adj.Close" each time.
+4. I have reversed the order of the data using the function "rev".  This is what R expects from a data frame and makes calculations like "diff" easier. 
+```{r}
+BACR <- diff(BAC$Close) / BAC$Close[-length(BAC$Close)] 
+BACr <- diff(log(BAC$Close))
+BAC <- cbind(BAC[-1,], BACR, BACr)
+tail(BAC)
+```
+## Using packages
+This is all a little complicated.  However, now you have the code, you can just cut-and-paste whenever you want to do this sort of operation.  You can also use packages.  These are blocks of pre-prepared code that have been created by other people. For example, you can use the "quantmod" package.  You can find out more [here](https://cran.r-project.org/web/packages/quantmod/index.html) and [here](http://www.quantmod.com/)
+
+You download the package with the following command
+```
+install.packages("quantmod")
+```
+
+```{r, message=FALSE, warning=FALSE}
+library(quantmod)
+getSymbols("BAC", from = "2000-01-01", to = "2013-12-31")
+BACR <- monthlyReturn(BAC, type = "arithmetic")
+BACr <- monthlyReturn(BAC, type = "log")
+plot(BACR, BAC$Date, type = 'l')
+```
+
+## Assessment of BAC returns
+
+The assessment of the sample of BAC returns can now be carried out.  The "moments" package will have to be downloaded for the functions "skewness" and "kurtosis". This is done in the same way as the "quantmod" package.  
+```{r, warning=FALSE, message=FALSE}
+require(moments)
+statNames <- c("mean", "std dev", "skewness", "kurtosis", "max", "min")
+BAC.stats <- c(mean(BACr), sd(BACr), skewness(BACr), kurtosis(BACr), 
+               max(BACr), min(BACr))
+names(BAC.stats) <- statNames
+round(BAC.stats, 4)
+```
+This last code comes from [Revolution Analytics](http://blog.revolutionanalytics.com/2014/01/quantitative-finance-applications-in-r.html)
+
+Remember to use the discussion board on StudentCentral if you have any questions about this. 

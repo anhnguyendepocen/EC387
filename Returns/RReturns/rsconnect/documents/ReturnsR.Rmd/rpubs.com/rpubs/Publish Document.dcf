@@ -1,0 +1,7 @@
+name: Publish Document
+account: rpubs
+server: rpubs.com
+bundleId:
+        https://api.rpubs.com/api/v1/document/117025/da1076d674e349448b20392d97192f4b
+url: http://rpubs.com/RobHayward/117025
+when: 1444641154.99617
