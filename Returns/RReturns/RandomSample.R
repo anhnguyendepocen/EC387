@@ -29,11 +29,10 @@ round(mystats(BACr, na.omit = TRUE), 4)
 #--------------------------------------
 # Sample
 n <- 1000 # sample size
-MeanSample <- c(rep(NA, length(BACr)))
+MeanSample <- numeric(n)
 for(i in 1:n){
-  temp <- (matrix(NA, nrow = length(BACr), ncol = n))
-  temp[,i] <- sample(BACr, size = length(BACr), replace = TRUE)
-  MeanSample[i] <- mean(temp[,i], na.rm = TRUE)
+  temp <- BACr[sample(length(BACr), length(BACr), replace = TRUE)]
+  MeanSample[i] <- mean(temp, na.rm = TRUE)
 }
 hist(MeanSample)
 # this code is not good. It is too slow.  The large matrix is not good.

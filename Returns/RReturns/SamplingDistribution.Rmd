@@ -1,0 +1,83 @@
+---
+title: "Sampling distribution"
+author: "Rob Hayward"
+date: "17 October 2015"
+output: 
+  html_document: 
+    theme: journal
+---
+
+If you followed the notes from last week, you should have an object called `BAC.stats` in the workspace.  You can get the previous notes from [this link](http://rpubs.com/RobHayward/117025).  The 'BAC.stats' object contains the calculation of the mean, standard deviation, skewness and kurtosis, maximum and minimum.  
+
+The code is 
+```{r, warning=FALSE, message=FALSE}
+BAC <- read.csv("../Data/BAC.csv")
+BAC$Date <- as.Date(BAC$Date, format = "%d/%m/%Y")
+BAC <- BAC[,c(1, 7)]
+colnames(BAC) <- c("Date", "Close")
+BAC <- BAC[rev(rownames(BAC)),]
+BACR <- diff(BAC$Close) / BAC$Close[-length(BAC$Close)] 
+BACr <- diff(log(BAC$Close))
+BAC <- cbind(BAC[-1,], BACR, BACr)
+head(BAC)
+require(moments)
+statNames <- c("mean", "std dev", "skewness", "kurtosis", "max", "min")
+BAC.stats <- c(mean(BACr), sd(BACr), skewness(BACr), kurtosis(BACr), 
+               max(BACr), min(BACr))
+names(BAC.stats) <- statNames
+round(BAC.stats, 4)
+```
+
+
+Therefore, the *standard errors* of the sampling distribution should be easy to calculate.  For example, the standard error of the mean is 
+
+$$ SE_\hat{\mu} = \frac{s}{\sqrt{T}}}$$
+
+where, $SE_\hat{\mu}$ is the standard error of the mean; $s$ is the estimated standard deviation; $T$ is the number of variables. 
+
+The standard error and the 95\% confidence intervals can be calculated using the following
+
+```{r}
+SEmeanBAC <- BAC.stats[1]/length(BACr)^0.5
+lowerconfBAC <- BAC.stats[1] - 2 * SEmeanBAC
+upperConfBAC <- BAC.stats[1] + 2 * SEmeanBAC
+```
+
+The other confidence intervals for standard deviation, skew and Kurtosis can be calculated in the same way. 
+
+## Autocorrelation
+The covariance or correlation coefficient can be calculated with the `acf` function.  Take a look at the documentation with `?afc`.  
+
+```{r}
+acf(BACr)
+```
+
+The plot is automatic (unless turned off with the argument `plot = FALSE`).  The confidence intervals for the estimate of the correlation coefficient are the blue dashed lines. The first correlation is with itself.  This is of course 1.  The function `acf` will return a number of values.  To find out what is available type `names(acf(BACr))`.  These are called **Value** in the documentation.  It lets you know the calculations that have been returned.  They can be accessed by using the `$` key.  To get the correlation coefficients for each of the lags
+```{r}
+names(acf(BACr, plot = FALSE))
+acf(BACr, plot = FALSE)$acf
+```
+
+## Bootstrap
+If you want to know more about this method.  
+
+* There is a finance application from [Burns Statistics](http://www.burns-stat.com/documents/tutorials/the-statistical-bootstrap-and-other-resampling-methods-2/)
+* [Quck R](http://www.statmethods.net/advstats/bootstrapping.html)
+
+```{r}
+n <- 1000 # sample size
+MeanSample <- numeric(n)
+for(i in 1:n){
+  temp <- BACr[sample(length(BACr), length(BACr), replace = TRUE)]
+  MeanSample[i] <- mean(temp, na.rm = TRUE)
+}
+hist(MeanSample)
+quantile(MeanSample, 0.025)
+quantile(MeanSample, 0.975)
+```
+* n will determine the number of samples.  That can be changed to 100,000 if you are willing to wait. 
+* Create a vector called `MeanSample` with a length of n
+* Run a loop from 1 to n, with a temporary file called `temp`.  `temp` will hold the random sample each time it is created by drawing random numbers from 1 to the length of `BACr` and using these as the index to draw the return value from `BACr`
+* Calculate the mean from the sample and place the value in the $i^{th}$ position of `MeanSample`
+* Plot the histogram of the calculated means
+* Calculate the 2.5\% and 97.5\% values for confidence intervals using the `quantile` function. 

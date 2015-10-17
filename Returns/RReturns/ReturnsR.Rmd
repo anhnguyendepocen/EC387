@@ -31,7 +31,7 @@ BAC <- BAC[rev(rownames(BAC)),]
 head(BAC)
 ```
 ### Notes
-1. You can find out more about the date object [here](http://www.statmethods.net/input/importingdata.html)
+1. You can find out more about the date object [here](http://www.statmethods.net/input/dates.html)
 2. Positions on a data.frame are identified as [a,b] where a is the row number and b is the column number.  I have taken all the rows and just columns 1 and 7 (concatenating a vector of 1 and 7 to do that)
 3. I have changed the column names to "Date" and "Close" so that I do not have to keep typing "Adj.Close" each time.
 4. I have reversed the order of the data using the function "rev".  This is what R expects from a data frame and makes calculations like "diff" easier. 
