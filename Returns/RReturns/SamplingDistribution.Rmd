@@ -62,7 +62,7 @@ acf(BACr, plot = FALSE)$acf
 If you want to know more about this method.  
 
 * There is a finance application from [Burns Statistics](http://www.burns-stat.com/documents/tutorials/the-statistical-bootstrap-and-other-resampling-methods-2/)
-* [Quck R](http://www.statmethods.net/advstats/bootstrapping.html)
+* [Quick R](http://www.statmethods.net/advstats/bootstrapping.html)
 
 ```{r}
 n <- 1000 # sample size
