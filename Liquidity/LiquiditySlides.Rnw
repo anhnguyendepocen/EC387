@@ -1,0 +1,143 @@
+\documentclass[14pt,xcolor=pdftex,dvipsnames,table]{beamer}
+
+% Specify theme
+\usetheme{Madrid}
+% See deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html for other themes
+\usepackage{caption}
+\usepackage{tikz}
+\usepackage{multirow}
+% Specify base color
+\usecolortheme[named=OliveGreen]{structure}
+% See http://goo.gl/p0Phn for other colors
+
+% Specify other colors and options as required
+\setbeamercolor{alerted text}{fg=Maroon}
+\setbeamertemplate{items}[square]
+
+% Title and author information
+\title{Liquidity}
+\author{Rob Hayward}
+\date{}
+
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+\begin{frame}{Introduction}
+Liquidity
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item Ability to turn assets back into cash
+\item No large price discount
+\item Changes over time: disappears when it is most needed (times of crisis)
+\item Investors demand a \emph{liquidity premium} as compensation for a lack of liquidity 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Market-makers}
+There are two models of market-making
+\begin{itemize}[<+-| alert@+>]
+\pause
+\item \textbf{Agency model}: buy and sell on behalf of customers.  Seek to has as little risk as possible by matching buyers and sellers
+\item \textbf{Principal model}: Hold on to securities or run short-positions and aim to make money from executing orders at best prices
+\end{itemize}
+\pause
+The second is risky, post-crisis regulation make is increasingly costly
+\end{frame}
+
+\begin{frame}{Investment Bank Balance Sheet}
+\begin{figure}
+\begin{tikzpicture}[scale = 0.75]
+%\draw [very thin, color = gray](0, 0) grid (14, 7);
+\draw [thick] (2, 6) to (12, 6);
+\draw [thick] (7, 7) to (7, 0);
+\node [above] at (10, 6) {Liabilities};
+\node [above] at (4, 6) {Assets};
+\node [right] at (7, 5) {Borrowing 200};
+\node [left] at (7, 5) {Cash 100};
+\draw (3, 2) to (11, 2);
+\node [right] at (7, 3) {Capital 200};
+\node [left] at (7, 3) {Securities 300};
+\node [right] at (7, 1) {Total 400};
+\node [left] at (7, 1) {Total 400};
+\end{tikzpicture}
+\caption{Security broker balance sheet}
+\label{figref:ib}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Regulation}
+There are three strands to the increased regulation
+\begin{itemize}[<+-| alert@+>]
+\item Increased regulatory scrutiny
+\item Higher capital requirements
+\item Restrictions on principal model
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Measuring liquidity}
+There are a number of ways that liquidity can be measured
+\begin{itemize}[<+-| alert@+>]
+\item Bid-ask spread
+\item Volume 
+\item Size of transactions
+\item Price impact (market-depth)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Liquidity and returns}
+Article on student central
+\begin{block}{}
+Amihud, Y., (2002),\emph{Illiquidity and stock returns}, Journal of Financial Markets, \textbf{5} 1
+\end{block}
+Lack of liquidity affect excess returns. 
+\end{frame}
+
+\begin{frame}{Measuring liquidity 2}
+Amihud proposes the following measure of liquidity
+\begin{block}{}
+\begin{equation*}
+L = \frac{|R_i|}{V_i}
+\end{equation*}
+\end{block}
+where $|R_i|$ is the \emph{absolute return} to stock i and $V_i$ is the dollar value of trading in stock $i$
+\end{frame}
+
+\begin{frame}{Try yourself}
+Now I want you to
+\begin{itemize}[<+-| alert@+>]
+\item Go to Yahoo finance
+\item Select a stock
+\item Calculate the liquidity measure $L$ for that stock
+\item How does liquidity perform around earning releases?
+\end{itemize}
+\end{frame}
+
+\end{document}
+
+
+
+
+
+\begin{frame}{Pizza production}
+\begin{center}
+\rowcolors{1}{OliveGreen!20}{OliveGreen!5}
+\begin{tabular}{l r r r r r}
+Labour & Output & MPL & FC & LC & TC \\
+\hline
+0 &  0  & 0  & 30 & 0  & 30\\
+1 & 50  & 50 & 30 & 10 & 40 \\
+2 & 90  & 40 & 30 & 20 & 50\\
+3 & 120 & 30 & 30 & 30 & 60\\
+4 & 140 & 20 & 30 & 40 & 70\\
+5 & 150 & 10 & 30 & 50 & 80\\
+\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+\end{document}
