@@ -29,15 +29,10 @@
 \titlepage
 \end{frame}
 
-\begin{frame}{Outline}
-\tableofcontents
-\end{frame}
-
-
 \begin{frame}{What is market-making?}
 What is market-making
 \pause
-\begin{itemize}
+\begin{itemize}[<+-| alert@+>]
 \item Market-making
 \item Proprietary trading
 \item Investment 
@@ -45,7 +40,7 @@ What is market-making
 \end{frame}
 
 \begin{frame}{Market-Making}
-There is a distinction between the \emph{primary} and \emph{secondary} markets
+There is a distinction between the \emph{primary} and \emph{secondary} markets.  We are looking at secondary markets. 
 \pause
 \begin{itemize}[<+-| alert@+>]
 \item Open-outcry
