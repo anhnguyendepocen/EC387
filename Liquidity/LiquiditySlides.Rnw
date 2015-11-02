@@ -51,7 +51,7 @@ The second is risky, post-crisis regulation make is increasingly costly
 
 \begin{frame}{Investment Bank Balance Sheet}
 \begin{figure}
-\begin{tikzpicture}[scale = 0.75]
+\begin{tikzpicture}[scale = 0.35]
 %\draw [very thin, color = gray](0, 0) grid (14, 7);
 \draw [thick] (2, 6) to (12, 6);
 \draw [thick] (7, 7) to (7, 0);
@@ -68,6 +68,15 @@ The second is risky, post-crisis regulation make is increasingly costly
 \caption{Security broker balance sheet}
 \label{figref:ib}
 \end{figure}
+\end{frame}
+
+\begin{frame}{Security broker}
+\begin{itemize}[<+-| alert@+>]
+\item Assume that securities return 10\% and borrowing cost 1\%
+\item Income is \$28 and ROE is 14\%
+\item Increase capital to 300 and borrowing falls to 100
+\item Income is 29 and ROE is 9.6\%
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Regulation}
