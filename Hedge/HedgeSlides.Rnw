@@ -1,0 +1,172 @@
+\documentclass[14pt,xcolor=pdftex,dvipsnames,table]{beamer}
+
+% Specify theme
+\usetheme{Madrid}
+% See deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html for other themes
+\usepackage{caption}
+\usepackage{tikz}
+\usepackage{multirow}
+% Specify base color
+\usecolortheme[named=OliveGreen]{structure}
+% See http://goo.gl/p0Phn for other colors
+
+% Specify other colors and options as required
+\setbeamercolor{alerted text}{fg=Maroon}
+\setbeamertemplate{items}[square]
+
+% Title and author information
+\title{Hedge Funds and Alternative Investments}
+\author{Rob Hayward}
+\date{}
+
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+\begin{frame}{Historical perspective}
+\begin{itemize}[<+-| alert@+>]
+\item 1949: Alfred Jones
+\begin{itemize}
+\item Use of leverage and short-selling to protect fund
+\item Buying winners and selling losers
+\item Jones kept 20\% of the returns
+\item Success inspired \emph{copy-cats}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{History 2}
+\begin{itemize}[<+-| alert@+>]
+\item 1980s
+\begin{itemize}
+\item George Soros (Quantum fund): "Black Wednesday"
+\item Julian Robertson (Tiger Fund): St. Valentine's Day Massacre
+\item LTCM
+\end{itemize}
+\item After year 2000
+\begin{itemize}
+\item Greenwich Connecticut 
+\item Mayfair London
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Alternative}
+These funds are \emph{alternative} in a number of ways
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item Leverage
+\item Less regulation (sophisticated investors)
+\item More risk (derivatives and lack of diversification)
+\item \emph{Alpha}
+\item \emph{Alternative beta}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Alpha}
+CAPM
+\begin{block}{}
+\begin{equation*}
+r_i - r_{rf} = \alpha + \beta(M - r_{rf})
+\end{equation*}
+\end{block}
+\pause
+\vspace{1cm}
+Traditional funds concentrate on beta. 
+Hedge funds need to justify fees
+\end{frame}
+
+
+\begin{frame}{Alternative beta}
+Factor models include more than just market risk (Fama-French include capitalisation and book-to-market)
+\begin{itemize}[<+-| alert@+>]
+\item If funds are alternative, they may find other factors 
+\item Capture risks that traditional funds are not exposed to
+\item This may be attractive for traditional funds because it may increase diversification and reduce risk
+\item Traditional funds may allocate 5\% to 20\% to alternatives)\footnote{SEI Knowledge Partnership (on SC)}
+\item Controversial (hedge fund replication)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Strategies}
+\begin{itemize}[<+-| alert@+>]
+\item Alpha
+\begin{itemize}
+\item Emerging markets
+\item Managed futures
+\item Fixed income arbitrage
+\end{itemize}
+\item Market neutral 
+\begin{itemize}
+\item Short-bias
+\item Event
+\item Convertible arbitrage
+\item Global macro
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Indices and analysis}
+\begin{itemize}[<+-| alert@+>]
+\item A number of organisations study hedge funds
+\begin{itemize}
+\item Credit-Suisse
+\item EDHEC-Risk Institute
+\item Greenwich Alternative Investments
+\end{itemize}
+\item You must register to get access to data
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Issues with use of indices}
+\begin{itemize}[<+-| alert@+>]
+\item \emph{Lack of leaders}
+\item \emph{survivorship bias}
+\item Smoothing of returns
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Evaluation}
+\begin{itemize}[<+-| alert@+>]
+\item Sharpe-ratio
+\item Maximum and minimum
+\item Kurtosis
+\item Skew
+\item \% winning months
+\item \% losing months
+\item Draw-down
+\begin{itemize}
+\item Percentage
+\item Time to recover
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+
+
+
+\end{document}
+
+\begin{frame}{Pizza production}
+\begin{center}
+\rowcolors{1}{OliveGreen!20}{OliveGreen!5}
+\begin{tabular}{l r r r r r}
+Labour & Output & MPL & FC & LC & TC \\
+\hline
+0 &  0  & 0  & 30 & 0  & 30\\
+1 & 50  & 50 & 30 & 10 & 40 \\
+2 & 90  & 40 & 30 & 20 & 50\\
+3 & 120 & 30 & 30 & 30 & 60\\
+4 & 140 & 20 & 30 & 40 & 70\\
+5 & 150 & 10 & 30 & 50 & 80\\
+\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+\end{document}
