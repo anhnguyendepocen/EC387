@@ -46,12 +46,12 @@ There are two models of market-making
 \item \textbf{Principal model}: Hold on to securities or run short-positions and aim to make money from executing orders at best prices
 \end{itemize}
 \pause
-The second is risky, post-crisis regulation make is increasingly costly
+The second is risky, post-crisis regulation make it increasingly costly
 \end{frame}
 
 \begin{frame}{Investment Bank Balance Sheet}
 \begin{figure}
-\begin{tikzpicture}[scale = 0.35]
+\begin{tikzpicture}[scale = 0.7]
 %\draw [very thin, color = gray](0, 0) grid (14, 7);
 \draw [thick] (2, 6) to (12, 6);
 \draw [thick] (7, 7) to (7, 0);
@@ -76,20 +76,27 @@ The second is risky, post-crisis regulation make is increasingly costly
 \item Income is \$28 and ROE is 14\%
 \item Increase capital to 300 and borrowing falls to 100
 \item Income is 29 and ROE is 9.6\%
+\item Tension between regulation and return on equity
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Regulation}
 There are three strands to the increased regulation
 \begin{itemize}[<+-| alert@+>]
+\pause
 \item Increased regulatory scrutiny
 \item Higher capital requirements
 \item Restrictions on principal model
+\begin{itemize}
+\item \emph{Volcker Rule}
+\item Use of information and sharp practice
+\end{itemize}
 \end{itemize}
 \end{frame}
-
+  
 \begin{frame}{Measuring liquidity}
 There are a number of ways that liquidity can be measured
+\pause
 \begin{itemize}[<+-| alert@+>]
 \item Bid-ask spread
 \item Volume 
@@ -100,9 +107,11 @@ There are a number of ways that liquidity can be measured
 
 \begin{frame}{Liquidity and returns}
 Article on student central
+\vspace{1cm}
 \begin{block}{}
 Amihud, Y., (2002),\emph{Illiquidity and stock returns}, Journal of Financial Markets, \textbf{5} 1
 \end{block}
+\vspace{1cm}
 Lack of liquidity affect excess returns. 
 \end{frame}
 
@@ -119,10 +128,11 @@ where $|R_i|$ is the \emph{absolute return} to stock i and $V_i$ is the dollar v
 \begin{frame}{Try yourself}
 Now I want you to
 \begin{itemize}[<+-| alert@+>]
+\pause
 \item Go to Yahoo finance
 \item Select a stock
-\item Calculate the liquidity measure $L$ for that stock
-\item How does liquidity perform around earning releases?
+\item Calculate the daily liquidity measure $L$ for that stock over the last two years
+\item What happens to liquidity around the release of earnings?
 \end{itemize}
 \end{frame}
 

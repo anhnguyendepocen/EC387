@@ -84,6 +84,7 @@ Hedge funds need to justify fees
 \begin{frame}{Alternative beta}
 Factor models include more than just market risk (Fama-French include capitalisation and book-to-market)
 \begin{itemize}[<+-| alert@+>]
+\pause
 \item If funds are alternative, they may find other factors 
 \item Capture risks that traditional funds are not exposed to
 \item This may be attractive for traditional funds because it may increase diversification and reduce risk
@@ -123,7 +124,9 @@ Factor models include more than just market risk (Fama-French include capitalisa
 \end{frame}
 
 \begin{frame}{Issues with use of indices}
+Issues with the use of hedge fund performance indices
 \begin{itemize}[<+-| alert@+>]
+\pause
 \item \emph{Lack of leaders}
 \item \emph{survivorship bias}
 \item Smoothing of returns
@@ -131,7 +134,9 @@ Factor models include more than just market risk (Fama-French include capitalisa
 \end{frame}
 
 \begin{frame}{Evaluation}
+Methods of evaluating performance
 \begin{itemize}[<+-| alert@+>]
+\pause
 \item Sharpe-ratio
 \item Maximum and minimum
 \item Kurtosis
