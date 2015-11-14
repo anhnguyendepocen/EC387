@@ -1,0 +1,113 @@
+\documentclass[14pt,xcolor=pdftex,dvipsnames,table]{beamer}
+
+% Specify theme
+\usetheme{Madrid}
+% See deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html for other themes
+\usepackage{caption}
+
+% Specify base color
+\usecolortheme[named=OliveGreen]{structure}
+% See http://goo.gl/p0Phn for other colors
+
+% Specify other colors and options as required
+\setbeamercolor{alerted text}{fg=Maroon}
+\setbeamertemplate{items}[square]
+
+% Title and author information
+\title{Returns and Price Discovery}
+\author{Rob Hayward}
+
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+\tableofcontents
+\end{frame}
+
+\section{Random Walk}
+\begin{frame}{The Random Walk}
+The \emph{random walk} is defined as 
+\begin{align*}
+p_t &= p_{t-1} + \epsilon_t,  \hspace{6pt} \text{where} \hspace{6pt}  \epsilon \sim N(0, \sigma^2)\\
+p_t - p_{t-1} &= \epsilon_t\\
+\Delta p_t &= \epsilon_t\\
+R_t &= \epsilon_t
+\end{align*}
+Therefore, the change in price cannot be anticipated and the \emph{random variable} $\epsilon_t$ can be considered as news. 
+\end{frame}
+
+\begin{frame}{Random Walk and Market Efficiency}
+The Efficient Market Hypothesis (EMH) says that a weighted average of the interpretation of all relevant information is in the current price, therefore
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item If the next relevant information is a random variable, the change in price or returns are a random variable
+\item What is \emph{relevant information}? 
+\item How are interpretations of the information \emph{weighted}? 
+\item How does the information get into the price? 
+\end{itemize}
+\end{frame}
+
+\section{Price Discovery}
+\begin{frame}{Price Discovery}
+How does the information get into the price? 
+\pause
+Kyle (1985) - \emph{Continuous Auctions and Insider Trading} \emph{Econometrica} \textbf{53b(6)}
+\begin{itemize}[<+-| alert@+>]
+\item Dealer Market
+\item Two types of trader - 'informed' and 'noise'
+\item Orders move prices
+\item Market makers count votes (order flow)
+\item Informed traders seek to benefit from information
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Kyle (1985)}
+Key characteristics of the Kyle model which have been used more generally in microstructure to assess market conditions
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item "Tightness" - the bid-offer spread
+\item "Depth" - the price move for a specific order size
+\item "Resilience - Speed that price returns to equilibrium
+\end{itemize}
+\pause
+A. Persuad identified \emph{"Liquidity Black Holes"} in State Street Global Insight.  This emphasises the importance of diversity of opinion otherwise there is a risk that 'positive feedback is created
+\end{frame}
+
+\section{Intrinsic Value}
+\begin{frame}{Intrinsic Value and Market Price}
+If the intrinsic value is known, buy when the market price is below intrinsic value and sell when it is above
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item Information about the intrinsic value will emerge and the use of this information will drive the price 
+\item If people are buying, they may have information about the intrinsic value
+\item Those without information may try to interpret the actions of others
+\item Disparate information can coalesce in the price
+\end{itemize}
+\end{frame}
+
+\begin{frame}{RIT - price discovery cases}
+Three cases
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item Case 1 - information about the intrinsic value is gradually unveiled.  Traders do not have the same information 
+\item Case 2 - Information about the intrinsic value become more precise with time
+\item Case 3 - Information becomes more precise with time and there is an exchange traded fund (ETF) that based on the value of the two securities that provides arbitrage opportunities  
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Grossman and Stiglitz}
+\emph{On the Impossibility of Informationally Efficient Markets}\\
+American Economic Review 1980 \textbf{80}
+\begin{itemize}[<+-| alert@+>]
+\pause
+\item Information is only partially reflected in the price
+\item There is equilibrium where the cost of acquiring information is equal to the return from using that information. 
+\item This suggests that there is a spectrum of relatively more or less efficient markets
+\end{itemize}
+\end{frame}
+
+\end{document}
