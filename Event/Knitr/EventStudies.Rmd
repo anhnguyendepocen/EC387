@@ -1,0 +1,62 @@
+---
+title: "Event Studies"
+author: "Rob Hayward"
+date: "18 November 2015"
+output: 
+  html_document: 
+    highlight: haddock
+    theme: cosmo
+    toc: yes
+---
+###Introduction
+There is a lot more confidence in long-horizon studies than those focused on the short-run.  
+
+The *expected* or *normal* return is assessed around *an event*. 
+
+$$R_{it}  = K_{it} + e_{it}$$
+
+where $R_{it}$ is the return for security $i$ at time $t_{it}$; $K_{iy}$ is the normal return based on a model estimate, $e_{it}$ is that element of the return that is *abnormal* or *unexpected*. 
+
+Therefore, the *unexpected return* is 
+
+$$e_{it} = R_{it} - K_{it}$$
+
+##Model of expected or normal returns
+In general, there are a number of models, including:
+
+* Constant return model
+* Market model
+* CAPM
+
+##Distribution of return
+The aim is to find whether the *cross-sectional distribution of returns* is differnet from expected. The focus is almost always on the mean of the abnormal returns.  There is no reason that we cannot focus more broadly on the whole distirbution. Usually, the test is whether the mean abnormal return is equal to zero. Sometimes, the median, variance or determinants of variation are also assessed. 
+
+##Event window
+An event window is used because there is some interest in determining whether there is any adjustment to the information before the public announcement and there is some interest in determining how swiftly the market adjusts to the new information. 
+
+The event window (L) is usually twice the period before and after (plus 1)
+
+$$L = t_2 -t_1 + 1$$
+
+where $t_2$ is the final date, $t_1$ is the starting date.  Therefore the cumulative return is 
+
+$$CAR(t1, t2) = \sum_{t = t1}^{t = t2} AR_t$$
+
+##Test statistic
+A standard test statistic will divide CAR by an estimate of its standard deviation.  Campbell, Lo and MacKinlay (1997) use
+
+$$test = \frac{CAR_{t1,t2}}{(\sigma^2(t1, t2))^{0.5}}$$
+
+where, $\sigma^2(t1, t2) = L\sigma^2(AR_t)$. This test statistic is well specified so long as the variance of the one-period mean is estimated correctly. Event-time clustering renders the independence assumption for the abnormal return incorrect and tends to bias the estimate of the standard deviation downwards. This is generally addressed by assessing the variability of the times series of the portfolio before or after the event. However, event period variability is likely to be higher because of the uncertainty of the event. Variabilty before and after the event may be used to account for this. 
+
+##Power of the test
+Need to avoid
+* Type I Error (null falsely rejected)
+* Type II Error (null falsely accepted)
+
+*Power* is equal to 1-Type II error. 
+
+# Joint test problem
+DIfficulty of testing the model of expected returns (CAPM etc) and the assumptions that are use to make the statistical test (normal distribution etc). This is particularly important in cases where there is a relatively small sample.  
+
+Brown-Warner simulation is used to address this problem. 
