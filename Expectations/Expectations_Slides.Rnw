@@ -81,7 +81,7 @@ For example
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Effect of disapointed expectations}
+\begin{frame}{Effect of disappointed expectations}
 How are changes in expectations likely to affect market performance? 
 \pause
 \begin{itemize}[<+-| alert@+>]
@@ -90,4 +90,37 @@ How are changes in expectations likely to affect market performance?
 \item Where are the \emph{take-profits} and \emph{stop-losses}
 \end{itemize}
 \end{frame}
+
+\begin{frame}{CFTC}
+Commodity and Futures Trading Commission 
+
+\href{http://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm}{CFTC link}\pause
+
+\begin{itemize}[<+-| alert@+>]
+\item Commitments of Traders (COT)
+\begin{itemize}
+\item Dealer intermediary
+\item Asset manager
+\item Leverage funds
+\item Other
+\end{itemize}
+\item Long, short, spreading
+\end{itemize}
+\end{frame}
+
+\begin{frame}{US interest rates}
+\begin{itemize}[<+-| alert@+>]
+\item US Federal Reserve sets interest rates to control US economy
+\item Federal Open Market Committee (FOMC)
+\begin{itemize}
+\item Meet every 6 weeks
+\item Change the Fed funds target
+\item Janet Yellen in the Chairperson of the Fed
+\item Rate rise is signalled for December 16
+\end{itemize}
+\item How do we know what is expected? 
+\end{itemize}
+\end{frame}
+
+
 \end{document}
