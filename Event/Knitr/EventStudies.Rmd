@@ -59,4 +59,12 @@ Need to avoid
 # Joint test problem
 DIfficulty of testing the model of expected returns (CAPM etc) and the assumptions that are use to make the statistical test (normal distribution etc). This is particularly important in cases where there is a relatively small sample.  
 
-Brown-Warner simulation is used to address this problem. 
+Brown-Warner simulation is used to address this problem. Simulation is used to determine that a particular test statistic is well specified. THere are three specific factors that affect event study test specificaition:
+
+* specification
+* power agaisnt specific types of alternative hypothesis
+* the sensitivity of the specification to the assumptions about the return generating process
+
+Short-horizon event studies are generally well-specified; short-specifications are quite powerful so long as the abnormal perforance is concentated in the event window. Power to detect abnormal behaviour decreases dramatically with the increase in the event window. With short horizons, the specification is not very sensitive to the model of normal returns or the assumptions about cross-section or time-series dependence of abnormal returns. 
+
+When the variance of a securities' abnormal returns  conditional on the event increase, test-statistics can be mispecified. Power is higher with increasing sample size, regardless of horizon length. 
