@@ -6,6 +6,9 @@
 \usepackage{caption}
 \usepackage{tikz}
 \usepackage{multirow}
+\usepackage{listings}
+\usepackage{color}
+\definecolor{grey}{rgb}{0.9,0.9,0.9}
 % Specify base color
 \usecolortheme[named=OliveGreen]{structure}
 % See http://goo.gl/p0Phn for other colors
@@ -47,9 +50,13 @@
 \section{Bond Calculation}
 \begin{frame}{Bond price}
 The value of the bond is just the discounted value of the payments that will be made
+\pause
+\begin{block}{}
 \begin{equation*}
 P = \sum_{i = 1}^{i = n} \frac{C_i}{(1+r)^i} + \frac{M}{(1+r)^n}
 \end{equation*}
+\end{block}
+\pause
 Where $C$ is the coupon payment, $r$ is the rate at which future payments are discounted (the redemption yield), $M$ is the par value and $n$ is the number of years to maturity. 
 \end{frame}
 
@@ -57,9 +64,11 @@ Where $C$ is the coupon payment, $r$ is the rate at which future payments are di
 \begin{frame}{Relative Value}
 A strategy that will assess the relative value of two bonds
 \begin{itemize}[<+-| alert@+>]
+\pause
 \item There is a standard relationship between yields
 \item \textbf{Quantitative strategy} (return to normal)
 \item \textbf{Fundamental strategy} (new relationship)
+\item Relative value reduces interest rate risk
 \end{itemize}
 \end{frame}
 
@@ -100,14 +109,17 @@ plot(da$Date, da$Italy-da$Germany, type = 'l', main = "Italian Risk Premium",
 <<yc, fig.height=4, echo=FALSE>>=
 curve <- c(0.49, 1.26, 1.92, 2.67)
 mat = c("2-year", "5-year", "10-year", "30-year")
-da <- data.frame(curve, row.names = mat)
+curve2 <- c(0.56, 1.16, 1.75, 2.46)
+da <- data.frame(curve, curve2, row.names = mat)
 plot(da$curve, main = "UK yield curve", type = 'l', xlab = "Maturity", ylab = "Yield to maturity", ylim = c(0, 3))
+lines(curve2, col = 'darkgreen')
 @
-\href{http://www.bloomberg.com/markets/rates-bonds/government-bonds/uk/}{UK Yield curve}
+\href{http://www.bloomberg.com/markets/rates-bonds/government-bonds/uk/}{UK Yield curve: Bloomberg link}
 \end{frame}
 
 \begin{frame}{Yield Curve Theory}
 There are three main theories about the shape of the yield curve
+\pause
 \begin{itemize}[<+-| alert@+>]
 \item Expectations theory
 \item Preferred habit or segmented market theory
@@ -121,13 +133,13 @@ Expectations theory
 \begin{itemize}[<+-| alert@+>]
 \item Return is $i^* = (1+i_i)(1+\hat{i}_2) -1$
 \end{itemize}
-
+\pause
 if there  is a \emph{liquidity premium} $\theta_L = p(L)$
 
 \begin{itemize}[<+-| alert@+>]
 \item Return is $i^* = (1+i_i)(1+\hat{i}_2) + \theta_L -1$ 
 \end{itemize}
-
+\pause
 The liquidity premium is the balance between \emph{interest rate risk} and \emph{reinvestment risk}.
 
 \end{frame}
@@ -159,4 +171,95 @@ plot(da$Date, da$VALUE, type = 'l', xlab = "Date", ylab = "Bp over treasuries", 
      bond spread")
 @
 \end{frame}
+
+\begin{frame}{Determinants of credit spread}
+The credit spread is determined by 
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item The probability of default
+\begin{itemize}
+\item Corporate analysis
+\item Credit rating
+\end{itemize}
+\item The amount that will be recovered on default
+\begin{itemize}
+\item Assets
+\item Ability to get hold of assets through the courts (\textbf{Distressed debt})
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Example}
+Given three ratings with probability of default
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item $A = 10\%$
+\item $B = 40\%$
+\item $C = 100\%$
+\end{itemize}
+\pause
+\begin{block}{Transition Matrix}
+\begin{equation*}
+\begin{pmatrix}
+0.7 & 0.3 & 0.0\\
+0.2 & 0.6 & 0.2\\
+0.0 & 0.0 & 1.0
+\end{pmatrix}
+\end{equation*}
+\end{block}
+\end{frame}
+
+\begin{frame}{Example cont.}
+The next year probability of default for bonds currently rated A, B and C is 
+\pause
+\begin{block}{}
+\begin{equation*}
+\begin{pmatrix}
+0.1 & 0.4 & 1.0
+\end{pmatrix} \times
+\begin{pmatrix}
+0.7 & 0.3 & 0.0\\
+0.2 & 0.6 & 0.2\\
+0.0 & 0.0 & 1.0
+\end{pmatrix}^\top
+= \begin{pmatrix}
+0.19 & 0.46 & 1.00
+\end{pmatrix}
+\end{equation*}
+\end{block}
+\end{frame}
+
+\begin{frame}{Preparation for next week}
+For next week please try to create a model that will allow you to value the corporate bonds
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item Create a valuation for each bond in the current month 
+\begin{itemize}
+\item Expected value 
+\item Probability of default
+\item Recovery 
+\end{itemize}
+\item Expected value for next month and the month after
+\item Concentration of risk: Weights in your portfolio
+\item Value-at-risk
+\end{itemize}
+\end{frame}
 \end{document}
+
+
+\begin{frame}[fragile]{R code}
+\begin{lstlisting}[backgroundcolor = \color{grey}]
+T <- matrix(c(0.7, 0.3, 0, 0.2, 0.6, 0.2, 0, 0, 1), byrow = T, nrow = 3)
+D <- c(0.1, 0.4, 1)
+default <- function(D, T){
+  DR <- matrix(rep(NA, 30), ncol = 10)
+  DR[,1] <- D 
+    for(i in 2:10){
+      DR[,i] <- DR[,i-1]%*%t(T)
+    }
+  return(DR)
+    }
+default(D, T)
+\end{lstlisting}
+\end{frame}
+

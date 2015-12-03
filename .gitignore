@@ -17,7 +17,7 @@ Commodities/Commodities_Slides-concordance.tex
 *.snm
 *.gz
 *.toc
-
+*Rproj
 Commodities/Commodities_Slides.log
 Commodities/Commodities_Slides.nav
 Commodities/Commodities_Slides.pdf
