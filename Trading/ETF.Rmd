@@ -1,0 +1,40 @@
+---
+title: "Exchange traded funds"
+author: "Rob Hayward"
+date: "Thursday, December 03, 2015"
+output:
+  html_document:
+    highlight: kate
+    theme: cerulean
+---
+List of exchange traded funds
+
+Symbol | Investment
+-------|-----------
+SPY | S\&P 500
+ZIV | Inverse volatility
+SPLV| Low volatility 
+TMF| 3 $\times bond (20 years)
+UUP| USD (long futures)
+VXX| VIX index
+ETF| Small emerging markets
+UUP| USD index
+MDY| S\&P midcap
+EEM| Emerging markets
+ILF| Latin America
+EPP| Pacific ex-Japan
+FEZ| Euro 50 STOX
+IEF| 7 - 10 year US bond
+XLB| US Materials
+XLE| US Energy
+XLP| US Consumer staples
+XLF| US Financial
+XLI| US Industry
+XLK| US Technology
+XLY| US Consumer discretionary
+XLL| US Utilities
+XLV| US Health
+RWR| DJ REIT
+GAA| Global assets allocation
+GMOM| Global Momentum
+IVAL| International quantitative value
