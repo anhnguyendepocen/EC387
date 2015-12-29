@@ -1,0 +1,255 @@
+\documentclass[14pt,xcolor=pdftex,dvipsnames,table]{beamer}
+
+% Specify theme
+\usetheme{Madrid}
+% See deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html for other themes
+\usepackage{caption}
+\usepackage{tikz}
+\usepackage{multirow}
+% Specify base color
+\usecolortheme[named=OliveGreen]{structure}
+% See http://goo.gl/p0Phn for other colors
+
+% Specify other colors and options as required
+\setbeamercolor{alerted text}{fg=Maroon}
+\setbeamertemplate{items}[square]
+
+% Title and author information
+\title{Event Studies}
+\author{Rob Hayward}
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Introduction}
+How does information affect the price of financial assets?
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item \textbf{Efficient Market Hypothesis} suggests that there is instsant rection
+\item This may not be the case
+\begin{itemize}
+\pause
+\item \emph{Behavioural finance} suggests that investor's decisions diverge from \emph{expected decision theory}
+\item Institutionl features can constrain investors' ability to \emph{arbitrage} diveregence from intrinsic value
+\end{itemize}
+\end{itemize}
+\pause
+Therefore, the market may not be \emph{efficient}
+\end{frame}
+
+\begin{frame}{Efficient reaction to information}
+If there is an efficient reaction
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item There is no investment opportunity unless
+\begin{itemize}
+\item News can be anticipated (inside information)
+\item Ability to react to the information can be speeded up
+\begin{itemize}
+\item Automation
+\item \emph{Latency}
+\end{itemize}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Efficient reaction to information}
+<<info1, echo=FALSE, fig.height=4.8>>=
+x <- seq(-5, 5, 1)
+y <- c(0, 0, 0, 0, 0, 0, NA, NA, NA, NA, NA)
+plot(x, y, type = 'l', ylim = c(-4, 8), xlab = "Event Days", ylab = "Return", 
+     main = "Efficient reaction to good news")
+# set up matrix of points for the additional lines
+z1 <- matrix(c(0, 4, 4, 4), ncol = 2, byrow = TRUE)
+z2 <- matrix(c(0, 0, 0, 4), ncol = 2)
+lines(z1)
+lines(z2)
+@
+\end{frame}
+
+\begin{frame}{Under-reaction to information}
+Price reacts more slowly than the efficient outcome
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item There is an opportunity if information can be identified swiftly
+\item Need to identify \emph{leading indicators}
+\item There is a need to jump on the trend
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Under-reaction to information}
+<<info2, echo=FALSE, fig.height=4.8>>=
+x <- seq(-5, 5, 1)
+y <- c(0, 0, 0, 0, 0, 0, NA, NA, NA, NA, NA)
+plot(x, y, type = 'l', ylim = c(-4, 8), xlab = "Event Days", ylab = "Return", 
+     main = "Under-reaction to good news")
+# set up matrix of points for the additional lines
+z1 <- matrix(c(0, 4, 4, 4), ncol = 2, byrow = TRUE)
+z2 <- matrix(c(0, 0, 0, 4), ncol = 2)
+lines(z1)
+lines(z2)
+z3 <- matrix(c(0, 0, 2, 4), ncol = 2, byrow = TRUE)
+lines(z3, lty = 2)
+text(2.4, 2, "Under-reaction")
+@
+\end{frame}
+
+\begin{frame}{Over-reaction to information}
+Price \emph{overshoots}
+\begin{itemize}[<+-| alert@+>]
+\item If over-shooting is identified, investment is based on \emph{a reversal}
+\item This is a \emph{contrarian} technique
+\item Importance of \emph{timing}
+\item What can identify overshooting? 
+\end{itemize}
+\end{frame}
+\begin{frame}{Over-reaction to information}
+<<info3, echo=FALSE, fig.height=4.8>>=
+x <- seq(-5, 5, 1)
+y <- c(0, 0, 0, 0, 0, 0, NA, NA, NA, NA, NA)
+plot(x, y, type = 'l', ylim = c(-4, 8), xlab = "Event Days", ylab = "Return", 
+     main = "Over-reaction to good news")
+# set up matrix of points for the additional lines
+z1 <- matrix(c(0, 4, 4, 4), ncol = 2, byrow = TRUE)
+z2 <- matrix(c(0, 0, 0, 4), ncol = 2)
+lines(z1)
+lines(z2)
+z4 <- matrix(c(0, 4, 0, 7, 2, 4), ncol = 2, byrow = TRUE)
+lines(z4, lty = 2)
+text(2.4, 6, "Overshooting")
+@
+\end{frame}
+
+\begin{frame}{Investment signals}
+There are two types of investment signals 
+\pause
+\begin{block}{For under-reaction}
+Leading indicators
+\end{block}
+\pause
+\begin{block}{For over-shooting}
+Reversal indicators
+\end{block}
+\end{frame}
+
+\begin{frame}{Event study technique}
+<<info4, echo=FALSE, fig.height=4.8>>=
+x <- seq(-5, 5, 1)
+y <- c(0, 0, 0, 0, 0, 0, NA, NA, NA, NA, NA)
+plot(x, y, type = 'l', ylim = c(-4, 8), xlab = "Event Days", ylab = "Return", 
+     main = "Efficient reaction to good news")
+# set up matrix of points for the additional lines
+z1 <- matrix(c(0, 4, 4, 4), ncol = 2, byrow = TRUE)
+z2 <- matrix(c(0, 0, 0, 4), ncol = 2)
+lines(z1)
+lines(z2)
+@
+\end{frame}
+
+\begin{frame}{Event study tecnique 2}
+In reality, information is not nicely isolated like the representations in this presentation.  There are two methods to deal with this:
+\begin{itemize}[<+-| alert@+>]
+\item Create a model of \emph{Expected return}
+\begin{itemize}
+\item Finout what is \emph{normal}
+\item Look for the deviation from normal when information is present
+\end{itemize}
+\item Use a large sample
+\begin{itemize}
+\item Assuming that the sample is drawn randomly
+\item Other information is random and should have a mean of zero
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Event study technique 3}
+Validity of the technique will depend on 
+\pause
+\begin{block}{Expected value}
+The market model will determine the expected value
+\end{block}
+\pause
+\begin{block}{Independent samples}
+If there are confounders, this may bias the resutls
+\end{block}
+\end{frame}
+
+\begin{frame}{Expected value}
+This will probably be based on financial theory
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item For equities 
+\begin{itemize}
+\item \emph{Mean model}
+\item \emph{Market model}
+\item Market model based on additional \emph{factors}
+\end{itemize}
+\item For other securities
+\begin{itemize}
+\item Begin with mean model
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Independence of sample}
+There is a lot of information beside the event that is to be studied
+\begin{itemize}[<+-| alert@+>]
+\item We assume that this information is a \emph{random variable}
+\item We assume that the \emph{mean of the information random variable} is zero
+\item The larger the sample, the closer the sample mean to the actual mean
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Importance of sample size}
+Remember that the mean and variance of the \emph{sampling distribution} are 
+\pause
+\begin{block}{Mean of the sampling distribution}
+\begin{equation*}
+%E[\bar{X}] = \mu = \mu_{\bar_{X}}
+\end{equation*}
+\end{block}
+\pause
+\begin{block}{Variance of the sampling distribution}
+\begin{equation*}
+Var(\bar{X}) = \frac{\sigma^2}{n}
+\end{equation*}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Example}
+\begin{verbatim}
+par(mfrow = c(2, 2))
+sequence <- c(10, 100, 1000, 10000)
+df <- matrix(nrow = 4, ncol = 2)
+colnames(df) <- c("mean", "Var")
+j = 1
+for(i in sequence){
+rand <- rnorm(i, 0, 1)
+hist(rand)
+df[j, 1] <- mean(rand)
+df[j, 2] <- var(rand)
+j = j + 1 
+}
+df
+\end{verbatim}
+\end{frame}
+
+
+\begin{frame}{Independence of sample}
+This will depend on \emph{the event}
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item Better than expected earnings
+\item COE stepping down
+\item Times when liquidity is low
+\item New products
+\end{itemize}
+\end{frame}
+
+
+
+
+
+\end{document}
