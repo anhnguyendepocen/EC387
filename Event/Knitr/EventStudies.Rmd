@@ -21,17 +21,17 @@ Therefore, the *unexpected return* is
 
 $$e_{it} = R_{it} - K_{it}$$
 
-##Model of expected or normal returns
+###Model of expected or normal returns
 In general, there are a number of models, including:
 
 * Constant return model
 * Market model
 * CAPM
 
-##Distribution of return
+###Distribution of return
 The aim is to find whether the *cross-sectional distribution of returns* is differnet from expected. The focus is almost always on the mean of the abnormal returns.  There is no reason that we cannot focus more broadly on the whole distirbution. Usually, the test is whether the mean abnormal return is equal to zero. Sometimes, the median, variance or determinants of variation are also assessed. 
 
-##Event window
+###Event window
 An event window is used because there is some interest in determining whether there is any adjustment to the information before the public announcement and there is some interest in determining how swiftly the market adjusts to the new information. 
 
 The event window (L) is usually twice the period before and after (plus 1)
@@ -42,21 +42,21 @@ where $t_2$ is the final date, $t_1$ is the starting date.  Therefore the cumula
 
 $$CAR(t1, t2) = \sum_{t = t1}^{t = t2} AR_t$$
 
-##Test statistic
+###Test statistic
 A standard test statistic will divide CAR by an estimate of its standard deviation.  Campbell, Lo and MacKinlay (1997) use
 
 $$test = \frac{CAR_{t1,t2}}{(\sigma^2(t1, t2))^{0.5}}$$
 
 where, $\sigma^2(t1, t2) = L\sigma^2(AR_t)$. This test statistic is well specified so long as the variance of the one-period mean is estimated correctly. Event-time clustering renders the independence assumption for the abnormal return incorrect and tends to bias the estimate of the standard deviation downwards. This is generally addressed by assessing the variability of the times series of the portfolio before or after the event. However, event period variability is likely to be higher because of the uncertainty of the event. Variabilty before and after the event may be used to account for this. 
 
-##Power of the test
+###Power of the test
 Need to avoid
 * Type I Error (null falsely rejected)
 * Type II Error (null falsely accepted)
 
 *Power* is equal to 1-Type II error. 
 
-# Joint test problem
+### Joint test problem
 DIfficulty of testing the model of expected returns (CAPM etc) and the assumptions that are use to make the statistical test (normal distribution etc). This is particularly important in cases where there is a relatively small sample.  
 
 Brown-Warner simulation is used to address this problem. Simulation is used to determine that a particular test statistic is well specified. THere are three specific factors that affect event study test specificaition:
@@ -68,3 +68,10 @@ Brown-Warner simulation is used to address this problem. Simulation is used to d
 Short-horizon event studies are generally well-specified; short-specifications are quite powerful so long as the abnormal perforance is concentated in the event window. Power to detect abnormal behaviour decreases dramatically with the increase in the event window. With short horizons, the specification is not very sensitive to the model of normal returns or the assumptions about cross-section or time-series dependence of abnormal returns. 
 
 When the variance of a securities' abnormal returns  conditional on the event increase, test-statistics can be mispecified. Power is higher with increasing sample size, regardless of horizon length. 
+
+There are a number of simulations in the paper.  The simulations are built from an understanding of the expected return from a portfolio of fimrs.  This is also used assess the aveage volatility.  A 10\% out-perforamnce is assessed.  The bottom line is that if the abnormal return is concentrated in one day and that day is known with certainty, only 6 samples are requird for detection; an out-performance that lasts six months requires a sample size of 200 to find the out-performance 65\% of the time. 
+
+### Long-horizon event studies
+Many of these tests are carried out as a test of market efficiency or as an asssessment of behavioural theories. The importance of identifying risk is very important.  The precision of risk-adjustment becomes more important for longer horizons and the expected return model becomes more infuential over the longer horizon. One solution to this is the so-called buy-and-hold abnormal retunrs (BHAR).  This is due to Ikenbery, Lakonishok and Vermaelen (1995), Barber and Lyon (1997), Lyon et al. (1999) as well as Mitchell and Stafford (2000).  This is the return from a buy-and-hold of all firms facing the event for a given holding period relative to a buy-and-hold for similar non-event firms. The joint test probem remains as it rests on the assumption that the event firms differ from the  non-event firms only in the fact that they experience the event. There is some danger that event and non-event samples differ systematically.  Events may not be random or exogenous. Often firms are matched according to criteria like capitalisation, book-to-market ratio, past year returns etc. 
+
+The Jensen-alpha approach will build a portfplio of event firms that will change in composition and size over time.  Once this has been constrcuted, the alpha from a mulit-factor model is estimated and used to assess out-performance. Some argue that the fact that tihs is based on equally weighted firms rather than equally weighted months is a power problem.  See text for more.  There is a difficulty in estimating standard errors in each of these cases. 

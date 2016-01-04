@@ -27,11 +27,12 @@
 How does information affect the price of financial assets?
 \pause
 \begin{itemize}[<+-| alert@+>]
-\item \textbf{Efficient Market Hypothesis} says that there is instant reaction
+\item \textbf{Efficient Market Hypothesis} suggests that there is instant reaction
 \item This may not be the case
 \begin{itemize}
 \pause
-\item \emph{Behavioural finance} argues that investors' decisions diverge from \emph{expected decision theory}
+\item \emph{Behavioural finance} suggests that investor's decisions diverge from \emph{expected decision theory}
+>>>>>>> 49f408e0667f0fe079e78d2092ce806faad78ad5
 \item Institutional features can constrain investors' ability to \emph{arbitrage} divergence from intrinsic value
 \end{itemize}
 \end{itemize}
@@ -98,6 +99,7 @@ text(2.4, 2, "Under-reaction")
 
 \begin{frame}{Over-reaction to information}
 Price \emph{overshoots}
+\pause
 \begin{itemize}[<+-| alert@+>]
 \pause
 \item If over-shooting is identified, investment is based on \emph{a reversal}
@@ -226,7 +228,7 @@ Var(\bar{X}) = \frac{\sigma^2}{n}
 \begin{verbatim}
 par(mfrow = c(2, 2))
 sequence <- c(10, 100, 1000, 10000)
-df <- matrix(nrow = 4, ncol = 2)
+df <- matrix(nrow = 4, ncol = 1)
 colnames(df) <- c("mean", "Var")
 j = 1
 for(i in sequence){
@@ -249,10 +251,11 @@ This will depend on \emph{the event}
 \item COE stepping down
 \item Times when liquidity is low
 \item New products
+\item Your own ideas
 \end{itemize}
+\pause
+Sample may be cross-sectional or across time
 \end{frame}
-
-
 
 
 
