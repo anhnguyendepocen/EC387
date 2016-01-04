@@ -27,12 +27,12 @@
 How does information affect the price of financial assets?
 \pause
 \begin{itemize}[<+-| alert@+>]
-\item \textbf{Efficient Market Hypothesis} suggests that there is instsant rection
+\item \textbf{Efficient Market Hypothesis} says that there is instant reaction
 \item This may not be the case
 \begin{itemize}
 \pause
-\item \emph{Behavioural finance} suggests that investor's decisions diverge from \emph{expected decision theory}
-\item Institutionl features can constrain investors' ability to \emph{arbitrage} diveregence from intrinsic value
+\item \emph{Behavioural finance} argues that investors' decisions diverge from \emph{expected decision theory}
+\item Institutional features can constrain investors' ability to \emph{arbitrage} divergence from intrinsic value
 \end{itemize}
 \end{itemize}
 \pause
@@ -75,7 +75,7 @@ Price reacts more slowly than the efficient outcome
 \begin{itemize}[<+-| alert@+>]
 \item There is an opportunity if information can be identified swiftly
 \item Need to identify \emph{leading indicators}
-\item There is a need to jump on the trend
+\item Need to jump on the trend
 \end{itemize}
 \end{frame}
 
@@ -99,6 +99,7 @@ text(2.4, 2, "Under-reaction")
 \begin{frame}{Over-reaction to information}
 Price \emph{overshoots}
 \begin{itemize}[<+-| alert@+>]
+\pause
 \item If over-shooting is identified, investment is based on \emph{a reversal}
 \item This is a \emph{contrarian} technique
 \item Importance of \emph{timing}
@@ -148,12 +149,13 @@ lines(z2)
 @
 \end{frame}
 
-\begin{frame}{Event study tecnique 2}
+\begin{frame}{Event study technique 2}
 In reality, information is not nicely isolated like the representations in this presentation.  There are two methods to deal with this:
+\pause
 \begin{itemize}[<+-| alert@+>]
-\item Create a model of \emph{Expected return}
+\item Create a model of \emph{Expected returns}
 \begin{itemize}
-\item Finout what is \emph{normal}
+\item Find out what is \emph{normal}
 \item Look for the deviation from normal when information is present
 \end{itemize}
 \item Use a large sample
@@ -172,7 +174,7 @@ The market model will determine the expected value
 \end{block}
 \pause
 \begin{block}{Independent samples}
-If there are confounders, this may bias the resutls
+If there are confounders, this may bias the results
 \end{block}
 \end{frame}
 
@@ -189,12 +191,14 @@ This will probably be based on financial theory
 \item For other securities
 \begin{itemize}
 \item Begin with mean model
+\item Consider other ways of finding expected value
 \end{itemize}
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Independence of sample}
 There is a lot of information beside the event that is to be studied
+\pause
 \begin{itemize}[<+-| alert@+>]
 \item We assume that this information is a \emph{random variable}
 \item We assume that the \emph{mean of the information random variable} is zero
@@ -207,7 +211,7 @@ Remember that the mean and variance of the \emph{sampling distribution} are
 \pause
 \begin{block}{Mean of the sampling distribution}
 \begin{equation*}
-%E[\bar{X}] = \mu = \mu_{\bar_{X}}
+E[\bar{X}] = \mu = \mu_X
 \end{equation*}
 \end{block}
 \pause
