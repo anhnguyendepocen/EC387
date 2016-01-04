@@ -27,12 +27,12 @@
 How does information affect the price of financial assets?
 \pause
 \begin{itemize}[<+-| alert@+>]
-\item \textbf{Efficient Market Hypothesis} suggests that there is instsant rection
+\item \textbf{Efficient Market Hypothesis} suggests that there is instant reaction
 \item This may not be the case
 \begin{itemize}
 \pause
 \item \emph{Behavioural finance} suggests that investor's decisions diverge from \emph{expected decision theory}
-\item Institutionl features can constrain investors' ability to \emph{arbitrage} diveregence from intrinsic value
+\item Institutional features can constrain investors' ability to \emph{arbitrage} divergence from intrinsic value
 \end{itemize}
 \end{itemize}
 \pause
@@ -98,6 +98,7 @@ text(2.4, 2, "Under-reaction")
 
 \begin{frame}{Over-reaction to information}
 Price \emph{overshoots}
+\pause
 \begin{itemize}[<+-| alert@+>]
 \item If over-shooting is identified, investment is based on \emph{a reversal}
 \item This is a \emph{contrarian} technique
@@ -148,12 +149,13 @@ lines(z2)
 @
 \end{frame}
 
-\begin{frame}{Event study tecnique 2}
+\begin{frame}{Event study technique 2}
 In reality, information is not nicely isolated like the representations in this presentation.  There are two methods to deal with this:
+\pause
 \begin{itemize}[<+-| alert@+>]
 \item Create a model of \emph{Expected return}
 \begin{itemize}
-\item Finout what is \emph{normal}
+\item Find out what is \emph{normal}
 \item Look for the deviation from normal when information is present
 \end{itemize}
 \item Use a large sample
@@ -172,7 +174,7 @@ The market model will determine the expected value
 \end{block}
 \pause
 \begin{block}{Independent samples}
-If there are confounders, this may bias the resutls
+If there are confounders, this may bias the results
 \end{block}
 \end{frame}
 
@@ -189,12 +191,14 @@ This will probably be based on financial theory
 \item For other securities
 \begin{itemize}
 \item Begin with mean model
+\item There is scope for your own model
 \end{itemize}
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Independence of sample}
 There is a lot of information beside the event that is to be studied
+\pause
 \begin{itemize}[<+-| alert@+>]
 \item We assume that this information is a \emph{random variable}
 \item We assume that the \emph{mean of the information random variable} is zero
@@ -207,7 +211,7 @@ Remember that the mean and variance of the \emph{sampling distribution} are
 \pause
 \begin{block}{Mean of the sampling distribution}
 \begin{equation*}
-%E[\bar{X}] = \mu = \mu_{\bar_{X}}
+E[\bar{X}] = \mu = \mu_{\bar{X}}
 \end{equation*}
 \end{block}
 \pause
@@ -222,7 +226,7 @@ Var(\bar{X}) = \frac{\sigma^2}{n}
 \begin{verbatim}
 par(mfrow = c(2, 2))
 sequence <- c(10, 100, 1000, 10000)
-df <- matrix(nrow = 4, ncol = 2)
+df <- matrix(nrow = 4, ncol = 1)
 colnames(df) <- c("mean", "Var")
 j = 1
 for(i in sequence){
@@ -245,10 +249,11 @@ This will depend on \emph{the event}
 \item COE stepping down
 \item Times when liquidity is low
 \item New products
+\item Your own ideas
 \end{itemize}
+\pause
+Sample may be cross-sectional or across time
 \end{frame}
-
-
 
 
 
