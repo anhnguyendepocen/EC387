@@ -32,7 +32,6 @@ How does information affect the price of financial assets?
 \begin{itemize}
 \pause
 \item \emph{Behavioural finance} suggests that investor's decisions diverge from \emph{expected decision theory}
->>>>>>> 49f408e0667f0fe079e78d2092ce806faad78ad5
 \item Institutional features can constrain investors' ability to \emph{arbitrage} divergence from intrinsic value
 \end{itemize}
 \end{itemize}
