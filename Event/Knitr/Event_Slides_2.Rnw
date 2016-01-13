@@ -1,0 +1,155 @@
+\documentclass[14pt,xcolor=pdftex,dvipsnames,table]{beamer}
+
+% Specify theme
+\usetheme{Madrid}
+% See deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html for other themes
+\usepackage{caption}
+\usepackage{tikz}
+\usepackage{multirow}
+% Specify base color
+\usecolortheme[named=OliveGreen]{structure}
+% See http://goo.gl/p0Phn for other colors
+
+% Specify other colors and options as required
+\setbeamercolor{alerted text}{fg=Maroon}
+\setbeamertemplate{items}[square]
+
+% Title and author information
+\title{Event Studies: Part Two}
+\author{Rob Hayward}
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Event study}
+There are two main ways to present the event study data
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item Average abnormal returns (AAR) for each event time
+\item Cumulative average abnormal returns (CAAR) for each event time
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Average abnormal returns}
+This is the average for each event time
+\pause
+\begin{block}{AAR}
+\begin{equation*}
+AAR_{i,t} = \frac{1}{N}\sum_{j=1}^N AR_{i,t}
+\end{equation*}
+\end{block}
+\pause
+Where $i$ is the event; $t$ is the event time; $N$ is the number of samples and $j$ is the individual sample
+\end{frame}
+
+\begin{frame}{CAAR}
+This is the cumulative average abnormal return for each event time
+\pause
+\begin{block}{CAAR}
+\begin{equation*}
+CAAR_{i,T} = \sum{t = 1}^T AAR_{i,t}
+\end{equation*}
+\end{block}
+\pause
+Where $i$ is the event; $t$ is the event time; $T$ is the cumulative event time. 
+\end{frame}
+
+\begin{frame}{The effect of sampling}
+We have a sample of the whole population of events, therefore
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item The statistics are estimated with imprecision
+\item We want to know the \emph{Sampling Distribution} of the mean
+\begin{itemize}
+\item This is now variable the mean would be in different samples
+\item This gives some idea of the range of possible values
+\end{itemize}
+\item We can calculate the mean $(\bar{x})$ and the standard deviation $(SD_x)$ of the sample
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Sampling distribution of the mean}
+The sampling distribution of the mean is given by 
+\pause
+\begin{block}{}
+\begin{equation*}
+\sigma_{\bar{x}} = \frac{\hat{\sigma}}{\sqrt{n}}
+\end{equation*}
+\end{block}
+\pause
+Where $\sigma_{\bar{x}}$ is the standard error of the mean estimate; $\hat{\sigma}$ is the estimated standard deviation of the series from which the mean is estimated; $n$ is the number of samples.
+\end{frame}
+
+\begin{frame}{Confidence intervals}
+Therefore, confidence intervals can be constructed
+\pause
+\begin{block}{}
+\begin{equation*}
+CI = \bar{x} \pm 1.96 \times \sigma_{\bar{x}}
+\end{equation*}
+\end{block}
+\pause
+And plotted...
+\end{frame}
+
+\begin{frame}{Event study plot}
+<<event, echo=FALSE, message=FALSE, warning=FALSE, fig.height=4.6>>=
+# This is a sample for simulating for confidence levels. 
+require("eventstudies")
+set.seed(5)
+# credit 1000 random returns
+rets <- rnorm(1000, 0.01, 0.05)
+# create a sequence of dates
+date <- seq(from = as.Date("2000-01-01"),  by = 1, length.out = 1000)
+retsx <- as.xts(rets, order.by = date)
+#create an xts object
+colnames(retsx) <- "BAC"
+eventDates <- sample(date, 10)
+BAC <- rep("BAC", 10)
+#create the required dataframe
+eventdf <- data.frame(unit = BAC, when = eventDates)
+es <- phys2eventtime(retsx, events = eventdf, width = 5)
+es.w <- window(es$z, start = -5, end = 5)
+es.cs <-remap.cumsum(es.w, is.pc = FALSE, base = 0)
+result <- inference.Ecar(es.cs)
+#result <- inference.Ecar(es.cs, to.plot = TRUE)
+rownames(result) <- seq(-5, 5, 1)
+matplot(rownames(result), result, type = 'l', lty = c(2, 1, 2), col = 'darkgreen', main = "Event study with CI", 
+        xlab = 'Event times', ylab = 'Return')
+@
+\end{frame}
+
+\begin{frame}{Central limit theorum}
+\begin{block}{}
+\textbf{The central limit theorum} states that (given a few assumptions), the mean of a large number of random variables will be approximately normally distributed (regardless of the distribution of the data from which it is constructed)
+\end{block}
+\pause
+What is a \emph{large number}? 
+\end{frame}
+
+\begin{frame}{Bootstrap}
+A \emph{bootstrap} will sample from the sample to get an idea of the sampling distribution. 
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item Draw random samples from each of the event times
+\item Calculate the mean of the sample
+\item You will have a sample of mean calculations 
+\item Calculate confidence intervals from these sample of means
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Using R}
+There is a package for event studies in R
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item \href{https://cran.r-project.org/web/packages/eventstudies/index.html}{eventstudies}
+\item There is a reference manuel
+\item There are two \emph{vignettes}
+\end{itemize}
+\end{frame}
+
+
+\end{document}
