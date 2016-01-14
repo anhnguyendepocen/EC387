@@ -49,7 +49,7 @@ This is the cumulative average abnormal return for each event time
 \pause
 \begin{block}{CAAR}
 \begin{equation*}
-CAAR_{i,T} = \sum{t = 1}^T AAR_{i,t}
+CAAR_{i,T} = \sum_{t = 1}^T AAR_{i,t}
 \end{equation*}
 \end{block}
 \pause
@@ -121,9 +121,9 @@ matplot(rownames(result), result, type = 'l', lty = c(2, 1, 2), col = 'darkgreen
 @
 \end{frame}
 
-\begin{frame}{Central limit theorum}
+\begin{frame}{Central limit theorem}
 \begin{block}{}
-\textbf{The central limit theorum} states that (given a few assumptions), the mean of a large number of random variables will be approximately normally distributed (regardless of the distribution of the data from which it is constructed)
+\textbf{The central limit theorem} states that (given a few assumptions), the mean of a large number of random variables will be approximately normally distributed (regardless of the distribution of the data from which it is constructed)
 \end{block}
 \pause
 What is a \emph{large number}? 
@@ -141,7 +141,7 @@ A \emph{bootstrap} will sample from the sample to get an idea of the sampling di
 \end{frame}
 
 \begin{frame}[fragile]{Key excel functions}
-Bootstram can be completed with the following comands
+Bootstrap can be completed with the following commands
 \begin{verbatim}
 =index(array, row, column) : identify an point in the array
 =rand() : draws a random number between 0 and 1
@@ -155,7 +155,7 @@ There is a package for event studies in R
 \pause
 \begin{itemize}[<+-| alert@+>]
 \item \href{https://cran.r-project.org/web/packages/eventstudies/index.html}{eventstudies}
-\item There is a reference manuel
+\item There is a reference manual
 \item There are two \emph{vignettes}
 \end{itemize}
 \end{frame}
