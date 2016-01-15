@@ -63,8 +63,9 @@ We have a sample of the whole population of events, therefore
 \item The statistics are estimated with imprecision
 \item We want to know the \emph{Sampling Distribution} of the mean
 \begin{itemize}
-\item This is now variable the mean would be in different samples
+\item This is how variable the mean would be in different samples
 \item This gives some idea of the range of possible values
+\item It can let us know if we are just \emph{lucky} to get a positive result
 \end{itemize}
 \item We can calculate the mean $(\bar{x})$ and the standard deviation $(SD_x)$ of the sample
 \end{itemize}
