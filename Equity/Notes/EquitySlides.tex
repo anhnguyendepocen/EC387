@@ -1,0 +1,268 @@
+\documentclass[14pt,xcolor=pdftex,dvipsnames,table]{beamer}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+
+% Specify theme
+\usetheme{Madrid}
+% See deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html for other themes
+\usepackage{caption}
+\usepackage{tikz}
+ \usetikzlibrary{arrows,positioning}
+\usepackage{multirow}
+% Specify base color
+\usecolortheme[named=OliveGreen]{structure}
+% See http://goo.gl/p0Phn for other colors
+
+% Specify other colors and options as required
+\setbeamercolor{alerted text}{fg=Maroon}
+\setbeamertemplate{items}[square]
+
+% Title and author information
+\title{Equity}
+\author{Rob Hayward}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Intrinsic value}
+Stock investment is easy
+\begin{itemize}[<+-| alert@+>]
+\pause
+\item Find the value of the company
+\begin{itemize}
+\item If it is under-valued - \textbf{BUY!}
+\item If it is over-valued - \textbf{SELL!}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\section{Asymmetries of information}
+\begin{frame}{Business trends}
+Two trends exacerbate asymmetries
+\begin{itemize}[<+-| alert@+>]
+\pause
+\item Rise of large, globalised, public companies
+\begin{itemize}
+\item Professional managers
+\item Complex operations
+\end{itemize}
+\item Modern fund management
+\begin{itemize}
+\item Remote owners of the firm
+\item Diversified portfolios
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Asymmetries 1}
+Two forces that hope to reduce asymmetries
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item Regulatory reporting
+\begin{itemize}
+\item Quarterly reports of activity
+\item Income statement, balance sheet, report on performance
+\end{itemize}
+\item Professional analysts
+\begin{itemize}
+\item Use economies of scale and specialisation to understand firms
+\item Foster relations with firms
+\item Incentives (Investment banks/rating agencies)
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Asymmetries 2}
+Problems
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item Accounting irregulatries
+\begin{itemize}
+\item Enron, Worldcom 
+\item Accruals
+\begin{itemize}
+\item discretionary accruals
+\item book revenue now charge costs late
+\end{itemize}
+\item real manipulations
+\begin{itemize}
+\item Price cuts
+\item R\&D expenditure and investments
+\end{itemize}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Valuing firms}
+There are a number of methods that can be used
+\begin{itemize}[<+-| alert@+>]
+\pause
+\item Accounting methods
+\item Free-cash flows
+\item Relative value and PE
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Accounting value}
+Naive or simplistic
+\begin{itemize}[<+-| alert@+>]
+\pause
+\item What are the value of the assets 
+\item Book value
+\item Re-sale value of the assets provides some lower limit to valuation
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Free cash flow}
+A more realistic view of firm value is 
+\pause
+\begin{block}{}
+What does the firm do with the assets - how much money does it generate?
+\end{block}
+\pause
+NPV of free cash
+\end{frame}
+
+\begin{frame}{Relative value}
+\begin{block}{PE ratio}
+\begin{equation*}
+\frac{P}{E} = \frac{\text{price per share}}{\text{earnings per share}}
+\end{equation*}
+\end{block}
+\end{frame}
+
+\begin{frame}{Historic PE}
+\begin{itemize}[<+-| alert@+>]
+\item Historic PE ratio of the S\&P 500 is about 14
+\begin{itemize} 
+\item Anything above this is \emph{overvalued} or \emph{A growth stock}
+\item Anything below this is \emph{undervalued} or \emph{A value stock}
+\end{itemize}
+\item Firms may be highly valued because they are very good
+\item Firms may be low valued because they are poor
+\end{itemize}
+\end{frame}
+
+
+\section{Equity valuation}
+\begin{frame}{Equities and the economy}
+There are two broad approaches to valuation
+\begin{itemize}[<+-| alert@+>]
+\pause
+\item Bottom up:  this is the corporate finance rout of understanding the performance of individual companies and amalgamating that to get an overall view of the market
+\item Top down: evaluating equities relative to the economy
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Methods of evaluation}
+There are three broad ways of looking at value
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item Cyclically adjusted price earnings ratio (CAPE). 
+\item Tobin's Q
+\item The equity risk premium
+\end{itemize}
+\end{frame}
+
+\begin{frame}{CAPE}
+Used by Robert Shiller in \emph{Irrational Exuberance}
+\pause
+\begin{block}{}
+\begin{equation*}
+CAPE = \frac{\text{S\&P500 real price}}{\text{10-year MA S\&P 500 earnings}}
+\end{equation*}
+\end{block}
+\end{frame}
+
+\begin{frame}{CAPE}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{figure}
+\includegraphics[width=\maxwidth]{figure/earnings-1} \caption[Cumulative, adjusted price earnings ratio]{Cumulative, adjusted price earnings ratio\label{fig:earnings}}
+\end{figure}
+
+
+\end{knitrout}
+\end{frame}
+
+\begin{frame}{Tobin's Q}
+The market value of equity relative to the replacement cost of capital
+\begin{block}{}
+\begin{equation*}
+Q = \frac{\text{Market value}}{\text{Corporate net worth}}
+\end{equation*}
+\end{block}
+\end{frame}
+
+\begin{frame}{Equity risk premium}
+The equity risk premium is the return required for taking risk.
+\begin{block}{}
+\begin{equation}
+ERP = R_e - R_{rf} \quad \text{or} \quad R_e - R_b
+\end{equation}
+\end{block}
+Where $ERP$ is the equity risk premium; $R_e$ is the return on equity; $R_fr$ is the risk-free return and $R_b$ is the return on bonds. 
+\end{frame}
+
+\begin{frame}{Fed Model}
+The Fed model compares the stock market's earnings yield (E/P) to the yield on long-term government bonds. 
+\pause
+\begin{block}{}
+\begin{equation*}
+\frac{E}{P} = Y_{10}
+\end{equation*}
+\end{block}
+\pause
+Greenspan refers to the link between the fall in the real yield on fixed income that occured since 1990 and the increase in the P/E ratio and return on housing.
+\end{frame}
+
+\end{document}

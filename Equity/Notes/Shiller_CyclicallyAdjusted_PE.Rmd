@@ -1,0 +1,74 @@
+---
+title: "Equity"
+author: "Rob Hayward"
+date: "Saturday, October 04, 2014"
+output: html_document
+---
+# Valuation of equity#
+The valuation of equity can run anywhere from a start up to the whole market.  At one extreme is the activity of a Venture Capitalist and at the other is the valuation of equity generally. 
+
+## VC ##
+These notes are from a studnet They need to be summarised and praphrased and acknowldged. 
+
+Valuing a firm could be achieved using various methods depending on the knowledge level of the entrepreneurs .Most founders will tend to take the route of valuing the sweat and treasure put in the business by calculating the value of its physical assets and adding a premium for effort and time value of money. This is similar to estimating the book value of the firm and is the basis for the Net Asset Basis valuation methodology. But as (Madura 2012)(Fuller, Hsia 1984)said the value of an enterprise is not in its asset but in the value those assets can generate as measured by the cash flow that accrues to its owners. This free cash flow has to be calculated by estimating the excess cash left for shareholders after all operational, financing and investing activities of the firm has been taken care off. To know what a firm is worth today a forecast of the enterprise future performance has to be made which most time involves the preparation of a forecast balance sheet, income statement and cash flow statement .This forecasts are normally for a certain period of time for which the firms cash flow is undergoing changes (typically 5 years) until a period for which cash flow growth rate can be considered to be stable till perpetuity. This is considered the terminal year and the cash flow for the terminal year is referred to as the terminal value. To obtain the Net Present Value (NPV) of the firm the yearly projected cash flows(c) are discounted with the shareholders required rate of return to the present value and added to the value at day 0.  
+
+While the terminal value if discounted as perpetuity.
+
+          $$NPV=day+C/(1+r)1+C2/(1+R)2...Ct/(r-g)/(1+r)t-1$$
+
+The NPV obtain represents the firms value and can be dividend the number of issued shares to obtain the price per share (Ross, Westerfield et al. 2010)
+
+For new ventures forecasting future cash flows from the business plan is froth with dangers. Firstly we have mention the issue of hubris that goes into entrepreneurs estimates which venture investors have to be aware of and take cognizance of in estimating cash flow and arriving at an appropriate discount rate. There is also the issue of heightened risk of failure of new ventures that have no past track record to count on. The presence of black holes, living dead and utopian investments in the portfolio of venture investors makes them request for higher than normal rate of returns for new ventures (Leach and Melicher,2012).
+
+This uncertainties makes venture investors skip having to estimate regular future cash flow in new ventures and aim to estimate a period in the future when cash flow is likely to be stable and the likely cash flow at that time (terminal value).The likely price multiple obtain by another business (or group of peers) is then applies to the terminal figure to obtain the likely future value of the firm. For exchange if Inspiron.a fiber glass company is estimated to generate $500,000 to perpetuity starting 5 years time and its peer price multiple was 10 then the future value of Inspiron will be $5,000,000(500,000 \times 10$). This 5m is discounted back to the present value at the venture investors required rate of return of say 5.0% which gives ($5,000,000 \times (1.5)5)= 658436.2$ .If we assume there are 1m shares in issue and there is only one share holder who start the company then the price per share will be $0.658$.This is what the Venture Capital Short Cut(VCSC) valuation method is all about. From here the shares to be created for each new investor at various investment rounds could be determined. Assuming an investor is looking to investor 200,000 in our Inspirion as first round capital at 40% required rate of return we can calculate the new shares that needs to be issued to him by :
+
+                   $$i/P/e ratio*Cash flow/(1+r)5=  500,000/5,000,000*(1.5)5=500,000/658436=0.75.93=75.93%$$
+
+if  24.06%=1,000,000 then the new investor will have to be issued with 3155860 units of shares bringing to the issued shares of the company to 4,155,860 .The price per share the investor will pay will be 500,000/3155860=$0.158/share.
+
+This calculations can be adjusted for different rounds of investments that insipiron seeks and also for any employee share option seek. What they all have in common that they tend to dilute the holding of the initial founder/entrepreneurs  significantly this is because the entrepreneurs is probably the only party on the table that has not locked down his require rate of return with a firm contract(Leach and Melicher,2012)(Hsu 2004).
+
+As mention earlier new venture business plan can contain hubris with regards to lofty and unrealistic cash flow projections which venture investors tends to smooth out by requiring a discount rate that contains a significant hubris premium. Also venture capitalist tend to request high required rate of return to compensate for the presence of black holes(ventures with zero cash flow);living dreads(barely surviving) and utopia ventures in their portfolio. This comes with insinuations that they are sharks. (Or vultures if you want).
+
+The Utopian Discounting process is one of the processes used by venture investors to arrive at the appropriate valuation for a venture. Investors that use this process generally ignore the presence of black hole and living dead firm in their portfolio and focus on using an utopian scenario to estimate cash flow and discount rate of their investments. The general assumption is that if a certain percentage of their portfolio achieves utopian, its high cash flow and discount rate will be moderated by ventures in the other two groupings that are likely to be NPV negative. The Inspirion example we used is a typical utopian valuation scenario.
+
+Another VCSC variant used is the Mean Approach .Here the investor takes a hard nose approach to removing hubris from the cash flow presented in the ventures business plan as much as possible. This revised cash flow figure is then discounted with the appropriate industry/sector average discount rate. The various investment outcomes black hole, living dead and utopia are simulated using multiple cash flow projections. The conservative cash flow figure obtained is what is discounted with a required rate of return that is likely to be significantly lower than the utopian discount rate. So for inspirion the use of the mean approach could result in a cash flow of $3,000,000 instead of $5,000,000.This $3m could now be discounted with 22% instead of the utopian 50% used. This is likely to result in a PV and ultimately the percentage shares that are not too far away from the utopian method figure.
+
+Conclusion
+
+Venture investors realizes the unreliability of venture business plan figures in forecasting cash flow for valuation purposes so they design a venture cash flow short cut (VCSC)to determine venture value. The estimation of cash flow and required rate of return used for this value calculation could be the utopia or Mean Approach.
+
+ 
+
+Olatunde Amolegbe
+
+Reference
+
+FULLER, R.J. and HSIA, C., 1984. A simplified common stock valuation model. Financial Analysts Journal, , pp. 49-56.
+
+HSU, D.H., 2004. What do entrepreneurs pay for venture capital affiliation? The Journal of Finance, 59(4), pp. 1805-1844.
+
+MADURA, J., 2012. International financial management. Cengage Learning.
+
+ROSS, S.A., WESTERFIELD, R.W. and JAFFE, J.F., 2010. Corporate finance,9th Ed,McGrawhill/Irvin,New York.
+
+Leach Chris J;Melicher W Ronald(2012)-Entrepreneurial Finance,4th Ed,South-Western,Cengage Learning
+
+University Of Liverpool(2014)-Entrepreneurial Finance-Week 3 Lecture Notes.
+
+
+## Notes on Shiller's Cyclically Adjusted PE ##
+These initial ideas from [Wikipedia](http://en.wikipedia.org/wiki/Cyclically_adjusted_price-to-earnings_ratio).  CAPE is the price per the average of 10 year of earnings adjusted for inflation. This can be thought of as one way to trying to implement the ideaS of Benhamine Graham and David Dodd.  The Intellegent Investor. It takes the long term view and tries to ignore the noisy fluctuations of earnings. Shiller 
+
+There are criticisms. For example, [Jeremy Siegel, writing in the FT](http://www.ft.com/cms/s/0/496a3844-0013-11e3-9c40-00144feab7de.html?siteedition=uk#axzz3FBnqBfeg) argues that accounting changes have adversely affected earnings and cause the measure pait a pessimistic picture.   THe reciprocal of the PE ratio is the earnings yield.  This may be used to compare to bond yields as another method of analysis.  This is controversial.  Some people suggest that real and nominal variables should not be compared.  
+
+*Irrational Exhubirance*.  Greenspan used the term on December 1996.  Norbert Keimling has found similar effects for other markets.  
+
+## The Fed Model## 
+The Fed model compares the stock market's earnings yield (E/P) to the yield on long-term government bonds. Some versions suggest that there is equilibrium when the one-year forward earnings yield is equal to the 10-year note yield. 
+
+$$\frac{E}{P} = Y_{10}$$
+
+Greenspan refers to the link between the fall in the real yield on fixed income that occured since 1990 and the increase in the P/E ratio and return on housing. The broad idea is that there are competing assets. It may also be argued that the goverment bond is an estimate of the risk-free rate that will can be used to discount future earnings. The correlation between the bond yield and the PE is high in the 1995-2002 period.  However, it is less reliable outside this time. Look at the data. 
+
+There is less support for this model in other markets and some criticism of the model from academic sources.  CAPE seems to be much better at predicting the future.  There is an argument that investors set prices based on nominal rather than real interest rates.  This is money illusion. 
