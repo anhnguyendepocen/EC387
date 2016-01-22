@@ -1,0 +1,103 @@
+\documentclass[14pt,xcolor=pdftex,dvipsnames,table]{beamer}
+
+% Specify theme
+\usetheme{Madrid}
+% See deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html for other themes
+\usepackage{caption}
+\usepackage{tikz}
+ \usetikzlibrary{arrows,positioning}
+\usepackage{multirow}
+% Specify base color
+\usecolortheme[named=OliveGreen]{structure}
+% See http://goo.gl/p0Phn for other colors
+
+% Specify other colors and options as required
+\setbeamercolor{alerted text}{fg=Maroon}
+\setbeamertemplate{items}[square]
+
+% Title and author information
+\title{Equity 2}
+\author{Rob Hayward}
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Equity valuation 2}
+Look at two ways of assessing equity
+\begin{itemize}[<+-| alert@+>]
+\item Value Investment
+\item Competitive Advantage
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Value Investment}
+\frametitle{Value investment}
+\begin{center}
+\includegraphics[height = 3.0in]{../../../Trading/Vlerick/Pictures/BGsmall}
+\end{center}
+\end{frame}
+
+\begin{frame}{Warran Buffett}
+\begin{itemize}[<+-| alert@+>]
+\item Founder and CEO of Berkshire Hathaway
+\item Former textile company turned into insurance
+\item Main shareholdings
+\begin{itemize}
+\item Washington Post
+\item Coca-Cola company
+\item General Re
+\item IBM
+\item State Street
+\item Goldman Sachs
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Value investment}
+Depends upon
+\begin{itemize}[<+-| alert@+>]
+\item Finding under-valued companies
+\begin{itemize}
+\item high dividend yield
+\item low PE
+\end{itemize}
+\item Companies that have a strong brand
+\item Companies that have strong management
+\item Long-term investments
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Words of Warran}
+\begin{block}{}
+`I never attempt to make money on the stock market. I buy on the assumption that they could close the market the next day and not reopen it for 5 years'
+\end{block}
+\pause
+\begin{block}{}
+`Only when the tide goes out do you discover who's been swimming naked'
+\end{block}
+\pause
+\begin{block}{}
+`Price is what you pay. Value is what you get'
+\end{block}
+\end{frame}
+
+\begin{frame}{Joseph Piotroski}
+Developed a \emph{value investment system}
+\begin{itemize}[<+-| alert@+>]
+\item Net Income (positive)
+\item Operating cash flow (positive)
+\item Return on Assets (above last year)
+\item Quality of earnings (Operating cash above net income)
+\item Long-term debt to assets (decreasing)
+\item Current ratio (increasing)
+\item Shares outstanding (decreasing)
+\item Gross margin (increasing)
+\item Asset turnover (increasing)
+% sales increase more than assets increase
+\end{itemize}
+\end{frame}
+
+
+\end{document}
