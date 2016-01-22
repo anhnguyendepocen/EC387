@@ -36,8 +36,7 @@ Stock investment is easy
 \end{itemize}
 \end{frame}
 
-\section{Asymmetries of information}
-\begin{frame}{Business trends}
+\begin{frame}{Asymmetries of information}
 Two trends exacerbate asymmetries
 \begin{itemize}[<+-| alert@+>]
 \pause
@@ -54,7 +53,7 @@ Two trends exacerbate asymmetries
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Asymmetries 1}
+\begin{frame}{Asymmetries 2}
 Two forces that hope to reduce asymmetries
 \pause
 \begin{itemize}[<+-| alert@+>]
@@ -76,13 +75,13 @@ Two forces that hope to reduce asymmetries
 Problems
 \pause
 \begin{itemize}[<+-| alert@+>]
-\item Accounting irregulatries
+\item Accounting irregularities
 \begin{itemize}
-\item Enron, Worldcom 
+\item Enron, WorldCom 
 \item Accruals
 \begin{itemize}
 \item discretionary accruals
-\item book revenue now charge costs late
+\item book revenue now charge costs later
 \end{itemize}
 \item real manipulations
 \begin{itemize}
@@ -143,10 +142,21 @@ NPV of free cash
 \end{itemize}
 \end{frame}
 
+\begin{frame}{Relative value}
+PE ratio is particularly useful for comparing similar firms
+\begin{itemize}[<+-| alert@+>]
+\item PE says something about expected earnings' growth
+\item If the PE ratio of firms in a similar industry is different
+\begin{itemize}
+\item is it justified? 
+\item if not, they may be mis-valuation
+\end{itemize}
+\item We will return to this when we discuss pairs-trading
+\end{itemize}
+\end{frame}
 
-\section{Equity valuation}
-\begin{frame}{Equities and the economy}
-There are two broad approaches to valuation
+\begin{frame}{Equity market valuation}
+There are two approaches to market valuation
 \begin{itemize}[<+-| alert@+>]
 \pause
 \item Bottom up:  this is the corporate finance rout of understanding the performance of individual companies and amalgamating that to get an overall view of the market
@@ -155,7 +165,7 @@ There are two broad approaches to valuation
 \end{frame}
 
 \begin{frame}{Methods of evaluation}
-There are three broad ways of looking at value
+There are three main ways of looking at value
 \pause
 \begin{itemize}[<+-| alert@+>]
 \item Cyclically adjusted price earnings ratio (CAPE). 
@@ -218,7 +228,7 @@ The Fed model compares the stock market's earnings yield (E/P) to the yield on l
 \end{equation*}
 \end{block}
 \pause
-Greenspan refers to the link between the fall in the real yield on fixed income that occured since 1990 and the increase in the P/E ratio and return on housing.
+Greenspan refers to the link between the fall in the real yield on fixed income that occurred since 1990 and the increase in the P/E ratio and return on housing.
 \end{frame}
 
 \end{document}
