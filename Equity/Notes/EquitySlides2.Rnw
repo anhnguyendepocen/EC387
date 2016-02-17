@@ -33,14 +33,17 @@
 \titlepage
 \end{frame}
 
+\section{Introduction}
 \begin{frame}{Equity valuation 2}
-Look at two ways of assessing equity
+Two frameworks for assessing equity
 \begin{itemize}[<+-| alert@+>]
+\pause
 \item Value Investment
 \item Competitive Advantage
 \end{itemize}
 \end{frame}
 
+\section{Value Investment}
 \begin{frame}{Value Investment}
 \frametitle{Value investment}
 \begin{center}
@@ -65,8 +68,9 @@ Look at two ways of assessing equity
 \end{frame}
 
 \begin{frame}{Value investment}
-Depends upon
+Value investment depends upon
 \begin{itemize}[<+-| alert@+>]
+\pause
 \item Finding under-valued companies
 \begin{itemize}
 \item high dividend yield
@@ -78,7 +82,7 @@ Depends upon
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Words of Warran}
+\begin{frame}{Words of Warren}
 \begin{block}{}
 `I never attempt to make money on the stock market. I buy on the assumption that they could close the market the next day and not reopen it for 5 years'
 \end{block}
@@ -109,6 +113,7 @@ Developed a \emph{value investment system}
 \end{itemize}
 \end{frame}
 
+\section{Competitive Advantage}
 \begin{frame}{Competitive advantage}
 Michael Porter (Harvard Business School)
 \pause
@@ -129,6 +134,7 @@ Michael Porter (Harvard Business School)
 \begin{frame}{Five Competitive Forces}
 Five competitive forces
 \begin{itemize}[<+-| alert@+>]
+\pause
 \item \textbf{Bargaining power} of suppliers
 \item \textbf{Threat} of substitutes
 \item \textbf{Bargaining power} of customers
@@ -142,7 +148,7 @@ Industry Rivalry
 
 \begin{frame}{Bargaining power of suppliers}
 \begin{itemize}[<+-| alert@+>]
-\item How many substitute supplier are there
+\item How many substitute suppliers are there
 \item Impact of inputs on cost or differentiation
 \item Strength of distribution channel
 \item Supplier concentration
@@ -187,6 +193,7 @@ Industry Rivalry
 \end{itemize}
 \end{frame}
 
+\section{The Presentation}
 \begin{frame}{Valuation}
 Combine five-forces with
 \begin{itemize}[<+-| alert@+>]
