@@ -16,10 +16,19 @@
 \setbeamercolor{alerted text}{fg=Maroon}
 \setbeamertemplate{items}[square]
 
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
 % Title and author information
 \title{Pairs Trading - Relative Value}
 \author{Rob Hayward}
-
 
 \begin{document}
 
@@ -66,10 +75,8 @@ The trade depends on a temporary breakdown in the correlation between two simila
 
 \begin{frame}{Pairs}
 <<Coke, echo=FALSE, cache=TRUE, fig.height=5>>=
-#da <- read.csv('http://www.quandl.com/api/v1/datasets/GOOG/NYSE_KO.csv?&auth_token=mUCjthkJFQDsYVrFh4Gh&trim_start=2000-01-01&trim_end=2014-12-31&sort_order=desc', colClasses=c('Date'='Date'))
-#da1 <- read.csv('http://www.quandl.com/api/v1/datasets/GOOG/NYSE_PEP.csv?&auth_token=mUCjthkJFQDsYVrFh4Gh&trim_start=2000-01-01&trim_end=2014-12-31&sort_order=desc', colClasses=c('Date'='Date'))
-da <- read.csv('./Data/GOOG-NYSE_PEP.csv', colClasses = c('Date' = 'Date'))
-da1 <- read.csv('./Data/GOOG-NYSE_KO.csv', colClasses = c('Date' = 'Date'))
+da <- read.csv('http://www.quandl.com/api/v1/datasets/GOOG/NYSE_KO.csv?&auth_token=mUCjthkJFQDsYVrFh4Gh&trim_start=2000-01-01&trim_end=2014-12-31&sort_order=desc', colClasses=c('Date'='Date'))
+da1 <- read.csv('http://www.quandl.com/api/v1/datasets/GOOG/NYSE_PEP.csv?&auth_token=mUCjthkJFQDsYVrFh4Gh&trim_start=2000-01-01&trim_end=2014-12-31&sort_order=desc', colClasses=c('Date'='Date'))
 da2 <- merge(da, da1, by = 'Date')
 par(mfrow = c(1, 2))
 plot(da2$Close.y ~ da2$Date, main = "Pepsi", xlab = "Date", ylab = "Share price", type = 'l')
@@ -94,6 +101,7 @@ plot(da2$Close.x/da2$Close.y ~ da2$Date, xlab = 'Date', ylab = 'Coke/Pepsi', typ
 @
 \end{frame}
 
+\section{Co-integration}
 \begin{frame}{Cointegration}
 One method to look at the relationship would be the assess whether the two are cointegrated.
 \pause
@@ -110,7 +118,7 @@ One method to look at the relationship would be the assess whether the two are c
 \Delta y_t = \Phi_0 + \sum_{j=1} \Phi_j \Delta y_{t-j} + \sum_{h=0} \Delta x_{t-h} + \alpha \hat{u}_{t-1} + \varepsilon_t
 \end{equation*}
 \end{block}
-Where, $y_t$ is value of the paris at time $t$; $x_t$ is the other pair at time $t$; $\Phi_j, j = 0, 1, 2 \dots$ and $\alpha$ are parameters of to be estimated; $\hat{u_t}$ are the rediduals from the regression $y_t = \beta_0 + \beta_1 x_t + \varepsilon_t$
+Where, $y_t$ is value of the paris at time $t$; $x_t$ is the other pair at time $t$; $\Phi_j, j = 0, 1, 2 \dots$ and $\alpha$ are parameters of to be estimated; $\hat{u_t}$ are the residuals from the regression $y_t = \beta_0 + \beta_1 x_t + \varepsilon_t$
 \end{frame}
   
 %\begin{frame}{OLS Coke and Pepsi}
@@ -170,53 +178,93 @@ Dickey-Fuller tests  show that the null of a unit root cannot be rejected ($\tau
 
 \begin{frame}{The yield curve}
 <<Yield, echo = FALSE, warning=FALSE, message=FALSE, fig.height=4.6>>=
- names <- c("10-year", "2-year", "Date")
- da <- read.csv("Data/Yield.csv", stringsAsFactors = FALSE, skip = 12, 
+names <- c("Date", "2-year", "10-year")
+ da <- read.csv("./Data/Yield.csv", stringsAsFactors = FALSE, skip = 12, 
                 na.strings = "#N/A")
  da$Date <- as.Date(da[,1], format = "%Y-%m-%d")
- da <- da[,c(2, 3, 4)]
+ da <- da[,c(4, 2, 3)]
  names(da) <- names
- plot(da$Date, da[,1], main = "US 2 and 10 year yields", ylab = "GRY", 
+ #get rid of days that have NAs
+ da <- da[-c(which(is.na(da$`2-year`))),]
+ plot(da$Date, da$`2-year`, main = "US 2 and 10 year yields", ylab = "GRY", 
       xlab = "Date", type = 'l', lty = 1, ylim = c(0, 5))
- lines(da$Date, da[,2], lty = 2, type = 'l', col = "Dark Green")
- legend("topright", legend = c("10-year", "2-year"), col = c("black", "Dark Green"), 
-        lty = c(1, 2))
+ lines(da$Date, da$`10-year`, lty = 2, type = 'l', col = "Dark Green")
+ legend("topright", legend = c("2-year", "10-year"), col = c("black", "Dark Green"), lty = c(1, 2))
  @
  \end{frame}
  
-% \begin{frame}{Regresssion 2 on 10}
-% Dependent variable is 10 year
-%<<reg, echo = FALSE, warning=FALSE, message=FALSE, results='asis'>>=
-% library(xtable)
-%eq1 <- lm(da[,2] ~ da[,1])
-%xtable(summary(eq1), digits = 2)
-%@
-%The explanatory variable is 2-year.
-%\end{frame}
+\begin{frame}{Regression 2 on 10}
+Dependent variable is 10 year
+% latex table generated in R 3.2.0 by xtable 1.7-4 package
+% Thu Feb 18 12:54:18 2016
+\begin{table}[ht]
+\rowcolors{1}{OliveGreen!20}{OliveGreen!5}
+\centering
+\begin{tabular}{rrrrr}
+  \hline
+ & Estimate & Std. Error & t value & Pr($>$$|$t$|$) \\ 
+  \hline
+(Intercept) & -0.20 & 0.01 & -13.21 & 0.00 \\ 
+  `2-year` & 0.25 & 0.01 & 43.19 & 0.00 \\ 
+   \hline
+\end{tabular}
+\end{table}
 
-%\begin{frame}{Residuals}
-%<<resid, echo = FALSE, warning=FALSE, message=FALSE, fig.height=4.6>>=
-%plot(da$Date, eq1$residuals, na.rm = TRUE, type = 'l', xlab = "Date", 
-%     ylab = "Residuals")
-%@
-%\end{frame}
+The explanatory variable is 2-year.
+\end{frame}
 
-\begin{frame}{Yield Spread}
-<<Duiff, echo = FALSE, warning=FALSE, message=FALSE, fig.height=4.6>>=
-plot(da$Date, da[,1] - da[,2], type = 'l', main = "Yield spread", 
-     ylab = "Yield spread", xlab = "Date")
+\begin{frame}{Residuals}
+<<resid, echo = FALSE, warning=FALSE, message=FALSE, fig.height=4.6>>=
+eq1 <- lm(da$`10-year`  ~ da$`2-year`)
+plot(da$Date, eq1$residuals, type = 'l', xlab = "Date", 
+     ylab = "Residuals", main = "Residuals of the regression")
 @
 \end{frame}
 
-\begin{frame}{Yield curve predicts economy}
-There is some resarch that suggests that the yield curve predicts the immediate economic outlook (one year ahead). 
-\pause
-\begin{itemize}[<+-| alert@+>]
-\item Upward sloping yield curve indicates strong economic performance expected
-\item Downward sloping yield curve indicates weak economic performance
-\end{itemize}
-\pause
-Chinn, M. \& K. Kuko (2015), \emph{The predictive power of the yield curve across countries and time}
+\begin{frame}{Testing unit root in residuals}
+\begin{table}[ht]
+\rowcolors{1}{OliveGreen!20}{OliveGreen!5}
+\centering
+\begin{tabular}{rrrr}
+  \hline
+   & Test & 1pct& 5pct  \\ 
+  \hline
+$\tau$ & -2.00 & -2.58 & -1.95\\
+ $\phi_2$ & 1.99 & 6.43 & 4.59\\ 
+$\phi_3$ & 3.63 & 8.27 & 5.34\\ 
+   \hline
+\end{tabular}
+\end{table}
+Dickey-Fuller tests  show that the null of a unit root is rejected ($\tau$) but that the zero restriction on the drift ($\phi_2$) and trend ($\phi_3$) cannot be rejected.   
+\end{frame}
+
+\begin{frame}{Error-Correction Model}
+The error-correction model
+\begin{block}{}
+\begin{equation*}
+\Delta x_t = \sum_{i = 1}^p \beta_{1,i} \Delta x_{t-i} + \sum_{i = 1}^p \beta_{2, i} \Delta y_{t-i} + \gamma ERR_{t-1} +\varepsilon_t
+\end{equation*}
+\end{block}
+Where ERR are the residuals from the previous regression and $\beta_1$, $\beta_2$ and $\gamma$ are the parameters to be estimated.  A trend or drift term can be added.
+\end{frame}
+
+\begin{frame}{Error Correction Model}
+dependent variable is $\Delta 10Y$, $R^2  = 0.5988$
+\begin{table}[ht]
+\rowcolors{1}{OliveGreen!20}{OliveGreen!5}
+\centering
+\begin{tabular}{lrrrr}
+  \hline
+Variable & Coefficient  & Std. Error & T-stat& Pr($>$$|$t$|$)  \\ 
+  \hline
+Intercept & 0.0018 & 0.0017 & 1.04 & 0.2974 \\ 
+$\Delta 10Y_{t-1}$ & -0.1446 & 0.0357 & -4.05 & 0.0001 \\ 
+$\Delta 2Y_{t-1}$ & 0.0826 & 0.0934 & 0.88 & 0.3764 \\ 
+$\varepsilon_{t-1}$ & -0.0238 & 0.0140 & -1.70 & 0.0903 \\ 
+   \hline
+\end{tabular}
+\end{table}
+Can this be put into a trading model?
 \end{frame}
 
 \begin{frame}{Oil and gas}
@@ -256,6 +304,27 @@ plot(da3$Date, da3$Ratio, type = 'l', main = "Ratio of Gas to Brent",
 \end{frame}
 
 
+
+\begin{frame}{Brent-WTI}
+<<bwt, message=FALSE, warning=FALSE, echo=FALSE,fig.height=4.6>>=
+da2 <- read.csv("../../Trading/Data/brent-wti.csv")
+da2$Date <- as.Date(da2$Date, format = "%d/%m/%Y")
+# I cheated and just looked at the index numbers. There must be a better way
+plot(da2$Date[62:433], da2$Spread[62:433], type = 'l', col = 'darkgreen', 
+     main = "Brent - WTI spread", ylab = "Spread", xlab = "Date")
+@
+\end{frame}
+
+\begin{frame}{Brent-WTI 2}
+<<bwt2, message=FALSE, warning=FALSE, echo=FALSE,fig.height=4.6>>=
+da2 <- read.csv("../../Trading/Data/brent-wti.csv")
+da2$Date <- as.Date(da2$Date, format = "%d/%m/%Y")
+plot(da2$Date, da2$Spread, type = 'l', col = 'darkgreen', 
+     main = "Brent - WTI spread", ylab = "Spread", xlab = "Date")
+@
+\end{frame}
+
+\section{Relative value}
 \begin{frame}{Relative value}
 Now the focus is on one part of the pair out-performing
 This can be based on, for example
@@ -267,9 +336,18 @@ This can be based on, for example
 \item Country risk
 \item Yield curve, duration and changes in short-term interest rates
 \end{itemize}
-
 \end{frame}
 
-
-
 \end{document}
+
+\begin{frame}{Yield curve predicts economy}
+There is some research that suggests that the yield curve predicts the immediate economic outlook (one year ahead). 
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item Upward sloping yield curve indicates strong economic performance expected
+\item Downward sloping yield curve indicates weak economic performance
+\end{itemize}
+\pause
+Chinn, M. \& K. Kuko (2015), \emph{The predictive power of the yield curve across countries and time}
+\end{frame}
+

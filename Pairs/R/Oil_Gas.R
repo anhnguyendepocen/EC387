@@ -37,4 +37,7 @@ plot(eq1$residuals, type = 'l')
 hist(eq1$residuals, xlab = "Residuals", main = "Histogram of residuals")
 
 eq1 <- lm(log(da3$Gas) ~ log(da3$Brent))
-
+summary(eq1)
+library(urca)
+dftest <- ur.df(eq1$residuals, type = 'none', lags = 3) 
+summary(dftest)

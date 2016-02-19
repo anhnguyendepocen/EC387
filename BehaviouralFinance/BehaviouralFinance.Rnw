@@ -16,6 +16,17 @@
 \setbeamercolor{alerted text}{fg=Maroon}
 \setbeamertemplate{items}[square]
 
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
 % Title and author information
 \title{Behavioural Finance}
 \author{Rob Hayward}
@@ -172,6 +183,22 @@ Decisions will be different depending on the way that the question is \textbf{fr
 \item People \emph{stop losses} too slowly
 \end{itemize}
 \end{itemize}
+\end{frame}
+
+\begin{frame}{Framing}
+\begin{figure}
+\begin{tikzpicture}[scale = 0.7];
+\draw [help lines] (-5, -5) grid (5, 5);
+\draw [<->, thick] (-5, 0) -- (5, 0); 
+\draw [<->, thick] (0, 5) -- (0, -5); 
+\draw [<->, thin] (0, 0) to [bend left = 35] (5, 5);
+\draw [<->, thin] (0, 0) to [bend left = 35] (-5, -5);
+\node [below right] at (0, 5) {$U$}; 
+\node [above] at (5, 0) {$\Delta W$};
+\end{tikzpicture}
+\label{figref:pt}
+\caption{Prospect theory}
+\end{figure}
 \end{frame}
 
 \begin{frame}{Heuristics}
@@ -363,8 +390,8 @@ However, noise-trader risk may limit arbitrage
 \end{itemize}
 \end{frame}
 
-\begin{frame}{The assignment}
-For the assignment
+\begin{frame}{The presentation}
+For the presentation
 \begin{itemize}[<+-| alert@+>]
 \pause
 \item Look for example of gradual reaction to news
