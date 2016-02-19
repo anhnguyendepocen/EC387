@@ -66,8 +66,10 @@ The trade depends on a temporary breakdown in the correlation between two simila
 
 \begin{frame}{Pairs}
 <<Coke, echo=FALSE, cache=TRUE, fig.height=5>>=
-da <- read.csv('http://www.quandl.com/api/v1/datasets/GOOG/NYSE_KO.csv?&auth_token=mUCjthkJFQDsYVrFh4Gh&trim_start=2000-01-01&trim_end=2014-12-31&sort_order=desc', colClasses=c('Date'='Date'))
-da1 <- read.csv('http://www.quandl.com/api/v1/datasets/GOOG/NYSE_PEP.csv?&auth_token=mUCjthkJFQDsYVrFh4Gh&trim_start=2000-01-01&trim_end=2014-12-31&sort_order=desc', colClasses=c('Date'='Date'))
+#da <- read.csv('http://www.quandl.com/api/v1/datasets/GOOG/NYSE_KO.csv?&auth_token=mUCjthkJFQDsYVrFh4Gh&trim_start=2000-01-01&trim_end=2014-12-31&sort_order=desc', colClasses=c('Date'='Date'))
+#da1 <- read.csv('http://www.quandl.com/api/v1/datasets/GOOG/NYSE_PEP.csv?&auth_token=mUCjthkJFQDsYVrFh4Gh&trim_start=2000-01-01&trim_end=2014-12-31&sort_order=desc', colClasses=c('Date'='Date'))
+da <- read.csv('./Data/GOOG-NYSE_PEP.csv', colClasses = c('Date' = 'Date'))
+da1 <- read.csv('./Data/GOOG-NYSE_KO.csv', colClasses = c('Date' = 'Date'))
 da2 <- merge(da, da1, by = 'Date')
 par(mfrow = c(1, 2))
 plot(da2$Close.y ~ da2$Date, main = "Pepsi", xlab = "Date", ylab = "Share price", type = 'l')
