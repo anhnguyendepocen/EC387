@@ -154,18 +154,6 @@ The tend is intact!
 Otherwise, there are doubts
 \end{frame}
 
-\begin{frame}{SP 500}
-<<hlc, echo = FALSE, fig.height=4.6, message=FALSE, warning=FALSE>>=
-library(tseries)
-da <- read.csv("../BehaviouralFinance/Data/GSPC.csv")
-da$Date <- as.Date(da$Date, format = "%d/%m/%Y")
-da1 <- da[(da$Date  > as.Date("2014-12-25", format = "%Y-%m-%d") 
-              & da$Date < as.Date("2015-02-15", format = "%Y-%m-%d")),]
-da1 <- da1[rev(rownames(da1)),]
-dat <- as.ts(da1[,c(2:5)])
-plotOHLC(dat, origin = "2014-12-25", ylab = "SP500", main = "Christmas 2014") 
-@
-\end{frame}  
 
 \begin{frame}{Support and resistance}
 Highs and lows are very important: they show where buying and selling pressure was sufficient to change direction
@@ -185,6 +173,19 @@ Highs and lows are very important: they show where buying and selling pressure w
 \end{itemize}
 \end{frame}
 
+\begin{frame}{SP 500}
+<<hlc, echo = FALSE, fig.height=4.6, message=FALSE, warning=FALSE>>=
+library(tseries)
+da <- read.csv("../BehaviouralFinance/Data/GSPC.csv")
+da$Date <- as.Date(da$Date, format = "%d/%m/%Y")
+da1 <- da[(da$Date  > as.Date("2014-12-25", format = "%Y-%m-%d") 
+              & da$Date < as.Date("2015-02-15", format = "%Y-%m-%d")),]
+da1 <- da1[rev(rownames(da1)),]
+dat <- as.ts(da1[,c(2:5)])
+plotOHLC(dat, origin = "2014-12-25", ylab = "SP500", main = "Christmas 2014") 
+@
+
+\end{frame}  
 \begin{frame}{Use of support and resistance}
 As a result, support at resistance are used for 
 \begin{itemize}[<+-| alert@+>]
@@ -319,7 +320,18 @@ If sentiment is becoming less positive, there is a risk that it can suddenly rev
 Technical trading handbook - student central
 \end{frame}
 
-\begin{frame}{Momentum}
+\begin{frame}{Other indicators}
+There are a range of other indicators that you will find in the handbook.  You can try to implement and test any of these
+\begin{itemize}[<+-| alert@+>]
+\item Net Change Oscillator (NCO)
+\item Rate of Change (NC)
+\item Relative Strength Indicator (RSI)
+\item Stochastics
+\item Moving Average Convergence-Divergence (MACD)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Net change oscillator}
 Example: \emph{Rate of change Oscillator}
 \pause
 \begin{block}{}
@@ -345,20 +357,21 @@ abline(h = -1, col = 'red', lty = 2)
 @
 \end{frame}
 
-
-\begin{frame}{Support and resistance}
-\begin{itemize}[<+-| alert@+>]
-\item Required for \emph{take-profit} and \emph{stop-loss} levels
-\item Based on places where there has been buying or selling pressure in the past
-\item This may coincide with something that is fundamental
-\begin{itemize}
-\item Yield levels on bonds
-\item Divined yield on stocks
-\item Importance exchange rate levels
-\end{itemize}
-\item Support and resistance levels can become self-reinforcing
-\item Effect of take-profit and stop-loss
-\end{itemize}
+\begin{frame}{RSI}
+The 14-day RIS is calculated as
+\pause
+\begin{block}{}
+\begin{equation*}
+RSI = 100 - \left ( \frac{100}{1 + RS} \right )
+\end{equation*}
+\end{block}
+\pause
+where
+\begin{block}{}
+\begin{equation*}
+RS = \frac{\text{Average of last 14 positive closes}}{\text{Average of last 14 negative closes}}
+\end{equation*}
+\end{block}
 \end{frame}
 
 \begin{frame}{SP 500}
@@ -395,11 +408,10 @@ You can start with two themes
 \item The end of the trend
 \begin{itemize}
 \item Finding a reversal
-\item Start with a Specific standard deviation
+\item Start with a rolling standard deviation
+\item This will identify large or extreme moves
 \end{itemize}
 \end{itemize}
 \end{frame}
-
-
 
 \end{document}
