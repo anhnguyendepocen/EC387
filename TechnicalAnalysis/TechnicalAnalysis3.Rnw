@@ -260,7 +260,7 @@ The longer the moving average the more of the past that is taken account of.  Ho
 \pause
 \begin{block}{}
 \begin{equation*}
-EWA_t = \alpha P_t + (1 - \alpha}) EWA_{t-1}
+EWA_t = \alpha P_t + (1 - \alpha) EWA_{t-1}
 \end{equation*}
 \end{block}
 \pause
@@ -395,7 +395,7 @@ You can start with two themes
 \item The end of the trend
 \begin{itemize}
 \item Finding a reversal
-\item Start with a Specific standard deviation}
+\item Start with a Specific standard deviation
 \end{itemize}
 \end{itemize}
 \end{frame}
