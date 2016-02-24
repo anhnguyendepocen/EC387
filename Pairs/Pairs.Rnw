@@ -350,3 +350,4 @@ There is some research that suggests that the yield curve predicts the immediate
 \pause
 Chinn, M. \& K. Kuko (2015), \emph{The predictive power of the yield curve across countries and time}
 \end{frame}
+

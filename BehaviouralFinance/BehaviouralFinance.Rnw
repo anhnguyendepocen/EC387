@@ -403,7 +403,7 @@ For the presentation
 \begin{itemize}
 \item PE ratio, P-book ratio, others....
 \end{itemize}
-\item Use technical analysis....
+\item Use technical analysis
 \end{itemize}
 \end{frame}
 
