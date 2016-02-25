@@ -154,6 +154,25 @@ The tend is intact!
 Otherwise, there are doubts
 \end{frame}
 
+
+\begin{frame}{Support and resistance}
+Highs and lows are very important: they show where buying and selling pressure was sufficient to change direction
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item At the high
+\begin{itemize}
+\item There was more selling than buying
+\item Those willing to bet that the security was over-valued had more fire-power than those willing to bet that it was undervalued
+\end{itemize}
+\item At the low
+\begin{itemize}
+\item There was more buying than selling
+ Those willing to bet that the securities was undervalued had more fire-power than those willing to bet that was overvalued
+\end{itemize}
+\item There was a change of direction that these points
+\end{itemize}
+\end{frame}
+
 \begin{frame}{SP 500}
 <<hlc, echo = FALSE, fig.height=4.6, message=FALSE, warning=FALSE>>=
 library(tseries)
@@ -165,9 +184,38 @@ da1 <- da1[rev(rownames(da1)),]
 dat <- as.ts(da1[,c(2:5)])
 plotOHLC(dat, origin = "2014-12-25", ylab = "SP500", main = "Christmas 2014") 
 @
+
 \end{frame}  
+\begin{frame}{Use of support and resistance}
+As a result, support at resistance are used for 
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item Identifying when sentiment has changed
+\item Setting \textbf{Take-profit}
+\item Selling \textbf{Stop-loss} 
+\end{itemize}
+\pause
+However, 
+\pause
+\begin{block}{}
+This can mean that they are self-fulfilling: stops and take-profits are triggered at particular points
+\end{block}
+\pause
+Support and resistance may also relate to fundamental levels (GRY for bonds, PE ratios for stocks, parities for exchange rates, big numbers on commodities)
+\end{frame}
 
-
+\begin{frame}{SP 500}
+<<hlc1, echo = FALSE, fig.height=4.6, message=FALSE, warning=FALSE>>=
+library(tseries)
+da <- read.csv("../BehaviouralFinance/Data/GSPC.csv")
+da$Date <- as.Date(da$Date, format = "%d/%m/%Y")
+da1 <- da[(da$Date  > as.Date("2014-12-25", format = "%Y-%m-%d") 
+              & da$Date < as.Date("2015-02-15", format = "%Y-%m-%d")),]
+da1 <- da1[rev(rownames(da1)),]
+dat <- as.ts(da1[,c(2:5)])
+plotOHLC(dat, origin = "2014-12-25", ylab = "SP500", main = "Support at 1980") 
+@
+\end{frame}  
 
 \begin{frame}{Other tools}
 There are a wide range of other tools that are used to try to identify evolving or eroding sentiment
@@ -213,14 +261,27 @@ A moving average will just take the average of closing prices and smooth to remo
 \pause
 \begin{block}{}
 \begin{equation*}
-BAC_{MA3} = \frac{1}{3} \sum_{i = -3}^{i=0}(P_{t-i})
+MA3 = \frac{1}{3} \sum_{i = -3}^{i=0}(P_{t-i})
 \end{equation*}
 \end{block}
 \pause
 \begin{itemize}[<+-| alert@+>]
 \item Different time periods
 \item Short MA or price crossing longer MA is a signal
+\item May be tailored to the market or contemporary conditions
 \end{itemize}
+\end{frame}
+
+\begin{frame}{Exponentially-weighted moving average}
+The longer the moving average the more of the past that is taken account of.  However, it may make sense to weight the recent past more highly than that which is far gone. 
+\pause
+\begin{block}{}
+\begin{equation*}
+EWA_t = \alpha P_t + (1 - \alpha) EWA_{t-1}
+\end{equation*}
+\end{block}
+\pause
+Where $\alpha$ is a smoothing factor between 0 and 1.  A higher value put more weight on the present. This must be initialised by setting $EMA_t = P_t$. 
 \end{frame}
 
 \begin{frame}{Moving average}
@@ -275,7 +336,19 @@ If sentiment is becoming less positive, there is a risk that it can suddenly rev
 Technical trading handbook - student central
 \end{frame}
 
-\begin{frame}{Momentum}
+\begin{frame}{Other indicators}
+There are a range of other indicators that you will find in the handbook.  You can try to implement and test any of these
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item Net Change Oscillator (NCO)
+\item Rate of Change (NC)
+\item Relative Strength Indicator (RSI)
+\item Stochastics
+\item Moving Average Convergence-Divergence (MACD)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Net change oscillator}
 Example: \emph{Rate of change Oscillator}
 \pause
 \begin{block}{}
@@ -284,6 +357,7 @@ ROC = \frac{\text{Last closing price}}{\text{Close price 10 days ago}}*100) - 10
 \end{equation*}
 \end{block}
 \pause
+\vskip 1cm
 Shows the percentage gained.  Can be plotted against the graph
 \end{frame}
 
@@ -301,42 +375,44 @@ abline(h = -1, col = 'red', lty = 2)
 @
 \end{frame}
 
-
-\begin{frame}{Support and resistance}
-\begin{itemize}[<+-| alert@+>]
-\item Required for \emph{take-profit} and \emph{stop-loss} levels
-\item Based on places where there has been buying or selling pressure in the past
-\item This may coincide with something that is fundamental
-\begin{itemize}
-\item Yield levels on bonds
-\item Divined yield on stocks
-\item Importance exchange rate levels
-\end{itemize}
-\item Support and resistance levels can become self-reinforcing
-\item Effect of take-profit and stop-loss
-\end{itemize}
+\begin{frame}{RSI}
+The 14-day RIS is calculated as
+\pause
+\begin{block}{}
+\begin{equation*}
+RSI = 100 - \left ( \frac{100}{1 + RS} \right )
+\end{equation*}
+\end{block}
+\pause
+where
+\begin{block}{}
+\begin{equation*}
+RS = \frac{\text{Average of last 14 positive closes}}{\text{Average of last 14 negative closes}}
+\end{equation*}
+\end{block}
 \end{frame}
 
-\begin{frame}{SP 500}
-<<hlc1, echo = FALSE, fig.height=4.6, message=FALSE, warning=FALSE>>=
-library(tseries)
-da <- read.csv("../BehaviouralFinance/Data/GSPC.csv")
-da$Date <- as.Date(da$Date, format = "%d/%m/%Y")
-da1 <- da[(da$Date  > as.Date("2014-12-25", format = "%Y-%m-%d") 
-              & da$Date < as.Date("2015-02-15", format = "%Y-%m-%d")),]
-da1 <- da1[rev(rownames(da1)),]
-dat <- as.ts(da1[,c(2:5)])
-plotOHLC(dat, origin = "2014-12-25", ylab = "SP500", main = "Support at 1980") 
-@
-\end{frame}  
 
 \begin{frame}{For the assignment}
 \begin{itemize}[<+-| alert@+>]
-\item Create a quantitative trading rule (see student central)
-\item Conduct a \emph{trading strategy} that will try to apply technical rules
+\item Create a quantitative trading rule 
+\item Explain the inefficiency that the rule is supposed to capture 
+\item Test the trading rule on a real market
+\item Assess the use of the trading rule
+\begin{itemize}
+\item You will have to return to the first assignment
 \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Technical trading rules}
+Three themes
 \pause
-In each of these cases, this is a test of the weak form of market efficiency
+\begin{itemize}[<+-| alert@+>]
+\item Momentum or trend with moving average
+\item Over-shooting with standard deviation
+\item Support and resistance with maximum and minimum
+\end{itemize}
 \end{frame}
 
 \end{document}
