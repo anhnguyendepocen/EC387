@@ -93,7 +93,7 @@ Technical analysis
 \item Has been around for hundreds of year (Japanese rice markets)
 \item Seeks to identify trends
 \begin{itemize}
-\item "The trend is your friend"
+\item ``The trend is your friend"
 \end{itemize}
 \item Seeks to identify the bursting of a bubble
 \item All the news, information, sentiment and positioning is in the price and the evolution of price to this point
@@ -102,7 +102,7 @@ Technical analysis
 \end{frame}
 
 \begin{frame}{Identifying trends}
-"The trend is your friend"
+``The trend is your friend"
 \pause
 \begin{itemize}[<+-| alert@+>]
 \item Evolution of sentiment
@@ -192,7 +192,7 @@ As a result, support at resistance are used for
 \begin{itemize}[<+-| alert@+>]
 \item Identifying when sentiment has changed
 \item Setting \textbf{Take-profit}
-\item Selling \textbf{Stop-loss} 
+\item Setting \textbf{Stop-loss} 
 \end{itemize}
 \pause
 However, 
