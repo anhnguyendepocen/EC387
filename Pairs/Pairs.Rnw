@@ -115,10 +115,10 @@ One method to look at the relationship would be the assess whether the two are c
 \begin{frame}{Engle-Granger ECM}
 \begin{block}{}
 \begin{equation*}
-\Delta y_t = \Phi_0 + \sum_{j=1} \Phi_j \Delta y_{t-j} + \sum_{h=0} \Delta x_{t-h} + \alpha \hat{u}_{t-1} + \varepsilon_t
+\Delta y_t = \Phi_0 + \sum_{j=1} \Phi_j \Delta y_{t-j} + \sum_{h=1} \Phi_h \Delta x_{t-h} + \alpha \hat{u}_{t-1} + \varepsilon_t
 \end{equation*}
 \end{block}
-Where, $y_t$ is value of the paris at time $t$; $x_t$ is the other pair at time $t$; $\Phi_j, j = 0, 1, 2 \dots$ and $\alpha$ are parameters of to be estimated; $\hat{u_t}$ are the residuals from the regression $y_t = \beta_0 + \beta_1 x_t + \varepsilon_t$
+Where, $y_t$ is value of the first pair at time $t$; $x_t$ is the other pair at time $t$; $\Phi_j, j = 0, 1, 2 \dots$, $\Phi_h, j = 0, 1, 2 \dots$  and $\alpha$ are parameters of to be estimated; $\hat{u_t}$ are the residuals from the regression $y_t = \beta_0 + \beta_1 x_t + \varepsilon_t$
 \end{frame}
   
 %\begin{frame}{OLS Coke and Pepsi}
