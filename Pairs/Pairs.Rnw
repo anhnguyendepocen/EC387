@@ -27,7 +27,7 @@
   \end{frame}
 }
 % Title and author information
-\title{Pairs Trading - Relative Value}
+\title{Pairs and relative value}
 \author{Rob Hayward}
 
 \begin{document}
@@ -45,8 +45,8 @@
 This is a return full circle to the original hedge funds
 \pause
 \begin{itemize}[<+-| alert@+>]
-\item Pairs trading will hope to provide an \emph{absolute return}
-\item Paris trading can remove market risk and leave exposure to specific risk
+\item Pairs and RV will hope to provide an \emph{absolute return}
+\item Paris and RV can remove market risk and leave exposure to specific risk
 \item Depends upon being able to short securities
 \begin{itemize}
 \item Professional ability to borrow securities
@@ -55,8 +55,8 @@ This is a return full circle to the original hedge funds
 \end{itemize}
 \end{frame}
 
-\section{Pairs Trading}
-\begin{frame}{Pairs Trading}
+\section{Convergence}
+\begin{frame}{Convergence}
 The trade depends on a temporary breakdown in the correlation between two similar securities
 \pause
 \begin{itemize}[<+-| alert@+>]
@@ -118,7 +118,7 @@ One method to look at the relationship would be the assess whether the two are c
 \Delta y_t = \Phi_0 + \sum_{j=1} \Phi_j \Delta y_{t-j} + \sum_{h=1} \Phi_h \Delta x_{t-h} + \alpha \hat{u}_{t-1} + \varepsilon_t
 \end{equation*}
 \end{block}
-Where, $y_t$ is value of the first pair at time $t$; $x_t$ is the other pair at time $t$; $\Phi_j, j = 0, 1, 2 \dots$, $\Phi_h, j = 0, 1, 2 \dots$  and $\alpha$ are parameters of to be estimated; $\hat{u_t}$ are the residuals from the regression $y_t = \beta_0 + \beta_1 x_t + \varepsilon_t$
+Where, $y_t$ is value of the first pair at time $t$; $x_t$ is the other pair at time $t$; $\Phi_j, j = 0, 1, 2 \dots$, $\Phi_h, h = 0, 1, 2 \dots$  and $\alpha$ are parameters of to be estimated; $\hat{u_t}$ are the residuals from the regression $y_t = \beta_0 + \beta_1 x_t + \varepsilon_t$
 \end{frame}
   
 %\begin{frame}{OLS Coke and Pepsi}
@@ -147,8 +147,8 @@ The regression of Pepsi on Cole is only valid if the two are cointegrated.  Resi
 
 \end{frame}
 
-\begin{frame}{Residuals}
-<<Resid, echo=FALSE, fig.height=5>>=
+\begin{frame}{Residuals 1}
+<<Resid1, echo=FALSE, fig.height=5>>=
 plot(eq$residuals ~ da$Date, main = "Plot of Residuals", xlab = 'Date', 
      ylab = 'Residual', type = 'l')
 @
@@ -213,8 +213,8 @@ Dependent variable is 10 year
 The explanatory variable is 2-year.
 \end{frame}
 
-\begin{frame}{Residuals}
-<<resid, echo = FALSE, warning=FALSE, message=FALSE, fig.height=4.6>>=
+\begin{frame}{Residuals 2}
+<<resid2, echo = FALSE, warning=FALSE, message=FALSE, fig.height=4.6>>=
 eq1 <- lm(da$`10-year`  ~ da$`2-year`)
 plot(da$Date, eq1$residuals, type = 'l', xlab = "Date", 
      ylab = "Residuals", main = "Residuals of the regression")
@@ -238,16 +238,15 @@ $\phi_3$ & 3.63 & 8.27 & 5.34\\
 Dickey-Fuller tests  show that the null of a unit root is rejected ($\tau$) but that the zero restriction on the drift ($\phi_2$) and trend ($\phi_3$) cannot be rejected.   
 \end{frame}
 
-\begin{frame}{Error-Correction Model}
-The error-correction model
+\begin{frame}{Engle-Granger ECM}
 \begin{block}{}
 \begin{equation*}
-\Delta x_t = \sum_{i = 1}^p \beta_{1,i} \Delta x_{t-i} + \sum_{i = 1}^p \beta_{2, i} \Delta y_{t-i} + \gamma ERR_{t-1} +\varepsilon_t
+\Delta y_t = \Phi_0 + \sum_{j=1} \Phi_j \Delta y_{t-j} + \sum_{h=1} \Phi_h \Delta x_{t-h} + \alpha \hat{u}_{t-1} + \varepsilon_t
 \end{equation*}
 \end{block}
-Where ERR are the residuals from the previous regression and $\beta_1$, $\beta_2$ and $\gamma$ are the parameters to be estimated.  A trend or drift term can be added.
+Where, $y_t$ is value of the first pair at time $t$; $x_t$ is the other pair at time $t$; $\Phi_j, j = 0, 1, 2 \dots$, $\Phi_h, h = 0, 1, 2 \dots$  and $\alpha$ are parameters of to be estimated; $\hat{u_t}$ are the residuals from the regression $y_t = \beta_0 + \beta_1 x_t + \varepsilon_t$
 \end{frame}
-
+ 
 \begin{frame}{Error Correction Model}
 dependent variable is $\Delta 10Y$, $R^2  = 0.5988$
 \begin{table}[ht]
@@ -303,7 +302,19 @@ plot(da3$Date, da3$Ratio, type = 'l', main = "Ratio of Gas to Brent",
 @
 \end{frame}
 
-
+\begin{frame}{Identifying the range}
+For a pair where the spread or ratio is range-bound, 
+\begin{itemize}[<+-| alert@+>]
+\pause
+\item Use \emph{absolute change to identify the sell point}
+\item Use \emph{Standard deviation} to identify large moves from the mean
+\end{itemize}
+\pause
+However, 
+\begin{block}{}
+Some extreme moves are \emph{breakouts}
+\end{block}
+\end{frame}
 
 \begin{frame}{Brent-WTI}
 <<bwt, message=FALSE, warning=FALSE, echo=FALSE,fig.height=4.6>>=
@@ -312,6 +323,8 @@ da2$Date <- as.Date(da2$Date, format = "%d/%m/%Y")
 # I cheated and just looked at the index numbers. There must be a better way
 plot(da2$Date[62:433], da2$Spread[62:433], type = 'l', col = 'darkgreen', 
      main = "Brent - WTI spread", ylab = "Spread", xlab = "Date")
+abline(h = 4, col = 'Green', lty = 2, lwd = 2)
+abline(h = -4, col = 'Green', lty = 2, lwd = 2)
 @
 \end{frame}
 
@@ -321,10 +334,12 @@ da2 <- read.csv("../../Trading/Data/brent-wti.csv")
 da2$Date <- as.Date(da2$Date, format = "%d/%m/%Y")
 plot(da2$Date, da2$Spread, type = 'l', col = 'darkgreen', 
      main = "Brent - WTI spread", ylab = "Spread", xlab = "Date")
+abline(h = 4, col = 'Green', lty = 2, lwd = 2)
+abline(h = -4, col = 'Green', lty = 2, lwd = 2)
 @
 \end{frame}
 
-\section{Relative value}
+\section{Breakouts}
 \begin{frame}{Relative value}
 Now the focus is on one part of the pair out-performing
 This can be based on, for example
@@ -335,6 +350,16 @@ This can be based on, for example
 \item Products and brands
 \item Country risk
 \item Yield curve, duration and changes in short-term interest rates
+\end{itemize}
+\end{frame}
+
+\begin{frame}{For you}
+Look for a pair of securities, commodities, exchange rates that you believe will be stable or will diverge.  Complete one of the following
+\begin{itemize}[<+-| alert@+>]
+\pause
+\item Carry out an fundamental investigation of the value of the two to determine whether \emph{convergence} or \emph{breakout} is most likely
+\item Present the (ratio or difference) range for a pair.  Calculate an absolute range and a range based on moving average and standard deviations
+\item Carry out the Engle-Granger cointegration technique
 \end{itemize}
 \end{frame}
 
