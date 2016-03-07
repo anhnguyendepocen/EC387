@@ -1,0 +1,64 @@
+\documentclass[14pt,xcolor=pdftex,dvipsnames,table]{beamer}
+
+% Specify theme
+\usetheme{Madrid}
+% See deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html for other themes
+\usepackage{caption}
+\usepackage[comma, sort&compress]{natbib}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\bibliographystyle{agsm}
+% Specify base color
+\usecolortheme[named=OliveGreen]{structure}
+% See http://goo.gl/p0Phn for other colors
+
+% Specify other colors and options as required
+\setbeamercolor{alerted text}{fg=Maroon}
+\setbeamertemplate{items}[square]
+
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+% Title and author information
+\title{R Packages for finance}
+\author{Rob Hayward}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+\tableofcontents
+\end{frame}
+
+\begin{frame}{Finding R packages}
+There are a number of places to find R packages
+\begin{itemize}[<+-| alert@+>]
+\pause
+\item Cran
+\begin{itemize}
+\item Empirical finance
+\item Econometrics
+\item Time series
+\item Optimisation
+\end{itemize}
+\item R forge
+\item Git hub
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Performance Analytics}
+Ex
+\end{frame}
+
+end{frame}
+
