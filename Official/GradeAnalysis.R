@@ -18,4 +18,4 @@ for(i in assignments){
 hist(da[,i], probability = TRUE,  main = paste("Dispursion of grades for", i,
      "Assignment", sep = " "), breaks = 10, col = "lightblue", xlab = "")
 }
-
+e

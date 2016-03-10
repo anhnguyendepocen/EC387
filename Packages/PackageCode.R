@@ -68,4 +68,18 @@ chart_Series(SPY, subset = "2008-01-01::2009-12-31")
 add_TA(bb[,c(1:3)], on = 1, col = "blue")
 zoom_Chart("2015")
 #-----------------------------------------------------
+#work in progresss
+head(SPY)
+da <- cbind(SPY[,4], bb[,c(1:3)])  
+head(da, n = 100)
+tail(da, n = 100)
+da$action <- rep(NA, dim(da)[1])
+if (da[,1] <= da[,2]) {
+da$action <- 1
+} else if (da[,1] >= da[,4]) {
+  da$action <- -1
+} else {
+  da$action <- 0
+}
+sum(da[,4] == 0, na.rm = TRUE)
   
