@@ -28,7 +28,7 @@ chart.RiskReturnScatter(managers[, c(1:6, 10)], Rf=.03/12, main =
 # add boxplots. 
 
 chart.RollingPerformance(managers[, c(1:2, 10)]) 
-chart.RelativePerformance(managers[, c(1:2)], Rb = managers[,8])
+chart.RelativePerformance(managers[, c(1:2)], Rb = managers[,8], main = "My lovely chart")
 
 table.DownsideRisk(managers[, c(1, 2)])
 #-----------------------------------------------
@@ -60,7 +60,7 @@ chart_Series(SPY, subset = "2008-01-01::2009-12-31")
 add_TA(sma, on = 1, col = "blue")
 testRSI <- RSI(Cl(SPY), n = 2)
 chart_Series(SPY, subset = "2008-01-01::2009-12-31")
-add_TA(testRSI, col = 'green')
+add_TA(testRSI, col = 'blue')
 # Create a series with bolinger bands, 
 bb <- BBands(HLC = SPY[, c(2, 3, 4)], n = 20, sd = 2)
 tail(bb)
