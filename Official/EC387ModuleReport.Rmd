@@ -1,0 +1,36 @@
+---
+title: "EC387 Module Report"
+author: "Rob Hayward"
+date: "Wednesday, March 16, 2016"
+output: word_document
+  
+---
+
+##Introduction
+This module aims to introduce students to the working of financial markets while integrating knowledge from throughout the course while providing the opportunity for students to apply economic, financial and investment tools to real assets and investment opportunities. The module combines some case studies using the Rotman Interative Trader (RIT) with opportunities to apply the tools and techniques that they have learnt to range of investment tasks culminating in the presentation of an investment idea.  
+
+Though the module has been running for 10 years, it is continually evolving to ensure that it is relevant and applicable to current industry practice.  Algorithmic trading has been given a greater influence this year.  It seems to have been popular with many of the students (see feedback below).  An additional, on-line assignment was introduced. This was designed to ensure that students engage with the case studies by making it clear that they would be tested on their learning. 
+
+#Statistical analysis of data
+```{r, echo=FALSE, fig.height=5.5}
+da <- read.csv("Marks2016.csv", stringsAsFactors = FALSE)
+assignments <- c("HF", "Event")
+breaks <- c(20, 30, 40, 50, 60, 70, 80, 90, 100)
+par(mfrow = c(2, 1))
+for(i in assignments){
+barplot(da[order(-da[i]),i], names.arg = seq(1, length(da[,1])),
+        las = 2, main = paste("EC387 Order of", i, 
+        "Assignment", sep = " "), col = "lightblue")
+abline(h = mean(da[,i], na.rm = TRUE))
+text(x = 23, y = 70, labels = paste("Mean Grade","=", 
+            round(mean(da[,i], na.rm = TRUE), 2), sep = " "))
+}
+```
+
+##Student feeback
+There has been no notification of the results of the annual student feedback.  However, there was an informatl survey of student opion on the use of R and the introduction to programming.  Only a few students responded. 
+
+##Method of returning feedback
+Feedback for the literature review is provided through tunnitin.  Students receive formative feedback on their initial draft of the li
+
+##Action Plan
