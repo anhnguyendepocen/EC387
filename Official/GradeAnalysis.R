@@ -10,7 +10,7 @@ barplot(da[order(-da[i]),i], names.arg = da[order(-da[i]), "Last.Name"],
         "Assignment", sep = " "), col = "lightblue")
 # Obviously supress names for publication.
 abline(h = mean(da[,i], na.rm = TRUE))
-text(x = 23, y = 64, labels = paste("Mean Grade","=", 
+text(x = 23, y = 70, labels = paste("Mean Grade","=", 
             round(mean(da[,i], na.rm = TRUE), 2), sep = " "))
 }
 # maybe make these the same xaxis or same bins in future.
