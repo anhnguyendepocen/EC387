@@ -28,7 +28,7 @@ text(x = 23, y = 70, labels = paste("Mean Grade","=",
 ```
 
 ##Student feeback
-There has been no notification of the results of the annual student feedback.  However, there was an informatl survey of student opion on the use of R and the introduction to programming.  Only a few students responded. 
+There has been no notification of the results of the annual student feedback. The feedback of student opinion revealed the following information.  
 
 ##Method of returning feedback
 Feedback for the literature review is provided through tunnitin.  Students receive formative feedback on their initial draft of the li
