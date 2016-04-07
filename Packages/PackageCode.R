@@ -82,4 +82,5 @@ da$action <- 1
   da$action <- 0
 }
 sum(da[,4] == 0, na.rm = TRUE)
+>>>>>>> ff4a36b59fdd230698d7201d50b575c2ee15322c
   
