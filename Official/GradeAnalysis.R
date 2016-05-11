@@ -1,6 +1,24 @@
 #Grade analysis 
 da <- read.csv("Official/Marks2016.csv", stringsAsFactors = FALSE)
 head(da)
+da$T1 <- da$HF * .6/3 + da$Event * .6/3 + da$Technical * .6/3 + da$Present *.4
+da$T2 <- da$HF * .6/4 + da$Event * .6/4 + da$Technical * .6/4 + da$Four * .6/4 + da$Present *.4
+#------------------------------
+myStats <- function(x, na.omit=FALSE){
+  if (na.omit)
+  x <- x[!is.na(x)]
+  m <- mean(x)
+  md <- median(x)
+  s <- sd(x) 
+  max <- max(x)
+  min <- min(x)
+  n <- length(x)
+  return(c(n=n, mean=m, median = md, stdev=s, max = max, min = min))
+}
+Stats <- apply(da[,3:9], 2, FUN = myStats, na.omit = TRUE)
+round(Stats, 2)
+
+#----------------------------barplots of grades
 par(mfrow = c(2,2))
 assignments <- c("HF", "Event", "Technical")
 breaks <- c(20, 30, 40, 50, 60, 70, 80, 90, 100)
