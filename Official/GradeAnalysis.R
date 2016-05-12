@@ -1,6 +1,6 @@
 #Grade analysis 
 da <- read.csv("Official/Marks2016.csv", stringsAsFactors = FALSE)
-head(da)
+head(da, n = 25)
 da$T1 <- da$HF * .6/3 + da$Event * .6/3 + da$Technical * .6/3 + da$Present *.4
 da$T2 <- da$HF * .6/4 + da$Event * .6/4 + da$Technical * .6/4 + da$Four * .6/4 + da$Present *.4
 #------------------------------
@@ -17,7 +17,10 @@ myStats <- function(x, na.omit=FALSE){
 }
 Stats <- apply(da[,3:9], 2, FUN = myStats, na.omit = TRUE)
 round(Stats, 2)
-
+#----Boxplots
+boxplot(da[,"HF"], da[,"Event"], da[,"Technical"], da[,"Four"], 
+        main = "Boxplot of Four Assignments", col = "lightblue", 
+        names = c("HF", "Event", "Technical", "Four"))
 #----------------------------barplots of grades
 par(mfrow = c(2,2))
 assignments <- c("HF", "Event", "Technical")
