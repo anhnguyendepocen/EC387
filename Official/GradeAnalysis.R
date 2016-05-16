@@ -17,7 +17,9 @@ myStats <- function(x, na.omit=FALSE){
 }
 Stats <- apply(da[,3:9], 2, FUN = myStats, na.omit = TRUE)
 round(Stats, 2)
+#--------------------------------
 
+boxplot(da[,c(3:5, 7)], main = "Boxplot of assignment results")  
 #----------------------------barplots of grades
 par(mfrow = c(2,2))
 assignments <- c("HF", "Event", "Technical")
