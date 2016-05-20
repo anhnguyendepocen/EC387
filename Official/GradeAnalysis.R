@@ -15,7 +15,7 @@ myStats <- function(x, na.omit=FALSE){
   n <- length(x)
   return(c(n=n, mean=m, median = md, stdev=s, max = max, min = min))
 }
-Stats <- apply(da[,3:9], 2, FUN = myStats, na.omit = TRUE)
+Stats <- apply(da[,c(3, 4, 5, 7, 6, 9)], 2, FUN = myStats, na.omit = TRUE)
 round(Stats, 2)
 #--------------------------------
 
@@ -25,6 +25,11 @@ boxplot(da[,c(3:5, 7)], main = "Boxplot of assignment results")
 boxplot(da[,"HF"], da[,"Event"], da[,"Technical"], da[,"Four"], 
         main = "Boxplot of Four Assignments", col = "lightblue", 
         names = c("HF", "Event", "Technical", "Four"))
+# Boxplot 2
+boxplot(da[,"HF"], da[,"Event"], da[,"Technical"], da[,"Four"], 
+        da[, "Present"], da[, "T2"], 
+        main = "Boxplot of Assignments", col = "lightblue", 
+        names = c("HF", "Event", "Technical", "Four", "Presentation", "Total"))
 
 #----------------------------barplots of grades
 par(mfrow = c(2,2))
