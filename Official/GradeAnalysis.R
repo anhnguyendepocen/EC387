@@ -1,9 +1,14 @@
 #Grade analysis 
 da <- read.csv("Official/Marks2016.csv", stringsAsFactors = FALSE)
 head(da, n = 25)
-da$T1 <- da$HF * .6/3 + da$Event * .6/3 + da$Technical * .6/3 + da$Present *.4
-da$T2 <- da$HF * .6/4 + da$Event * .6/4 + da$Technical * .6/4 + da$Four * .6/4 + da$Present *.4
+# Calculates the total when there are only three assignments (for comparison)
+#da$T1 <- da$HF * .6/3 + da$Event * .6/3 + da$Technical * .6/3 + da$Present *.4
+da$Total <- round(da$HF * .6/4 + da$Event * .6/4 + da$Technical * .6/4 + da$Four * .6/4 + da$Present *.4, 1)
 #------------------------------
+print.data.frame(da, row.names = FALSE, digits = 1)
+
+# Now print but getting da2 
+#--------------------------------
 myStats <- function(x, na.omit=FALSE){
   if (na.omit)
   x <- x[!is.na(x)]
