@@ -5,7 +5,7 @@ Questions <- c("Overall", "Organised", "Informed", "Changes", "Contract", "Teach
 # These levels are actually made up.  I think that they are abaut right.
 # Wrap two word labesl so that they fit without overlap.
 Level <- c(paste("Strongly", "Agree", sep = "\n"), "Agree", "Unsure", "Disagree", paste("Strongly", "Disagree", sep = "\n"))
-barplot(da[1,])
+barplot(as.numeric(da[1, 2:6]))
 # Search for Joshua Callarman <J.Callarman@brighton.ac.uk> in email for full results with comments. 
 str(da)
 head(da, n  = 20)
