@@ -4,10 +4,13 @@ head(da, n = 25)
 # Calculates the total when there are only three assignments (for comparison)
 #da$T1 <- da$HF * .6/3 + da$Event * .6/3 + da$Technical * .6/3 + da$Present *.4
 da$Total <- round(da$HF * .6/4 + da$Event * .6/4 + da$Technical * .6/4 + da$Four * .6/4 + da$Present *.4, 1)
+# Next 3 lines for Donna. 
+da$Assignment <- (da$HF + da$Event + da$Technical + da$Four)/4
 #------------------------------
-print.data.frame(da, row.names = FALSE, digits = 1)
-
+a <- print.data.frame(da[,c(1:5, 7, 8, 6)], row.names = FALSE, digits = 1)
+write.table(a, "C://Users/rh49/Desktop/EC387Marks.csv", sep = ",", row.names = FALSE)
 # Now print but getting da2 
+head(da)
 #--------------------------------
 myStats <- function(x, na.omit=FALSE){
   if (na.omit)
@@ -24,7 +27,7 @@ Stats <- apply(da[,c(3, 4, 5, 7, 6, 9)], 2, FUN = myStats, na.omit = TRUE)
 round(Stats, 2)
 #--------------------------------
 
-boxplot(da[,c(3:5, 7)], main = "Boxplot of assignment results")  
+boxplot(da[,c(2:5, 7)], main = "Boxplot of assignment results")  
 =======
 #----Boxplots
 boxplot(da[,"HF"], da[,"Event"], da[,"Technical"], da[,"Four"], 
