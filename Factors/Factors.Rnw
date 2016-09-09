@@ -1,4 +1,4 @@
-\documentclass[12pt, a4paper, oneside]{article} % Paper size, default font size and one-sided paper
+\documentclass[12pt, a4paper, oneside]{hitec} % Paper size, default font size and one-sided paper
 %\graphicspath{{./Figures/}} % Specifies the directory where pictures are stored
 %\usepackage[dcucite]{harvard}
 \usepackage{rotating}
