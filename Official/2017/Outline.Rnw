@@ -18,19 +18,21 @@
 %\begin{abstract}
 %\end{abstract}
 \section{Introduction}
-This module aims to give students an introduction to the working of financial markets.  It also seeks to provide the opportunity for students to develop, apply and test theories and tools that have learnt throughout the course.  It aims to integrate economics, finance and accounting skills in the development of investment strategies.  It will provide an introduction to R and statistical programming.  The module will be divided into three main sections: case studies that involve the simulation of  financial market activities;  the collection, analysis and presentation of economic and financial data; the application of financial techniques to develop trading strategies. 
+This module aims to give you an introduction to the working of financial markets.  It also seeks to provide the opportunity for you to develop, apply and test theories and tools that have been presented through the course.  It aims to integrate economics, finance and accounting skills in the development of investment strategies.  It will provide an introduction to R and statistical programming.  The module will be divided into three main sections: case studies that involve the simulation of  financial market activities;  the collection, analysis and presentation of economic and financial data; the application of financial techniques to develop trading strategies. 
 
 \section{Assignments} 
-The module will help you to develop the investment tools that you have been taught.  This will culminate in a presentation of an investment idea on Friday $31^{th}$ March 2017.  Three assignments will guide you towards this presentation.  The tasks are an assessment of hedge fund performance, an event study or a technical trading strategy and an in-class test.  The in-class test will test you knowledge of market-mechanisms and microstructure. This will take place on Friday $28^{th}$ April in the usual class time. There is a clear link between the quality of the final presentation and the participation in the class.   The presentation counts for 40\% of the final mark for the module and the three other assignments contribute 60\%.  Though the presentation will come at the end of the year, you should start thinking about tools, techniques of topics that interest you from the beginning of the academic year. This is your chance to look more deeply into these areas and to apply them to an investment problem. 
+The module will help you to develop and utilise the investment tools that you have learned on the course.  This will peak in a presentation of an investment idea on Friday $31^{th}$ March 2017.  Two assignments will guide you towards this presentation.  The tasks are an assessment of hedge fund performance, an event study or a technical trading strategy.  
+
+There is also an in-class test.  The in-class test will test you knowledge of market-mechanisms and microstructure. This will take place on Friday $28^{th}$ April 2017 in the usual class time. There is a clear link between the quality of the final presentation and the participation in the class.   The presentation counts for 40\% of the final mark for the module and the three other assignments (two written and one in-class test) contribute 60\%.  Though the presentation will come at the end of the year, you should start thinking about tools, techniques of topics that interest you from the beginning. This is your chance to look more deeply into these areas and to apply them to an investment problem. 
 
 section{Textbooks}
-There is no textbook that will cover all the issues that we will consider in this class.  However, there are a number of books (available in the library) which will may be useful for some parts of the module.  
+There is no textbook that will cover all the topics that we will consider in this class.  However, there are a number of books (available in the library) which will may be useful for some parts of the module.  
 \par
 \vspace{5 mm}
 The three main texts that will be useful for this course are:
 \par
 \vspace{5 mm}
-Bodei, Z, A. Markus \& A.J. Marcus, 2012, \emph{Investments and Portfolio Management}, McGraw-Hill, 9th edition
+Bodie, Z, A. Markus \& A.J. Marcus, 2012, \emph{Investments and Portfolio Management}, McGraw-Hill, 9th edition
 \par
 \vspace{5 mm}
 Ibbotson, R. \& J. Francis, 2002, \emph{Investments: a global perspective}, Prentice Hall\\
