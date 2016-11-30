@@ -27,11 +27,13 @@
 \section{Introduction}
 \begin{frame}
 If the market is informationally efficient, the next market move will be determined by the next information that is received. 
+\pause
 \begin{block}{}
 \begin{equation*}
 p_{t+1} = p_t + \varepsilon,  \quad \quad \varepsilon \sim N(0, \sigma^2)
 \end{equation*}
 \end{block}
+\pause
 However, in assessing the market reaction to new information, it is essential to know what is currently discounted. 
 \end{frame}
 
@@ -39,14 +41,13 @@ However, in assessing the market reaction to new information, it is essential to
 <<dist, fig.height=4, echo=FALSE>>=
 x <- seq(-4, 4, 0.1)
 y <- rnorm(10000, 0, 1)
-hist(y, main = "Distribution of news", xlab = "Positive or negative", ylab = "Frequency", , prob = TRUE)
+hist(y, main = "Distribution of news", xlab = "Positive or negative", ylab = "Frequency", prob = TRUE)
 @
 \end{frame}
-%\begin{itemize}[<+-| alert@+>]
-
 
 \begin{frame}{What is discounted?}
 This is a bigger problem than would be anticipated
+\pause
 \begin{block}{}
 \textbf{Problem}\\
 Radio:``BP shares rose $10\%$ despite the company losing $\$10mn$ in the first half of the year"
@@ -58,9 +59,9 @@ They were expected to lose $\$15mn$
 \end{block}
 \end{frame}
 
-
 \begin{frame}{Assessing expectations}
 \begin{itemize}[<+-| alert@+>]
+\pause
 \item The market price is a distillation of a range of expectations
 \item The price is some sort of \emph{weighted average} of these expectations
 \begin{itemize}
@@ -86,11 +87,28 @@ How are changes in expectations likely to affect market performance?
 \pause
 \begin{itemize}[<+-| alert@+>]
 \item What sort of position are held by short-term speculative accounts? 
-\item What sort of positions are held by long-term stable accounts? 
+\item What sort of positions are held by long-term stable accounts (real money)? 
 \item Where are the \emph{take-profits} and \emph{stop-losses}
 \end{itemize}
 \end{frame}
 
+\begin{frame}{Exercise}
+Find out what is expected for US interest rates in the year ahead.  
+\pause
+\begin{itemize}[<+-| alert@+>]
+\item What would you expect on if either of the extremes were to be realised? 
+\begin{itemize}
+\item for equities
+\item for bonds
+\item for currencies
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\end{document}
+
+% The next step will be to find a way to use the CFTC to assess the positions for 
+% currency market. 
 \begin{frame}{CFTC}
 Commodity and Futures Trading Commission 
 
