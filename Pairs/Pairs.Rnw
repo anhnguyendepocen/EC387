@@ -74,7 +74,7 @@ The trade depends on a temporary breakdown in the correlation between two simila
 \end{frame}
 
 \begin{frame}{Pairs}
-<<Coke, echo=FALSE, cache=TRUE, fig.height=5>>=
+<<Coke, echo=FALSE, cache=TRUE, fig.height=5, warning=FALSE>>=
 da <- read.csv('http://www.quandl.com/api/v1/datasets/GOOG/NYSE_KO.csv?&auth_token=mUCjthkJFQDsYVrFh4Gh&trim_start=2000-01-01&trim_end=2014-12-31&sort_order=desc', colClasses=c('Date'='Date'))
 da1 <- read.csv('http://www.quandl.com/api/v1/datasets/GOOG/NYSE_PEP.csv?&auth_token=mUCjthkJFQDsYVrFh4Gh&trim_start=2000-01-01&trim_end=2014-12-31&sort_order=desc', colClasses=c('Date'='Date'))
 da2 <- merge(da, da1, by = 'Date')
@@ -85,7 +85,7 @@ plot(da2$Close.x ~ da2$Date, main = "Coke", xlab = "Date", ylab = "Share price",
 \end{frame}
 
 \begin{frame}{Coke vs Pepsi}
-<<Coke2, echo = FALSE, cache = TRUE, fig.height=5>>=
+<<Coke2, echo = FALSE, cache = TRUE, fig.height=5, warning=FALSE>>=
 plot(da2$Close.x, da2$Close.y, xlab = "Coke", ylab = "Pepsi", main = "Plot of Coke and Pepsi")
 par(mfrow = c(1,1))
 eq <- lm(da2$Close.y ~ da2$Close.x)
@@ -94,7 +94,7 @@ abline(eq, col = 'red')
 \end{frame}
 
 \begin{frame}{Coke vs Pepsi}
-<<CvP, echo=FALSE, fig.height=5>>=
+<<CvP, echo=FALSE, fig.height=5, warning=FALSE>>=
 par(mfrow = c(1, 2))
 plot(da2$Close.x - da2$Close.y ~ da2$Date, xlab = 'Date', ylab = 'Coke - Pepsi', type = 'l')
 plot(da2$Close.x/da2$Close.y ~ da2$Date, xlab = 'Date', ylab = 'Coke/Pepsi', type = 'l')
@@ -148,7 +148,7 @@ The regression of Pepsi on Cole is only valid if the two are cointegrated.  Resi
 \end{frame}
 
 \begin{frame}{Residuals 1}
-<<Resid1, echo=FALSE, fig.height=5>>=
+<<Resid1, echo=FALSE, fig.height=5, warning=FALSE>>=
 plot(eq$residuals ~ da$Date, main = "Plot of Residuals", xlab = 'Date', 
      ylab = 'Residual', type = 'l')
 @
@@ -177,7 +177,7 @@ Dickey-Fuller tests  show that the null of a unit root cannot be rejected ($\tau
 \end{frame}
 
 \begin{frame}{The yield curve}
-<<Yield, echo = FALSE, warning=FALSE, message=FALSE, fig.height=4.6>>=
+<<Yield, echo = FALSE, warning=FALSE, message=FALSE, fig.height=4.6, warning=FALSE>>=
 names <- c("Date", "2-year", "10-year")
  da <- read.csv("./Data/Yield.csv", stringsAsFactors = FALSE, skip = 12, 
                 na.strings = "#N/A")
@@ -214,7 +214,7 @@ The explanatory variable is 2-year.
 \end{frame}
 
 \begin{frame}{Residuals 2}
-<<resid2, echo = FALSE, warning=FALSE, message=FALSE, fig.height=4.6>>=
+<<resid2, echo = FALSE, warning=FALSE, message=FALSE, fig.height=4.6, warning=FALSE>>=
 eq1 <- lm(da$`10-year`  ~ da$`2-year`)
 plot(da$Date, eq1$residuals, type = 'l', xlab = "Date", 
      ylab = "Residuals", main = "Residuals of the regression")
@@ -267,9 +267,7 @@ Can this be put into a trading model?
 \end{frame}
 
 \begin{frame}{Oil and gas}
-<<OilGas, echo = FALSE, warning=FALSE, message=FALSE, fig.height=4.6>>=
-library(dplyr)
-library(tidyr)
+<<OilGas, echo = FALSE, warning=FALSE, message=FALSE, fig.height=4.6, warning=FALSE>>=
 names <- c("Date", "Brent")
 da <- read.csv("Data/CHRIS-ICE_B1.csv")
 da$Date <- as.Date(da$Date, format = "%d/%m/%Y")
@@ -280,8 +278,10 @@ da2 <- read.csv("Data/CHRIS-ICE_G1.csv")
 da2$Date <- as.Date(da2$Date, format = "%d/%m/%Y")
 da2 <- da2[,c(1, 5)]
 names(da2) <- names2
-da3 <- left_join(da, da2, na.rm = TRUE)
+da3 <- merge(da, da2, na.rm = TRUE)
 da3 <- da3[-c(2135,2052),]
+# Fix the zero variable by setting to 600
+da3$Gas[4203] <- 600
 da3$Spread <- da3$Gas - da3$Brent  
 da3$Ratio <- da3$Gas/da3$Brent
 plot(da3$Date, da3$Brent, type = 'l', main = "Oil and Gas", xlab = "Date", 
@@ -296,7 +296,7 @@ legend("topleft", legend = c("Brent", "Gas"), col = c("black", "Dark Green"),
 \end{frame}
 
 \begin{frame}{Brent-Gas ratio}
-<<OilGasR, echo = FALSE, warning=FALSE, message=FALSE, fig.height=4.6>>=
+<<OilGasR, echo = FALSE, warning=FALSE, message=FALSE, fig.height=4.6, warning=FALSE>>=
 plot(da3$Date, da3$Ratio, type = 'l', main = "Ratio of Gas to Brent", 
      xlab = "Date", ylab = "Ratio")
 @
@@ -317,7 +317,7 @@ Some extreme moves are \emph{breakouts}
 \end{frame}
 
 \begin{frame}{Brent-WTI}
-<<bwt, message=FALSE, warning=FALSE, echo=FALSE,fig.height=4.6>>=
+<<bwt, message=FALSE, warning=FALSE, echo=FALSE,fig.height=4.6, warning=FALSE>>=
 da2 <- read.csv("../../Trading/Data/brent-wti.csv")
 da2$Date <- as.Date(da2$Date, format = "%d/%m/%Y")
 # I cheated and just looked at the index numbers. There must be a better way
@@ -329,7 +329,7 @@ abline(h = -4, col = 'Green', lty = 2, lwd = 2)
 \end{frame}
 
 \begin{frame}{Brent-WTI 2}
-<<bwt2, message=FALSE, warning=FALSE, echo=FALSE,fig.height=4.6>>=
+<<bwt2, message=FALSE, warning=FALSE, echo=FALSE,fig.height=4.6, warning=FALSE>>=
 da2 <- read.csv("../../Trading/Data/brent-wti.csv")
 da2$Date <- as.Date(da2$Date, format = "%d/%m/%Y")
 plot(da2$Date, da2$Spread, type = 'l', col = 'darkgreen', 
